@@ -1,0 +1,23 @@
+class Assets {
+  const Assets._();
+
+  static const String universe = 'assets/images/universe.jpg';
+  static const String photo = 'assets/images/photo.jpg';
+
+  //Raquel
+  static const String raquel = 'assets/images/raquel_logo.png';
+  static const String raquelPrint1 = 'assets/images/raquel/raquel_print_1.jpg';
+  static const String raquelPrint2 = 'assets/images/raquel/raquel_print_2.jpg';
+  static const String raquelPrint3 = 'assets/images/raquel/raquel_print_3.jpg';
+
+  //SVG
+  static const String formy = 'assets/images/svg/formy.svg';
+  static const String lensFlare = 'assets/images/svg/lens_flare.svg';
+
+  //SVG Icons
+  static const String figma = 'assets/images/svg/figma_icon.svg';
+  static const String dart = 'assets/images/svg/dart_icon.svg';
+  static const String flutter = 'assets/images/svg/flutter_icon.svg';
+  static const String cleanArchitecture =
+      'assets/images/svg/clean_architecture_icon.svg';
+}
