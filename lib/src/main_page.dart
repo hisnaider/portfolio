@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/core/commons/widgets/down_hint.dart';
 import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/celestial_body.dart';
+import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/orbiting_system_widget.dart';

@@ -1,5 +1,3 @@
-import 'package:portfolio/core/commons/widgets/competence.dart';
-
 class Work {
   final String name;
   final String image;

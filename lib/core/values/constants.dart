@@ -1,2 +1,5 @@
-const double kOrbitProportion = 0.50;
-const double simulationSpeed = 1;
+const double kOrbitProportion = 0.35;
+const double simulationSpeed = 0.25;
+const double kHoverIndicator = 25;
+const double kWorkDescContainer = 500;
+const double kWorkDescMargin = 40;

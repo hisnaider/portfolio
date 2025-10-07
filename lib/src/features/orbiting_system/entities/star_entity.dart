@@ -1,12 +1,29 @@
-import 'package:portfolio/src/features/orbiting_system/entities/celestial_body.dart';
+import 'dart:ui';
 
-class StarEntity extends CelestialBody {
+import 'package:portfolio/core/commons/entities/celestial_body.dart';
+import 'package:portfolio/core/commons/entities/celestial_body_glow_config.dart';
+
+class StarEntity extends CelestialBody<StarConfig> {
   StarEntity({
+    required super.name,
+    required super.id,
+    required super.config,
+  });
+
+  StarGlow get glow => config.glow;
+
+  void setWorldPosition(Offset position) {
+    worldPosition = position;
+  }
+}
+
+class StarConfig extends CelestialBodyConfig {
+  final StarGlow glow;
+  final String name;
+  StarConfig({
+    required this.glow,
+    required this.name,
     required super.size,
-    super.center,
     required super.color,
-    super.image,
-    super.imageStyle,
-    required super.glowStyle,
   });
 }
