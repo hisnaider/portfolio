@@ -14,14 +14,14 @@ class Competence extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(width: 2, color: MyColors.primary),
+        border: Border.all(width: 0.5, color: MyColors.primary),
         color: Colors.transparent,
       ),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       child: Text(
         text.toUpperCase(),
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 12,
           color: MyColors.primary,
           fontWeight: FontWeight.w600,
         ),

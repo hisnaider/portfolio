@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/widgets/primary_button.dart';
 
 class Introduction extends StatelessWidget {
-  const Introduction({super.key});
+  const Introduction(
+      {super.key,
+      required this.fadeSlideSubtitle,
+      required this.curriculumFade});
+  final double fadeSlideSubtitle;
+  final double curriculumFade;
 
   @override
   Widget build(BuildContext context) {
@@ -26,31 +31,35 @@ class Introduction extends StatelessWidget {
           'MOBILE DEVELOPER',
           style: Theme.of(context).textTheme.headlineLarge,
         ),
-        Text(
-          'Desenvolvedor mobile apaixonado por performance, UX e código limpo. Especialista em Flutter, com background em design e Figma.',
-          style: Theme.of(context).textTheme.bodyMedium,
+        Opacity(
+          opacity: fadeSlideSubtitle,
+          child: Transform.translate(
+            offset: Offset(0, 50 - 50 * fadeSlideSubtitle),
+            child: Text(
+              'Desenvolvedor mobile apaixonado por performance, UX e código limpo. Especialista em Flutter, com background em design e Figma.',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
         ),
         const SizedBox(height: 24),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: const Row(
-                children: [
-                  Icon(Icons.file_download_outlined),
-                  Text(
-                    'Ver currículo',
-                  )
-                ],
+        Opacity(
+          opacity: curriculumFade,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: const Row(
+                  children: [
+                    Icon(Icons.file_download_outlined),
+                    Text(
+                      'Ver currículo',
+                    )
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(width: 10),
-            PrimaryButton(
-              onPressed: () {},
-              text: 'Entrar em contato',
-            )
-          ],
+            ],
+          ),
         )
       ],
     );

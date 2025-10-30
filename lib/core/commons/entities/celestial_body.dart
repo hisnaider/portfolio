@@ -1,33 +1,32 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/transform_position.dart';
 
-abstract class CelestialBody<T extends CelestialBodyConfig> {
-  final String name;
-  final int id;
+abstract class CelestialBody {
+  String name;
+  final String id;
   double depth = 0;
   Offset worldPosition = const Offset(0, 0);
   final TransformPosition transformPosition = TransformPosition();
-  final T config;
-
-  double get size => config.size;
-  Color get color => config.color;
-
-  CelestialBody({
-    required this.name,
-    required this.id,
-    required this.config,
-  });
-}
-
-abstract class CelestialBodyConfig {
   final double size;
   final double rotationSpeed;
   final Color color;
-  const CelestialBodyConfig({
+
+  CelestialBody({
+    this.name = '',
     required this.size,
     required this.color,
     this.rotationSpeed = 0.5,
-  });
+  }) : id = _generateId();
+  static String _generateId() {
+    final rand = Random();
+    final timestamp = DateTime.now().millisecondsSinceEpoch;
+    final randomPart = rand.nextInt(1 << 31);
+    return '$timestamp-$randomPart';
+  }
+
+  void update(double deltaTime);
 }

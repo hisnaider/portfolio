@@ -5,14 +5,14 @@ import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/start_paint.dart';
+import 'package:portfolio/src/features/orbiting_system/widgets/star_paint.dart';
 
 class StarSystemPainter extends CustomPainter {
   final List<CelestialBody> celestialBody;
   final double elapsed;
   final double deltaTime;
   final Camera camera;
-  final int? hovered;
+  final String? hovered;
 
   StarSystemPainter(
     this.celestialBody,
@@ -43,7 +43,7 @@ class StarSystemPainter extends CustomPainter {
     for (CelestialBody body in celestialBody) {
       final Offset localPosition = camera.worldToScreen(body.worldPosition);
       if (body is StarEntity) {
-        StartPaint(
+        StarPaint(
                 position: localPosition,
                 star: body,
                 glowFactor: glowFactor(camera, 0.15))
@@ -73,14 +73,14 @@ class StarSystemPainter extends CustomPainter {
         }
       }
     }
-    canvas.drawCircle(camera.transformPosition.center, 5 / camera.zoom,
-        Paint()..color = Colors.red);
-    final width = size.width - (kWorkDescContainer + kWorkDescMargin * 3);
-    final height = size.height - (kWorkDescMargin * 2);
-    final left = (kWorkDescMargin - camera.offset.dx) / camera.zoom;
-    final top = (40 - camera.offset.dy) / camera.zoom;
-    final right = (kWorkDescMargin + width - camera.offset.dx) / camera.zoom;
-    final bottom = (40 + height - camera.offset.dy) / camera.zoom;
+    // canvas.drawCircle(camera.transformPosition.center, 5 / camera.zoom,
+    //     Paint()..color = Colors.red);
+    // final width = size.width - (kWorkDescContainer + kWorkDescMargin * 3);
+    // final height = size.height - (kWorkDescMargin * 2);
+    // final left = (kWorkDescMargin - camera.offset.dx) / camera.zoom;
+    // final top = (40 - camera.offset.dy) / camera.zoom;
+    // final right = (kWorkDescMargin + width - camera.offset.dx) / camera.zoom;
+    // final bottom = (40 + height - camera.offset.dy) / camera.zoom;
 
     // canvas.drawRect(
     //     Rect.fromLTRB(

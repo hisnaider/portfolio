@@ -81,9 +81,9 @@ class Camera {
     double dyAdjustment = 0;
 
     ///DESKTOP
-    screenMin =
-        min(screenSize.width - (500 + (kWorkDescMargin)), screenSize.height);
-    dxAdjustment = (500 + (kWorkDescMargin)) / 2;
+    screenMin = min(screenSize.width - (kWorkDescContainer + (kWorkDescMargin)),
+        screenSize.height);
+    dxAdjustment = (kWorkDescContainer + (kWorkDescMargin)) / 2;
 
     ///MOBILE
     /// screenMin focado no height

@@ -3,6 +3,7 @@ class Assets {
 
   static const String universe = 'assets/images/universe.jpg';
   static const String photo = 'assets/images/photo.jpg';
+  static const String pinguim = 'assets/images/pinguim.png';
 
   //Raquel
   static const String raquel = 'assets/images/raquel_logo.png';

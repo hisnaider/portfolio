@@ -1,16 +1,28 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/widgets/text_list.dart';
+import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 
-class RaquelBody extends StatelessWidget {
-  const RaquelBody({super.key});
+class Raquel extends StatefulWidget {
+  const Raquel({super.key});
+
+  @override
+  State<Raquel> createState() => _RaquelState();
+}
+
+class _RaquelState extends State<Raquel> {
+  final PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Image.asset(Assets.raquel),
+        ),
         Text(
           'Raquel Menopausa é um aplicativo gratuito que ajuda mulheres a navegar pelo climatério com mais informação, acolhimento e autonomia. Mais do que um app, é um projeto que coloca tecnologia a serviço da saúde e do bem-estar feminino, promovendo uma jornada de autoconhecimento e conexão.',
           style: Theme.of(context).textTheme.bodyMedium,
@@ -70,6 +82,17 @@ class RaquelBody extends StatelessWidget {
                 text:
                     'Atuação ativa na evolução técnica da equipe, promovendo discussões sobre padrões, boas práticas e ajudando colegas na adoção da arquitetura limpa e no uso das ferramentas do projeto.'),
           ],
+        ),
+        SizedBox(
+          height: 500,
+          child: PageView.builder(
+            controller: pageController,
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return Image.asset(
+                  'assets/images/raquel/raquel_print_${index + 1}.jpg');
+            },
+          ),
         ),
         Text(
           '\nLink:',

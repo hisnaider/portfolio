@@ -5,7 +5,7 @@ import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/start_paint.dart';
+import 'package:portfolio/src/features/orbiting_system/widgets/star_paint.dart';
 
 class OrbitTextsPainter extends CustomPainter {
   final List<CelestialBody> celestialBody;
@@ -31,6 +31,7 @@ class OrbitTextsPainter extends CustomPainter {
         final TextPainter textPainter = TextPainter(
           textAlign: TextAlign.right,
           textDirection: TextDirection.ltr,
+          maxLines: 1,
         );
         textPainter.text = TextSpan(
             style: MyTextTheme.dark.titleSmall!.copyWith(fontSize: 18),

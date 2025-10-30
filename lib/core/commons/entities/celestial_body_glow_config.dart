@@ -14,12 +14,10 @@ class Atmosphere {
 
 class StarGlow {
   final double radius; // tamanho do glow além da estrela
-  final Color color; // cor do glow (tipo temperatura da estrela)
   final double intensity; // opacidade/brilho
 
   const StarGlow({
     required this.radius,
-    required this.color,
     required this.intensity,
   });
 }

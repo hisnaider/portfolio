@@ -14,56 +14,31 @@ import 'package:portfolio/src/features/orbiting_system/entities/star_system_conf
 class StarSystemController {
   final ValueNotifier<StarSystemConfig> config =
       ValueNotifier(StarSystemConfig());
-  final StarConfig _initialStarConfig;
-  final List<PlanetConfig> _initialPlanetsConfig;
+
   final Camera camera;
-  late final StarEntity star;
-  late final List<PlanetEntity> planets;
-  late final List<CelestialBody> celestialBodies = [];
+  late final List<CelestialBody> celestialBodies;
 
   StarSystemController(
       {required this.camera,
-      required StarConfig star,
-      required List<PlanetConfig> planets})
-      : _initialPlanetsConfig = planets,
-        _initialStarConfig = star {
-    _init();
-  }
-
-  void _init() {
-    star = StarEntity(
-      name: _initialStarConfig.name,
-      config: _initialStarConfig,
-      id: 0,
-    );
-    planets = List.generate(
-      _initialPlanetsConfig.length,
-      (index) {
-        return PlanetEntity(
-            name: _initialPlanetsConfig[index].name.isEmpty
-                ? '${_initialStarConfig.name} ${String.fromCharCode(97 + index)}'
-                : _initialPlanetsConfig[index].name,
-            centerObject: star,
-            config: _initialPlanetsConfig[index],
-            id: index + 1,
-            clouds: List.generate(
-              _initialPlanetsConfig[index].numberOfClouds,
-              (index) {
-                return CloudEntity();
-              },
-            ));
-      },
-    );
-    celestialBodies.addAll([star, ...planets]);
-  }
+      required StarEntity star,
+      required List<PlanetEntity> planets})
+      : celestialBodies = [
+          star,
+          ...planets.asMap().entries.map((entry) {
+            final index = entry.key;
+            final planet = entry.value;
+            planet.init(star, index);
+            return planet;
+          }),
+        ];
 
   void update(double deltaTime, Size screenSize) {
     camera.update(screenSize, deltaTime);
     if (config.value.selectedBody != null) {
       camera.moveToObject(config.value.selectedBody!);
     }
-    for (PlanetEntity planet in planets) {
-      planet.update(deltaTime);
+    for (CelestialBody body in celestialBodies) {
+      body.update(deltaTime);
     }
 
     celestialBodies.sort((a, b) => a.depth.compareTo(b.depth));

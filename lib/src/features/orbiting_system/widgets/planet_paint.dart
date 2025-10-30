@@ -30,6 +30,7 @@ class PlanetPaint extends CustomPainter {
     final circlePaint = Paint()
       ..color = hoveredPlanet ? MyColors.primary : Colors.white30
       ..style = PaintingStyle.stroke;
+
     canvas.drawDashedCircle(
       position,
       (planet.size + kHoverIndicator) - (75 * zoomFactor),
@@ -38,7 +39,9 @@ class PlanetPaint extends CustomPainter {
       gapProportion: 0.25,
       paint: circlePaint,
     );
+
     canvas.save(); // salva o estado atual
+
     canvas.clipPath(
       Path()
         ..addOval(
@@ -47,19 +50,23 @@ class PlanetPaint extends CustomPainter {
     );
 
     final dotPaint = Paint()..color = planet.color;
+
     canvas.drawCircle(position, planet.size, dotPaint);
+
     if (zoomFactor > 0.05) {
       final diameter = planet.size * 2;
-      for (final continent in planet.config.continents) {
+
+      for (final continent in planet.continents) {
         final matrix = Matrix4.identity()
           ..translate(
             position.dx - planet.size + continent.offsetX * diameter,
             position.dy - planet.size,
-          ) // move
+          )
           ..scale(diameter, diameter); // aplica o scale
         final transformedPath = continent.path.transform(matrix.storage);
         canvas.drawPath(transformedPath, Paint()..color = continent.color);
       }
+
       for (CloudEntity cloud in planet.clouds) {
         final size = 0.25 * planet.size;
         final x = position.dx - planet.size + cloud.dx * diameter;
@@ -74,6 +81,7 @@ class PlanetPaint extends CustomPainter {
     }
 
     canvas.restore(); // restaura pro estado sem clip
+
     if (planet.atmosphere != null) {
       final atmosphere = planet.atmosphere!;
 

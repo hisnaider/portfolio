@@ -30,5 +30,8 @@ class TimeController {
   }
 
   void stop() => _ticker.stop();
-  void dispose() => _ticker.dispose();
+  void dispose() {
+    _ticker.stop();
+    _ticker.dispose();
+  }
 }

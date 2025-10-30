@@ -10,9 +10,9 @@ import 'package:portfolio/src/features/orbiting_system/entities/star_system_conf
 import 'package:portfolio/src/features/orbiting_system/layers/orbit_texts_painter.dart';
 import 'package:portfolio/src/features/orbiting_system/layers/star_system_painter.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/start_paint.dart';
+import 'package:portfolio/src/features/orbiting_system/widgets/star_paint.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/work_desc.dart';
-import 'package:portfolio/src/views/highlight/widgets/raquel/raquel_body.dart';
+import 'package:portfolio/src/features/orbiting_system/works/raquel.dart';
 
 class OrbitingSystemWidget extends StatefulWidget {
   const OrbitingSystemWidget({
@@ -20,8 +20,8 @@ class OrbitingSystemWidget extends StatefulWidget {
     required this.planets,
     super.key,
   });
-  final StarConfig star;
-  final List<PlanetConfig> planets;
+  final StarEntity star;
+  final List<PlanetEntity> planets;
 
   @override
   State<OrbitingSystemWidget> createState() => _OrbitingSystemWidgetState();
@@ -103,7 +103,6 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
         ValueListenableBuilder<StarSystemConfig>(
             valueListenable: controller.config,
             builder: (context, value, child) {
-              print(value);
               return AnimatedSwitcher(
                 duration: const Duration(milliseconds: 500),
                 switchInCurve: Curves.easeIn,
@@ -115,7 +114,6 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                     ? WorkDesc(
                         celestialBody: value.selectedBody!,
                         backButton: controller.unselectCelestialBody,
-                        child: RaquelBody(),
                       )
                     : SizedBox.shrink(),
               );

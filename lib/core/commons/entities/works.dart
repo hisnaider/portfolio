@@ -1,17 +1,17 @@
+import 'package:flutter/material.dart';
+
 class Work {
-  final String name;
+  final String companyName;
   final String image;
   final String role;
   final List<String> competences;
-  final String shortDesc;
-  final String desc;
+  final Widget page;
 
   const Work({
-    required this.name,
+    this.companyName = '',
     required this.image,
     required this.role,
     required this.competences,
-    required this.shortDesc,
-    required this.desc,
+    required this.page,
   });
 }

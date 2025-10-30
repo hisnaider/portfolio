@@ -38,7 +38,6 @@ class ContinentEntity {
     if (points.isEmpty) return;
 
     for (int i = 0; i < points.length; i++) {
-      print(points[i].dy);
       final prev = points[(i - 1 + points.length) % points.length];
       final current = points[i];
       final next = points[(i + 1) % points.length];

@@ -16,8 +16,8 @@ class SectionContainer extends StatelessWidget {
       color: MyColors.backgroud,
       child: Center(
         child: Container(
-          constraints: const BoxConstraints(maxWidth: 1920),
-          padding: const EdgeInsets.fromLTRB(120, 60, 120, 0),
+          constraints: const BoxConstraints(maxWidth: 1000),
+          padding: const EdgeInsets.fromLTRB(100, 60, 100, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

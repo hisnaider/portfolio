@@ -8,7 +8,7 @@ import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/continent_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/cloud_entity.dart';
 
-class PlanetEntity extends CelestialBody<PlanetConfig> {
+class PlanetEntity extends CelestialBody {
   late final double verticalRadius;
   late final double normalizeRadius;
   late final double minY;
@@ -16,24 +16,37 @@ class PlanetEntity extends CelestialBody<PlanetConfig> {
   late final double maxSize;
   late final double minSize;
   double angle = 0;
-  final CelestialBody centerObject;
+  late final CelestialBody centerObject;
+  final double orbitRadius;
+  final double initialAngle;
+  final Atmosphere? atmosphere;
+  final int numberOfClouds;
+  final List<ContinentEntity> continents;
   final List<CloudEntity> clouds;
-
-  Atmosphere? get atmosphere => config.atmosphere;
-  double get orbitRadius => config.orbitRadius;
   @override
   PlanetEntity({
-    required this.centerObject,
-    this.clouds = const [],
-    required super.name,
-    required super.id,
-    required super.config,
-  }) {
-    _init();
-  }
+    required this.orbitRadius,
+    this.initialAngle = 0,
+    this.atmosphere,
+    this.numberOfClouds = 0,
+    this.continents = const [],
+    super.name,
+    required super.rotationSpeed,
+    required super.size,
+    required super.color,
+  }) : clouds = List.generate(
+          numberOfClouds,
+          (index) {
+            return CloudEntity();
+          },
+        );
 
-  void _init() {
-    angle = config.initialAngle * (pi / 180);
+  void init(CelestialBody center, int index) {
+    name = name.isEmpty
+        ? '${center.name} ${String.fromCharCode(97 + index)}'
+        : name;
+    centerObject = center;
+    angle = initialAngle * (pi / 180);
     verticalRadius = orbitRadius * kOrbitProportion;
     minY = centerObject.worldPosition.dy - verticalRadius;
     maxY = centerObject.worldPosition.dy + verticalRadius;
@@ -43,6 +56,7 @@ class PlanetEntity extends CelestialBody<PlanetConfig> {
     _updatePosition();
   }
 
+  @override
   void update(double deltaTime) {
     angle +=
         (simulationSpeed / sqrt(normalizeRadius * orbitRadius) * deltaTime);
@@ -50,8 +64,8 @@ class PlanetEntity extends CelestialBody<PlanetConfig> {
     for (CloudEntity cloud in clouds) {
       cloud.update(deltaTime);
     }
-    for (ContinentEntity continent in config.continents) {
-      continent.update(deltaTime, config.rotationSpeed);
+    for (ContinentEntity continent in continents) {
+      continent.update(deltaTime, rotationSpeed);
     }
     _updatePosition();
   }
@@ -62,24 +76,4 @@ class PlanetEntity extends CelestialBody<PlanetConfig> {
     depth = sin(angle) * orbitRadius;
     worldPosition = Offset(x, y);
   }
-}
-
-class PlanetConfig extends CelestialBodyConfig {
-  final String name;
-  final double orbitRadius;
-  final double initialAngle;
-  final Atmosphere? atmosphere;
-  final int numberOfClouds;
-  final List<ContinentEntity> continents;
-  const PlanetConfig({
-    this.name = '',
-    required this.orbitRadius,
-    required super.size,
-    required super.color,
-    this.initialAngle = 0,
-    this.atmosphere,
-    this.numberOfClouds = 0,
-    super.rotationSpeed,
-    this.continents = const [],
-  });
 }
