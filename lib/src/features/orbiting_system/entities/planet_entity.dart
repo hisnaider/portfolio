@@ -10,7 +10,7 @@ import 'package:portfolio/src/features/orbiting_system/entities/cloud_entity.dar
 
 class PlanetEntity extends CelestialBody {
   late final double verticalRadius;
-  late final double normalizeRadius;
+  double normalizeRadius = 0;
   late final double minY;
   late final double maxY;
   late final double maxSize;

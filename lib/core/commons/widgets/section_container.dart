@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 
 class SectionContainer extends StatelessWidget {
-  const SectionContainer({
-    super.key,
-    required this.title,
-    required this.child,
-  });
+  const SectionContainer(
+      {super.key,
+      required this.title,
+      required this.child,
+      this.padding = const EdgeInsets.fromLTRB(0, 60, 0, 0)});
   final String title;
   final Widget child;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,8 @@ class SectionContainer extends StatelessWidget {
       color: MyColors.backgroud,
       child: Center(
         child: Container(
-          constraints: const BoxConstraints(maxWidth: 1000),
-          padding: const EdgeInsets.fromLTRB(100, 60, 100, 0),
+          constraints: const BoxConstraints(maxWidth: 1500),
+          padding: padding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

@@ -18,6 +18,7 @@ import 'package:portfolio/src/views/hero_page/hero_page.dart';
 import 'package:portfolio/src/views/highlight/highlight_page.dart';
 import 'package:portfolio/src/views/star_system/star_system_page.dart';
 import 'package:portfolio/src/views/welcome/welcome.dart';
+import 'package:portfolio/src/widgets/scrollable_container.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -28,9 +29,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
-  double _scrollDy = 0;
   ValueNotifier<double> _scrollNormalized = ValueNotifier(0);
-  final int _maxScroll = 1;
+  final int _maxScroll = 2;
   late final Ticker _ticker;
   double _currentScroll = 0;
   double _targetScroll = 0;
@@ -50,7 +50,6 @@ class _MainPageState extends State<MainPage>
   }
 
   void _onTick(Duration onTick) {
-    print('asdasdasdasd: ${_ticker.isActive}');
     if (!_end) {
       const double smoothingFactor = 0.05;
       _currentScroll =
@@ -61,7 +60,7 @@ class _MainPageState extends State<MainPage>
         _ticker.stop();
       }
       _scrollNormalized.value = _currentScroll / _maxScroll;
-      if (_scrollNormalized.value == 1) {
+      if (_scrollNormalized.value == _maxScroll) {
         if (_ticker.isTicking) {
           _ticker.stop();
         }
@@ -76,7 +75,7 @@ class _MainPageState extends State<MainPage>
     if (!_ticker.isTicking) {
       _ticker.start();
     }
-    if (_scrollNormalized.value == 1) {
+    if (_scrollNormalized.value == _maxScroll) {
       if (_ticker.isTicking) {
         _ticker.stop();
       }
@@ -102,48 +101,65 @@ class _MainPageState extends State<MainPage>
           child: ValueListenableBuilder(
             valueListenable: _scrollNormalized,
             builder: (context, value, child) => Stack(
+              clipBehavior: Clip.none,
               children: [
                 Container(
                   color: const Color(0xdd030F0F),
                 ),
-                if (_scrollNormalized.value <= 0.2)
+                if (_scrollNormalized.value <= 0.1)
                   Welcome(
                     scrollValue: _scrollNormalized,
                     start: 0,
-                    end: 0.2,
+                    end: 0.1,
                   ),
-                if (_scrollNormalized.value > 0.2 &&
-                    _scrollNormalized.value <= 0.75)
+                if (_scrollNormalized.value > 0.1 &&
+                    _scrollNormalized.value <= 0.5)
                   HeroPage(
                     scrollValue: _scrollNormalized,
-                    start: 0.2,
-                    end: 0.75,
+                    start: 0.1,
+                    end: 0.5,
                   ),
-                if (_scrollNormalized.value > 0.75 &&
-                    _scrollNormalized.value <= 1)
-                  Center(
-                    child: Text(
-                      'Localizando sistema "Hisnaider R.C"...',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium!
-                          .copyWith(color: Colors.white),
-                    ),
-                  ),
-                if (_scrollNormalized.value > 0.65 &&
-                    _scrollNormalized.value <= 0.95)
-                  AboutMePage(
-                    scrollValue: _scrollNormalized,
-                    start: 0.65,
-                    end: 0.95,
-                  ),
-                // Transform.scale(
-                //   scale: 0.01,
-                //   child: SizedBox(
-                //     height: MediaQuery.of(context).size.height,
-                //     width: MediaQuery.of(context).size.width,
-                //     child: StarSystemPage(),
+                // if (_scrollNormalized.value > 0.5 &&
+                //     _scrollNormalized.value <= 1)
+                //   Center(
+                //     child: Text(
+                //       'Localizando sistema "Hisnaider R.C"...',
+                //       style: Theme.of(context)
+                //           .textTheme
+                //           .headlineMedium!
+                //           .copyWith(color: Colors.white),
+                //     ),
                 //   ),
+                if (_scrollNormalized.value > 0.35 &&
+                    _scrollNormalized.value <= 1)
+                  ScrollableContainer(
+                    activeAnimation: () => _ticker.start(),
+                    scrollValue: _scrollNormalized.value,
+                    start: 0.35,
+                    end: 1,
+                    children: [
+                      (start, end, key) => AboutMePage(
+                            key: key,
+                            scrollValue: _scrollNormalized,
+                            start: start + 0.05,
+                            end: end + 0.05,
+                          ),
+                      (start, end, key) => HighlightPage(
+                            key: key,
+                          ),
+                      (start, end, key) => AboutMePage(
+                            key: key,
+                            scrollValue: _scrollNormalized,
+                            start: start,
+                            end: end,
+                          ),
+                    ],
+                  ),
+
+                // SizedBox(
+                //   height: MediaQuery.of(context).size.height,
+                //   width: MediaQuery.of(context).size.width,
+                //   child: StarSystemPage(),
                 // ),
                 // ListView(
                 //   children: [
@@ -152,7 +168,7 @@ class _MainPageState extends State<MainPage>
 
                 // Center(child: SvgPicture.asset(Assets.lensFlare)),
                 //StarSystemPage()
-                Text('$_scrollDy\n${_scrollNormalized.value}'),
+                ///Text('$_currentScroll\n${_scrollNormalized.value}'),
               ],
             ),
           ),

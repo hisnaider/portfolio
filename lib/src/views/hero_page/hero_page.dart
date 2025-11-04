@@ -29,16 +29,16 @@ class HeroPage extends StatelessWidget {
         final slideRight = value.normalize(0, min: 0.15);
         final slideleft = value.normalize(0, min: 0.15);
         final fadeSlideSubtitle =
-            Curves.easeOut.transform(value.normalize(0.7, min: 0.2));
+            Curves.easeOut.transform(value.normalize(0.6, min: 0.2));
         final skillScale =
-            Curves.easeInOut.transform(value.normalize(0.7, min: 0.4));
-        final curriculumFade = value.normalize(0.75, min: 0.4);
+            Curves.easeInOut.transform(value.normalize(0.6, min: 0.3));
+        final curriculumFade = value.normalize(0.6, min: 0.3);
         final skillScaleDown =
             Curves.easeInOut.transform(value.normalize(1, min: 0.8));
         final slideUp = value.normalize(1, min: 0.8);
         final fadeOut = value.normalize(1, min: 0.8);
         return Transform.translate(
-          offset: Offset(0, -400 * slideUp),
+          offset: Offset(0, -200 * slideUp),
           child: Opacity(
             opacity: fade - fadeOut,
             child: Center(

@@ -27,114 +27,92 @@ class AboutMePage extends StatelessWidget {
         animation: scrollValue,
         builder: (context, child) {
           final value = scrollValue.value.normalize(end, min: start);
-          final slideUp = value.normalize(1, min: 0);
-          final slideUpHardSkills = value.normalize(0.45, min: 0.3);
-          final slideUpSoftSkills = value.normalize(0.60, min: 0.45);
-          final fadeOut = value.normalize(0.7, min: 1);
-          final screenHeight = MediaQuery.of(context).size.height;
-          return Opacity(
-            opacity: fadeOut,
-            child: Stack(
+          final slideUpHardSkills = value.normalize(0.85, min: 0.70);
+          final slideUpSoftSkills = value.normalize(1, min: 0.85);
+          return SectionContainer(
+            title: 'Sobre mim',
+            padding: const EdgeInsets.fromLTRB(100, 60, 100, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Transform.translate(
-                  offset: Offset(
-                      0, max(screenHeight - screenHeight * (slideUp * 2), 0)),
-                  child: Container(
-                    color: MyColors.backgroud,
-                  ),
+                Text(
+                  '''Sou Hisnaider Campello, desenvolvedor mobile focado em Flutter, com background em design e Figma. Formado em Sistemas de Informação e pós-graduando em Desenvolvimento Mobile, busco unir lógica, estética e experiência do usuário em interfaces rápidas e funcionais.
+                
+                Valorizo código limpo, testável e componentes reutilizáveis, e gosto de trabalhar em equipe compartilhando aprendizados. Atualmente exploro Python e aprimoro minha capacidade de criar sistemas escaláveis e bem estruturados.''',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
                 ),
-                Transform.translate(
-                  offset:
-                      Offset(0, screenHeight - screenHeight * (slideUp * 2)),
-                  child: SectionContainer(
-                    title: 'Sobre mim',
+                SizedBox(height: 60),
+                Opacity(
+                  opacity: slideUpHardSkills,
+                  child: Transform.translate(
+                    offset: Offset(0, 50 - 50 * slideUpHardSkills),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          '''Sou Hisnaider Campello, desenvolvedor mobile focado em Flutter, com background em design e Figma. Formado em Sistemas de Informação e pós-graduando em Desenvolvimento Mobile, busco unir lógica, estética e experiência do usuário em interfaces rápidas e funcionais.
-                        
-                        Valorizo código limpo, testável e componentes reutilizáveis, e gosto de trabalhar em equipe compartilhando aprendizados. Atualmente exploro Python e aprimoro minha capacidade de criar sistemas escaláveis e bem estruturados.''',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          textAlign: TextAlign.center,
+                          'Habilidades Técnicas',
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
-                        SizedBox(height: 60),
-                        Opacity(
-                          opacity: slideUpHardSkills,
-                          child: Transform.translate(
-                            offset: Offset(0, 50 - 50 * slideUpHardSkills),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Habilidades Técnicas',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium,
-                                ),
-                                SizedBox(height: 24),
-                                Wrap(
-                                  alignment: WrapAlignment.center,
-                                  runSpacing: 34,
-                                  children: List.generate(
-                                    MyData.mainSkills.length,
-                                    (index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 60),
-                                        child: Skill(
-                                            image:
-                                                MyData.mainSkills[index].image,
-                                            text: MyData.mainSkills[index].name
-                                                .toUpperCase()),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                SizedBox(height: 24),
-                                Wrap(
-                                  spacing: 34,
-                                  runSpacing: 34,
-                                  children: [
-                                    for (SkillsEnum skill in MyData.otherSkills)
-                                      Skill(
-                                        text: skill.name.toUpperCase(),
-                                      ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                        SizedBox(height: 24),
+                        Wrap(
+                          alignment: WrapAlignment.center,
+                          runSpacing: 34,
+                          children: List.generate(
+                            MyData.mainSkills.length,
+                            (index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 60),
+                                child: Skill(
+                                    image: MyData.mainSkills[index].image,
+                                    text: MyData.mainSkills[index].name
+                                        .toUpperCase()),
+                              );
+                            },
                           ),
                         ),
-                        SizedBox(height: 60),
-                        Opacity(
-                          opacity: slideUpSoftSkills,
-                          child: Transform.translate(
-                            offset: Offset(0, 50 - 50 * slideUpSoftSkills),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Soft Skills',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium,
-                                ),
-                                SizedBox(height: 24),
-                                Wrap(
-                                  spacing: 34,
-                                  runSpacing: 34,
-                                  children: [
-                                    for (SkillsEnum skill in MyData.softSkills)
-                                      Skill(
-                                        text: skill.name.toUpperCase(),
-                                      ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                        SizedBox(height: 24),
+                        Wrap(
+                          spacing: 34,
+                          runSpacing: 34,
+                          children: [
+                            for (SkillsEnum skill in MyData.otherSkills)
+                              Skill(
+                                text: skill.name.toUpperCase(),
+                              ),
+                          ],
                         ),
                       ],
                     ),
                   ),
                 ),
+                SizedBox(height: 60),
+                Opacity(
+                  opacity: slideUpSoftSkills,
+                  child: Transform.translate(
+                    offset: Offset(0, 50 - 50 * slideUpSoftSkills),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Soft Skills',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        SizedBox(height: 24),
+                        Wrap(
+                          spacing: 34,
+                          runSpacing: 34,
+                          children: [
+                            for (SkillsEnum skill in MyData.softSkills)
+                              Skill(
+                                text: skill.name.toUpperCase(),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 90),
               ],
             ),
           );
