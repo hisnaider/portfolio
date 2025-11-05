@@ -11,10 +11,6 @@ import 'package:portfolio/src/features/orbiting_system/entities/cloud_entity.dar
 class PlanetEntity extends CelestialBody {
   late final double verticalRadius;
   double normalizeRadius = 0;
-  late final double minY;
-  late final double maxY;
-  late final double maxSize;
-  late final double minSize;
   double angle = 0;
   late final CelestialBody centerObject;
   final double orbitRadius;
@@ -48,11 +44,7 @@ class PlanetEntity extends CelestialBody {
     centerObject = center;
     angle = initialAngle * (pi / 180);
     verticalRadius = orbitRadius * kOrbitProportion;
-    minY = centerObject.worldPosition.dy - verticalRadius;
-    maxY = centerObject.worldPosition.dy + verticalRadius;
     normalizeRadius = (orbitRadius + verticalRadius) / (orbitRadius * 2);
-    maxSize = size;
-    minSize = ((orbitRadius + verticalRadius) / (orbitRadius * 2)) * size;
     _updatePosition();
   }
 
@@ -61,13 +53,21 @@ class PlanetEntity extends CelestialBody {
     angle +=
         (simulationSpeed / sqrt(normalizeRadius * orbitRadius) * deltaTime);
     angle %= (2 * pi);
-    for (CloudEntity cloud in clouds) {
-      cloud.update(deltaTime);
-    }
+    updateClouds(deltaTime);
+    updateContinents(deltaTime);
+    _updatePosition();
+  }
+
+  void updateContinents(double deltaTime) {
     for (ContinentEntity continent in continents) {
       continent.update(deltaTime, rotationSpeed);
     }
-    _updatePosition();
+  }
+
+  void updateClouds(double deltaTime) {
+    for (CloudEntity cloud in clouds) {
+      cloud.update(deltaTime);
+    }
   }
 
   void _updatePosition() {

@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/transform_position.dart';
@@ -90,10 +89,10 @@ class Camera {
     /// dyAdjustment > 0
 
     final Offset offsetAdjustment = Offset(dxAdjustment, dyAdjustment);
-    double zoom = (screenMin * 0.25) / celestialBody!.size;
+    double zoom = (screenMin * 0.25) / celestialBody.size;
     _targetscale = zoom;
     _targetOffset = (((screenCenter) - offsetAdjustment) -
-        worldToScreen(celestialBody!.worldPosition) * _targetscale);
+        worldToScreen(celestialBody.worldPosition) * _targetscale);
   }
 
   void setAnimation(double targetSpeed, double duration) {

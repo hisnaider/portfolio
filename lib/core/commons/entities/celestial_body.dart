@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/transform_position.dart';
 
 abstract class CelestialBody {

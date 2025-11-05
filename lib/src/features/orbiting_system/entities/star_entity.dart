@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -58,7 +57,6 @@ class StarLayer {
 }
 
 class SolarCorona {
-  late final _radius;
   final double intensity;
   final double strength;
   final double radiusBase;
@@ -72,7 +70,6 @@ class SolarCorona {
   });
 
   void _init(double size) {
-    _radius = size * radiusBase;
     spikes = List.generate(
       numPoints,
       (index) => CoronaSpike(radius: size),

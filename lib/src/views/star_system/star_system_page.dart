@@ -39,7 +39,7 @@ class _StarSystemPageState extends State<StarSystemPage> {
                 PlanetEntity(
                   name: 'perroni sanvicente & ...',
                   orbitRadius: 280,
-                  initialAngle: 0,
+                  initialAngle: 93,
                   size: 1.8,
                   color: Color(0xff595C65),
                   rotationSpeed: 1.3,
@@ -75,108 +75,10 @@ class _StarSystemPageState extends State<StarSystemPage> {
                     ),
                   ],
                 ),
-                PlanetEntity(
-                  name: 'Pinguim',
-                  orbitRadius: 420,
-                  initialAngle: 0,
-                  size: 2.4,
-                  color: Color(0xffDD1681),
-                  rotationSpeed: 0.9,
-                  atmosphere: const Atmosphere(
-                    height: 2.1,
-                    density: 1,
-                    color: Color(0xffDD1681),
-                  ),
-                  numberOfClouds: 8,
-                  continents: [
-                    // Continente principal — formato irregular
-                    ContinentEntity(
-                      radius: 0.45,
-                      color: Color(0xffB70551),
-                      rawPoints: [
-                        const Offset(0.4, 0.2),
-                        const Offset(1.0, 0.1),
-                        const Offset(1.5, 0.25),
-                        const Offset(1.4, 0.55),
-                        const Offset(1.0, 0.65),
-                        const Offset(0.5, 0.55),
-                        const Offset(0.2, 0.35),
-                      ],
-                    ),
-                    // Arquipélago de ilhas longas
-                    ContinentEntity(
-                      radius: 0.3,
-                      color: Color(0xffB70551),
-                      rawPoints: [
-                        const Offset(1.7, 0.2),
-                        const Offset(2.0, 0.25),
-                        const Offset(2.05, 0.4),
-                        const Offset(1.8, 0.45),
-                      ],
-                    ),
-                    ContinentEntity(
-                      radius: 0.28,
-                      color: Color(0xffB70551),
-                      rawPoints: [
-                        const Offset(1.9, 0.55),
-                        const Offset(2.0, 0.6),
-                        const Offset(2.0, 0.8),
-                        const Offset(1.7, 0.75),
-                      ],
-                    ),
-                    // Pequena massa polar norte
-                    ContinentEntity(
-                      radius: 0.25,
-                      color: Color(0xffF1A2CD),
-                      rawPoints: [
-                        const Offset(1.0, 0.0),
-                        const Offset(1.4, 0.05),
-                        const Offset(1.3, 0.1),
-                        const Offset(0.9, 0.08),
-                      ],
-                    ),
-                    // Massa polar sul fragmentada
-                    ContinentEntity(
-                      radius: 0.25,
-                      color: Color(0xffF1A2CD),
-                      rawPoints: [
-                        const Offset(0.8, 0.9),
-                        const Offset(1.1, 0.95),
-                        const Offset(1.2, 1.0),
-                        const Offset(0.7, 1.0),
-                      ],
-                    ),
-                    ContinentEntity(
-                      radius: 0.25,
-                      color: Color(0xffB70551),
-                      rawPoints: [
-                        const Offset(1.4, 0.9),
-                        const Offset(1.7, 0.95),
-                        const Offset(1.8, 1.0),
-                        const Offset(1.5, 1.0),
-                      ],
-                    ),
-                    // Cinturão de microilhas equatoriais
-                    ...List.generate(6, (i) {
-                      final dx = 0.2 + i * 0.3; // dx entre 0 e 2
-                      final dy =
-                          0.8 + (i.isEven ? 0.05 : -0.03); // dy entre 0 e 1
-                      return ContinentEntity(
-                        radius: 0.15,
-                        color: Color(0xffB70551),
-                        rawPoints: [
-                          Offset(dx, dy),
-                          Offset(dx + 0.1, dy + 0.02),
-                          Offset(dx + 0.08, dy + 0.12 > 1 ? 1 : dy + 0.12),
-                          Offset(dx - 0.02, dy + 0.08 > 1 ? 1 : dy + 0.08),
-                        ],
-                      );
-                    }),
-                  ],
-                ),
+                Planets.pinguim,
                 PlanetEntity(
                     orbitRadius: 350,
-                    initialAngle: 0,
+                    initialAngle: 119,
                     size: 2,
                     color: Colors.blue,
                     rotationSpeed: 1,
@@ -212,7 +114,7 @@ class _StarSystemPageState extends State<StarSystemPage> {
                 PlanetEntity(
                   name: 'Eclipsera Prime',
                   orbitRadius: 510,
-                  initialAngle: 0,
+                  initialAngle: 136,
                   size: 2.1,
                   color: Colors.indigoAccent,
                   rotationSpeed: 1.1,

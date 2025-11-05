@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';

@@ -3,9 +3,6 @@ import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/theme/my_text_theme.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/star_paint.dart';
 
 class OrbitTextsPainter extends CustomPainter {
   final List<CelestialBody> celestialBody;

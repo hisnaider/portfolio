@@ -1,6 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -9,7 +7,6 @@ import 'package:portfolio/core/values/constants.dart';
 class ContinentEntity {
   final List<Offset> points; // pontos já normalizados
   double offsetX; // posição inicial no mapa mundo
-  late final double _initialOffsetX;
   double width;
   final Color color;
   final double radius;
@@ -33,7 +30,6 @@ class ContinentEntity {
   }
 
   void _init() {
-    _initialOffsetX = offsetX;
     path = Path();
     if (points.isEmpty) return;
 

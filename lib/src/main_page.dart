@@ -1,19 +1,10 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/core/commons/widgets/down_hint.dart';
 import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/core/commons/entities/celestial_body.dart';
-import 'package:portfolio/core/values/my_colors.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/orbiting_system_widget.dart';
 import 'package:portfolio/src/views/about_me/about_me_page.dart';
-import 'package:portfolio/src/views/all_works/all_works_page.dart';
 import 'package:portfolio/src/views/hero_page/hero_page.dart';
 import 'package:portfolio/src/views/highlight/highlight_page.dart';
 import 'package:portfolio/src/views/star_system/star_system_page.dart';
@@ -29,12 +20,11 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
-  ValueNotifier<double> _scrollNormalized = ValueNotifier(0);
-  final int _maxScroll = 2;
+  final ValueNotifier<double> _scrollNormalized = ValueNotifier(0);
+  final int _maxScroll = 1;
   late final Ticker _ticker;
   double _currentScroll = 0;
   double _targetScroll = 0;
-  bool _end = false;
 
   @override
   void initState() {
@@ -50,23 +40,10 @@ class _MainPageState extends State<MainPage>
   }
 
   void _onTick(Duration onTick) {
-    if (!_end) {
-      const double smoothingFactor = 0.05;
-      _currentScroll =
-          lerpDouble(_currentScroll, _targetScroll, smoothingFactor)!;
-
-      if ((_targetScroll - _currentScroll).abs() < 0.001) {
-        _currentScroll = _targetScroll;
-        _ticker.stop();
-      }
-      _scrollNormalized.value = _currentScroll / _maxScroll;
-      if (_scrollNormalized.value == _maxScroll) {
-        if (_ticker.isTicking) {
-          _ticker.stop();
-        }
-        _end = true;
-      }
-    }
+    const double smoothingFactor = 0.05;
+    _currentScroll =
+        lerpDouble(_currentScroll, _targetScroll, smoothingFactor)!;
+    _scrollNormalized.value = _currentScroll / _maxScroll;
   }
 
   void _onScroll(double delta) {
@@ -75,103 +52,61 @@ class _MainPageState extends State<MainPage>
     if (!_ticker.isTicking) {
       _ticker.start();
     }
-    if (_scrollNormalized.value == _maxScroll) {
-      if (_ticker.isTicking) {
-        _ticker.stop();
-      }
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: 3000,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(Assets.universe),
             fit: BoxFit.cover,
           ),
         ),
-        child: Listener(
-          onPointerSignal: (event) {
-            if (event is PointerScrollEvent) {
-              _onScroll(event.scrollDelta.dy);
-            }
-          },
-          child: ValueListenableBuilder(
-            valueListenable: _scrollNormalized,
-            builder: (context, value, child) => Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  color: const Color(0xdd030F0F),
-                ),
-                if (_scrollNormalized.value <= 0.1)
-                  Welcome(
-                    scrollValue: _scrollNormalized,
-                    start: 0,
-                    end: 0.1,
-                  ),
-                if (_scrollNormalized.value > 0.1 &&
-                    _scrollNormalized.value <= 0.5)
-                  HeroPage(
-                    scrollValue: _scrollNormalized,
-                    start: 0.1,
-                    end: 0.5,
-                  ),
-                // if (_scrollNormalized.value > 0.5 &&
-                //     _scrollNormalized.value <= 1)
-                //   Center(
-                //     child: Text(
-                //       'Localizando sistema "Hisnaider R.C"...',
-                //       style: Theme.of(context)
-                //           .textTheme
-                //           .headlineMedium!
-                //           .copyWith(color: Colors.white),
-                //     ),
-                //   ),
-                if (_scrollNormalized.value > 0.35 &&
-                    _scrollNormalized.value <= 1)
-                  ScrollableContainer(
-                    activeAnimation: () => _ticker.start(),
-                    scrollValue: _scrollNormalized.value,
-                    start: 0.35,
-                    end: 1,
-                    children: [
-                      (start, end, key) => AboutMePage(
-                            key: key,
-                            scrollValue: _scrollNormalized,
-                            start: start + 0.05,
-                            end: end + 0.05,
-                          ),
-                      (start, end, key) => HighlightPage(
-                            key: key,
-                          ),
-                      (start, end, key) => AboutMePage(
-                            key: key,
-                            scrollValue: _scrollNormalized,
-                            start: start,
-                            end: end,
-                          ),
-                    ],
-                  ),
-
-                // SizedBox(
-                //   height: MediaQuery.of(context).size.height,
-                //   width: MediaQuery.of(context).size.width,
-                //   child: StarSystemPage(),
-                // ),
-                // ListView(
-                //   children: [
-                //   ],
-                // ),
-
-                // Center(child: SvgPicture.asset(Assets.lensFlare)),
-                //StarSystemPage()
-                ///Text('$_currentScroll\n${_scrollNormalized.value}'),
-              ],
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              color: const Color(0xdd030F0F),
             ),
-          ),
+            const IgnorePointer(child: StarSystemPage()),
+            Listener(
+              behavior: HitTestBehavior.translucent,
+              onPointerSignal: (event) {
+                if (event is PointerScrollEvent) {
+                  _onScroll(event.scrollDelta.dy);
+                }
+              },
+              child: ValueListenableBuilder(
+                  valueListenable: _scrollNormalized,
+                  builder: (context, value, child) {
+                    return Stack(
+                      children: [
+                        Welcome(
+                            scrollValue: _scrollNormalized,
+                            start: 0,
+                            end: 0.25),
+                        HeroPage(
+                            scrollValue: _scrollNormalized,
+                            start: 0.2,
+                            end: 0.5),
+                        ScrollableContainer(
+                          scrollValue: _scrollNormalized,
+                          start: 0.45,
+                          end: 0.75,
+                          children: (value) => [
+                            const AboutMePage(),
+                            const HighlightPage(),
+                          ],
+                        ),
+                        Text('$_currentScroll\n${_scrollNormalized.value}'),
+                      ],
+                    );
+                  }),
+            ),
+          ],
         ),
       ),
     );

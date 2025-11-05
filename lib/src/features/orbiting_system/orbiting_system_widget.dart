@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/src/features/orbiting_system/controller/star_system_controller.dart';
 import 'package:portfolio/src/features/orbiting_system/controller/time_controller.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
-import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_system_config.dart';
-import 'package:portfolio/src/features/orbiting_system/layers/orbit_texts_painter.dart';
 import 'package:portfolio/src/features/orbiting_system/layers/star_system_painter.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/star_paint.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/work_desc.dart';
-import 'package:portfolio/src/features/orbiting_system/works/raquel.dart';
 
 class OrbitingSystemWidget extends StatefulWidget {
   const OrbitingSystemWidget({
@@ -79,24 +73,24 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                       ///child: Container(),
                     ),
                   ),
-                  AnimatedOpacity(
-                    opacity:
-                        controller.config.value.selectedBody != null ? 0 : 1,
-                    duration: Duration(milliseconds: 500),
-                    child: IgnorePointer(
-                      child: CustomPaint(
-                        size: Size.infinite,
-                        painter: OrbitTextsPainter(
-                          controller.celestialBodies,
-                          value,
-                          time.delta,
-                          controller.camera,
-                        ),
+                  // AnimatedOpacity(
+                  //   opacity:
+                  //       controller.config.value.selectedBody != null ? 0 : 1,
+                  //   duration: Duration(milliseconds: 500),
+                  //   child: IgnorePointer(
+                  //     child: CustomPaint(
+                  //       size: Size.infinite,
+                  //       painter: OrbitTextsPainter(
+                  //         controller.celestialBodies,
+                  //         value,
+                  //         time.delta,
+                  //         controller.camera,
+                  //       ),
 
-                        ///child: Container(),
-                      ),
-                    ),
-                  ),
+                  //       ///child: Container(),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               );
             }),
@@ -115,7 +109,7 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                         celestialBody: value.selectedBody!,
                         backButton: controller.unselectCelestialBody,
                       )
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               );
             }),
       ],

@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/canvas_extensions.dart';
-import 'package:portfolio/core/theme/my_text_theme.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/cloud_entity.dart';
@@ -74,7 +71,7 @@ class PlanetPaint extends CustomPainter {
         final double cloudWidth = cloud.width * diameter;
         final rrect = RRect.fromRectAndRadius(
           Rect.fromLTWH(x, y, cloudWidth, size),
-          Radius.circular(8), // raio da borda
+          const Radius.circular(8), // raio da borda
         );
         canvas.drawRRect(rrect, Paint()..color = Colors.white70);
       }
@@ -119,5 +116,6 @@ class PlanetPaint extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant PlanetPaint oldDelegate) =>
+      elapsedTime != oldDelegate.elapsedTime;
 }

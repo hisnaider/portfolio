@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/theme/my_text_theme.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 
 class Competence extends StatelessWidget {
@@ -17,10 +16,10 @@ class Competence extends StatelessWidget {
         border: Border.all(width: 0.5, color: MyColors.primary),
         color: Colors.transparent,
       ),
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       child: Text(
         text.toUpperCase(),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 12,
           color: MyColors.primary,
           fontWeight: FontWeight.w600,
