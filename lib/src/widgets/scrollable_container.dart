@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 
-class ScrollableContainer extends StatelessWidget {
+class ScrollableContainer extends StatefulWidget {
   const ScrollableContainer({
     super.key,
     required this.scrollValue,
@@ -16,15 +16,26 @@ class ScrollableContainer extends StatelessWidget {
   final List<Widget> Function(double value) children;
 
   @override
+  State<ScrollableContainer> createState() => _ScrollableContainerState();
+}
+
+class _ScrollableContainerState extends State<ScrollableContainer> {
+  @override
+  void didUpdateWidget(covariant ScrollableContainer oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final value = scrollValue.value.normalize(end, min: start);
+    final value =
+        widget.scrollValue.value.normalize(widget.end, min: widget.start);
     final slideUp = value.normalize(1, min: 0);
 
     return AnimatedBuilder(
-        animation: scrollValue,
+        animation: widget.scrollValue,
         builder: (context, child) {
           return LayoutBuilder(builder: (context, constraint) {
-            print(value);
             return Transform.translate(
               offset: Offset(
                   0,
@@ -34,9 +45,9 @@ class ScrollableContainer extends StatelessWidget {
                 constraints: BoxConstraints(maxHeight: constraint.maxHeight),
                 child: ListView(
                   children: List.generate(
-                    children(value).length,
+                    widget.children(value).length,
                     (index) {
-                      return children(value)[index];
+                      return widget.children(value)[index];
                     },
                   ),
                 ),

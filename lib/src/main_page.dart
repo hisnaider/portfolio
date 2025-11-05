@@ -25,6 +25,7 @@ class _MainPageState extends State<MainPage>
   late final Ticker _ticker;
   double _currentScroll = 0;
   double _targetScroll = 0;
+  bool _stopAnimation = false;
 
   @override
   void initState() {
@@ -43,15 +44,31 @@ class _MainPageState extends State<MainPage>
     const double smoothingFactor = 0.05;
     _currentScroll =
         lerpDouble(_currentScroll, _targetScroll, smoothingFactor)!;
+    if ((_targetScroll - _currentScroll).abs() < 0.001) {
+      _currentScroll = _targetScroll;
+      _ticker.stop();
+    }
     _scrollNormalized.value = _currentScroll / _maxScroll;
   }
 
   void _onScroll(double delta) {
-    _targetScroll += delta * 0.00025;
-    _targetScroll = _targetScroll.clamp(0, _maxScroll).toDouble();
-    if (!_ticker.isTicking) {
-      _ticker.start();
+    if (!_stopAnimation) {
+      _targetScroll += delta * 0.00025;
+      _targetScroll = _targetScroll.clamp(0, _maxScroll).toDouble();
+      if (!_ticker.isTicking) {
+        _ticker.start();
+      }
     }
+  }
+
+  void _stopAndJumpScrollAnimation(double targetScroll) {
+    _targetScroll = targetScroll;
+    _stopAnimation = true;
+  }
+
+  void _startAndJumpScrollAnimation(double targetScroll) {
+    _targetScroll = targetScroll;
+    _stopAnimation = false;
   }
 
   @override
