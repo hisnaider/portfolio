@@ -34,7 +34,6 @@ class _ScrollableContainerState extends State<ScrollableContainer> {
         widget.scrollValue.value.normalize(widget.end, min: widget.start);
     final slideUp = value.normalize(0.25, min: 0);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      print(_controller.position.maxScrollExtent);
       _onScroll(value.normalize(0.75, min: 0.25));
     });
     final slideUp2 = value.normalize(1, min: 0.75);

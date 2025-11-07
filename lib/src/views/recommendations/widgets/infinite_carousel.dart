@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/views/recommendations/entity/recommendation_entity.dart';
 
@@ -53,7 +54,8 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return Container(
+      clipBehavior: Clip.none,
       color: MyColors.altBackgroud,
       child: SizedBox(
         height: 500,
@@ -65,19 +67,86 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
           physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return MouseRegion(
-              onHover: (event) => hoveringCard = true,
-              onExit: (event) => hoveringCard = false,
-              child: Container(
-                color: Colors.black12,
-                margin: EdgeInsets.symmetric(horizontal: 12),
-                width: 500,
-                child: Text(
-                    '${index % widget.recommendations.length} - ${widget.recommendations[index % widget.recommendations.length].name}'),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: _RecommendationCard(
+                recommendation: widget.recommendations[index],
+                onHover: (isHover) => hoveringCard = isHover,
               ),
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class _RecommendationCard extends StatefulWidget {
+  const _RecommendationCard(
+      {super.key, required this.recommendation, required this.onHover});
+  final RecommendationEntity recommendation;
+  final Function(bool isHover) onHover;
+
+  @override
+  State<_RecommendationCard> createState() => __RecommendationCardState();
+}
+
+class __RecommendationCardState extends State<_RecommendationCard> {
+  bool isHovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (event) {
+        widget.onHover(true);
+        setState(() {
+          isHovering = true;
+        });
+      },
+      onExit: (event) {
+        widget.onHover(false);
+        setState(() {
+          isHovering = false;
+        });
+      },
+      child: AnimatedScale(
+        scale: isHovering ? 1.1 : 1,
+        duration: Duration(milliseconds: 250),
+        alignment: Alignment.topCenter,
+        child: Material(
+            color: Colors.black12,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            elevation: 10,
+            child: SizedBox(
+              width: 500,
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.recommendation.name,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Text(
+                      widget.recommendation.role,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).textTheme.bodyLarge!.color,
+                            fontFamily: Fonts.poppins,
+                          ),
+                    ),
+                    SizedBox(height: 24),
+                    Expanded(
+                      child: Text(
+                        widget.recommendation.text,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )),
       ),
     );
   }
