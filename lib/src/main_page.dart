@@ -7,6 +7,7 @@ import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/src/views/about_me/about_me_page.dart';
 import 'package:portfolio/src/views/hero_page/hero_page.dart';
 import 'package:portfolio/src/views/highlight/highlight_page.dart';
+import 'package:portfolio/src/views/recommendations/recommendations_page.dart';
 import 'package:portfolio/src/views/star_system/star_system_page.dart';
 import 'package:portfolio/src/views/welcome/welcome.dart';
 import 'package:portfolio/src/widgets/scrollable_container.dart';
@@ -44,7 +45,7 @@ class _MainPageState extends State<MainPage>
     const double smoothingFactor = 0.05;
     _currentScroll =
         lerpDouble(_currentScroll, _targetScroll, smoothingFactor)!;
-    if ((_targetScroll - _currentScroll).abs() < 0.001) {
+    if ((_targetScroll - _currentScroll).abs() < 0.0001) {
       _currentScroll = _targetScroll;
       _ticker.stop();
     }
@@ -61,14 +62,9 @@ class _MainPageState extends State<MainPage>
     }
   }
 
-  void _stopAndJumpScrollAnimation(double targetScroll) {
+  void _togleeAndJumpScrollAnimation(double targetScroll, bool stop) {
     _targetScroll = targetScroll;
-    _stopAnimation = true;
-  }
-
-  void _startAndJumpScrollAnimation(double targetScroll) {
-    _targetScroll = targetScroll;
-    _stopAnimation = false;
+    _stopAnimation = stop;
   }
 
   @override
@@ -101,23 +97,31 @@ class _MainPageState extends State<MainPage>
                   builder: (context, value, child) {
                     return Stack(
                       children: [
-                        Welcome(
+                        if (_scrollNormalized.value <= 0.25)
+                          Welcome(
+                              scrollValue: _scrollNormalized,
+                              start: 0,
+                              end: 0.25),
+                        if (_scrollNormalized.value >= 0.2 &&
+                            _scrollNormalized.value <= 0.5)
+                          HeroPage(
+                              scrollValue: _scrollNormalized,
+                              start: 0.2,
+                              end: 0.5),
+                        if (_scrollNormalized.value >= 0.45 &&
+                            _scrollNormalized.value <= 1)
+                          ScrollableContainer(
+                            togleeAndJumpScrollAnimation:
+                                _togleeAndJumpScrollAnimation,
                             scrollValue: _scrollNormalized,
-                            start: 0,
-                            end: 0.25),
-                        HeroPage(
-                            scrollValue: _scrollNormalized,
-                            start: 0.2,
-                            end: 0.5),
-                        ScrollableContainer(
-                          scrollValue: _scrollNormalized,
-                          start: 0.45,
-                          end: 0.75,
-                          children: (value) => [
-                            const AboutMePage(),
-                            const HighlightPage(),
-                          ],
-                        ),
+                            start: 0.45,
+                            end: 1,
+                            children: (value) => [
+                              const AboutMePage(),
+                              const HighlightPage(),
+                              const RecommendationsPage()
+                            ],
+                          ),
                         Text('$_currentScroll\n${_scrollNormalized.value}'),
                       ],
                     );

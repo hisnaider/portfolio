@@ -1,8 +1,11 @@
+import 'dart:html' as html;
+
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/dark_theme.dart';
 import 'package:portfolio/src/main_page.dart';
 
 void main() {
+  html.document.documentElement!.style.scrollBehavior = 'smooth';
   runApp(const MainApp());
 }
 

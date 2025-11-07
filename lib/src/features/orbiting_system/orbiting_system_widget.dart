@@ -30,7 +30,7 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
   @override
   void initState() {
     super.initState();
-    time = TimeController(this)..start();
+    time = TimeController(this);
     controller = StarSystemController(
       camera: camera,
       star: widget.star,

@@ -9,28 +9,35 @@ class ScrollableContainer extends StatefulWidget {
     required this.start,
     required this.end,
     required this.children,
+    required this.togleeAndJumpScrollAnimation,
   });
   final ValueNotifier<double> scrollValue;
   final double start;
   final double end;
   final List<Widget> Function(double value) children;
+  final Function(double targetScroll, bool stop) togleeAndJumpScrollAnimation;
 
   @override
   State<ScrollableContainer> createState() => _ScrollableContainerState();
 }
 
 class _ScrollableContainerState extends State<ScrollableContainer> {
-  @override
-  void didUpdateWidget(covariant ScrollableContainer oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
+  final ScrollController _controller = ScrollController();
+
+  void _onScroll(double value) {
+    _controller.jumpTo(_controller.position.maxScrollExtent * value);
   }
 
   @override
   Widget build(BuildContext context) {
     final value =
         widget.scrollValue.value.normalize(widget.end, min: widget.start);
-    final slideUp = value.normalize(1, min: 0);
+    final slideUp = value.normalize(0.25, min: 0);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print(_controller.position.maxScrollExtent);
+      _onScroll(value.normalize(0.75, min: 0.25));
+    });
+    final slideUp2 = value.normalize(1, min: 0.75);
 
     return AnimatedBuilder(
         animation: widget.scrollValue,
@@ -40,17 +47,15 @@ class _ScrollableContainerState extends State<ScrollableContainer> {
               offset: Offset(
                   0,
                   MediaQuery.of(context).size.height -
-                      (constraint.maxHeight * slideUp)),
+                      (constraint.maxHeight * (slideUp + slideUp2))),
               child: Container(
                 constraints: BoxConstraints(maxHeight: constraint.maxHeight),
-                child: ListView(
-                  children: List.generate(
-                    widget.children(value).length,
-                    (index) {
-                      return widget.children(value)[index];
-                    },
-                  ),
-                ),
+                child: SingleChildScrollView(
+                    controller: _controller,
+                    physics: NeverScrollableScrollPhysics(),
+                    child: Column(
+                      children: widget.children(value),
+                    )),
               ),
             );
           });
