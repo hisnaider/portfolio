@@ -9,13 +9,11 @@ class ScrollableContainer extends StatefulWidget {
     required this.start,
     required this.end,
     required this.children,
-    required this.togleeAndJumpScrollAnimation,
   });
   final ValueNotifier<double> scrollValue;
   final double start;
   final double end;
   final List<Widget> Function(double value) children;
-  final Function(double targetScroll, bool stop) togleeAndJumpScrollAnimation;
 
   @override
   State<ScrollableContainer> createState() => _ScrollableContainerState();
@@ -26,6 +24,12 @@ class _ScrollableContainerState extends State<ScrollableContainer> {
 
   void _onScroll(double value) {
     _controller.jumpTo(_controller.position.maxScrollExtent * value);
+  }
+
+  @override
+  void didUpdateWidget(covariant ScrollableContainer oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

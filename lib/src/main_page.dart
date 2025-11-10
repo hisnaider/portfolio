@@ -62,11 +62,6 @@ class _MainPageState extends State<MainPage>
     }
   }
 
-  void _togleeAndJumpScrollAnimation(double targetScroll, bool stop) {
-    _targetScroll = targetScroll;
-    _stopAnimation = stop;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,13 +92,13 @@ class _MainPageState extends State<MainPage>
                   builder: (context, value, child) {
                     return Stack(
                       children: [
+                        ///Container(color: Color.fromARGB(49, 7, 36, 36)),
                         if (_scrollNormalized.value <= 0.25)
                           Welcome(
                               scrollValue: _scrollNormalized,
                               start: 0,
                               end: 0.25),
-                        if (_scrollNormalized.value >= 0.2 &&
-                            _scrollNormalized.value <= 0.5)
+                        if (_scrollNormalized.value <= 0.5)
                           HeroPage(
                               scrollValue: _scrollNormalized,
                               start: 0.2,
@@ -111,14 +106,12 @@ class _MainPageState extends State<MainPage>
                         if (_scrollNormalized.value >= 0.45 &&
                             _scrollNormalized.value <= 1)
                           ScrollableContainer(
-                            togleeAndJumpScrollAnimation:
-                                _togleeAndJumpScrollAnimation,
                             scrollValue: _scrollNormalized,
                             start: 0.45,
                             end: 1,
                             children: (value) => [
                               const AboutMePage(),
-                              const HighlightPage(),
+                              //const HighlightPage(),
                               const RecommendationsPage()
                             ],
                           ),

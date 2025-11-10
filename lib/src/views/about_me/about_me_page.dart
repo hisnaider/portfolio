@@ -1,14 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/enum/skills_enum.dart';
-import 'package:portfolio/core/commons/extensions/normalize.dart';
-import 'package:portfolio/core/commons/widgets/competence.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
-import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/core/values/my_data.dart';
-import 'package:portfolio/core/values/my_values.dart';
 import 'package:portfolio/src/views/about_me/widgets/skill.dart';
 
 class AboutMePage extends StatelessWidget {

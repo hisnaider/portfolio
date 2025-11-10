@@ -9,14 +9,40 @@ import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart
 import 'package:portfolio/src/views/highlight/entity/work_card_entity.dart';
 import 'package:portfolio/src/views/highlight/widgets/highlight_project_card.dart';
 
-class HighlightPage extends StatefulWidget {
+class HighlightPage extends StatelessWidget {
   const HighlightPage({super.key});
 
   @override
-  State<HighlightPage> createState() => _HighlightPageState();
+  Widget build(BuildContext context) {
+    return SectionContainer(
+        title: 'Planetas',
+        subtitle: 'Projetos e trabalhos',
+        padding: EdgeInsets.symmetric(horizontal: 40),
+        child: LayoutBuilder(builder: (context, constraint) {
+          return Column(mainAxisSize: MainAxisSize.min, children: [
+            RepaintBoundary(
+              child: _ProjectGrid(maxWidth: constraint.maxWidth),
+            ),
+            SizedBox(height: 24),
+            Text(
+              'Esses são apenas os planetas mais próximos. Continue sua jornada até o fim do portfólio e descubra todo o meu sistema estelar — a viagem vai valer a pena!',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleSmall!,
+            )
+          ]);
+        }));
+  }
 }
 
-class _HighlightPageState extends State<HighlightPage>
+class _ProjectGrid extends StatefulWidget {
+  const _ProjectGrid({super.key, required this.maxWidth});
+  final double maxWidth;
+
+  @override
+  State<_ProjectGrid> createState() => _ProjectGridState();
+}
+
+class _ProjectGridState extends State<_ProjectGrid>
     with SingleTickerProviderStateMixin {
   late TimeController time;
 
@@ -34,39 +60,23 @@ class _HighlightPageState extends State<HighlightPage>
 
   @override
   Widget build(BuildContext context) {
-    return SectionContainer(
-        title: 'Planetas',
-        subtitle: 'Projetos e trabalhos',
-        padding: EdgeInsets.symmetric(horizontal: 40),
-        child: LayoutBuilder(builder: (context, constraint) {
-          return Column(mainAxisSize: MainAxisSize.min, children: [
-            ValueListenableBuilder(
-              valueListenable: time.elapsed,
-              builder: (context, value, child) {
-                return GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 24,
-                      mainAxisExtent: 300 + ((1420 - constraint.maxWidth) / 5)),
-                  itemCount: _works.length,
-                  itemBuilder: (context, index) => HighlightProjectCard(
-                      work: _works[index],
-                      deltaTime: time.delta,
-                      elapsedTime: value),
-                );
-              },
-            ),
-            SizedBox(height: 24),
-            Text(
-              'Esses são apenas os planetas mais próximos. Continue sua jornada até o fim do portfólio e descubra todo o meu sistema estelar — a viagem vai valer a pena!',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleSmall!,
-            )
-          ]);
-        }));
+    return ValueListenableBuilder(
+      valueListenable: time.elapsed,
+      builder: (context, value, child) {
+        return GridView.builder(
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1,
+              crossAxisSpacing: 24,
+              mainAxisSpacing: 24,
+              mainAxisExtent: 300 + ((1420 - widget.maxWidth) / 5)),
+          itemCount: _works.length,
+          itemBuilder: (context, index) => HighlightProjectCard(
+              work: _works[index], deltaTime: time.delta, elapsedTime: value),
+        );
+      },
+    );
   }
 }
 

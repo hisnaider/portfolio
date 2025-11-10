@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
@@ -36,117 +37,130 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
       targetPosition += 0.5;
     }
     position = lerpDouble(position, targetPosition, 0.1)!;
-    _controller.jumpTo(position);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _controller.jumpTo(position);
+      }
+    });
     setState(() {});
     if ((targetPosition - position).abs() < 0.001) {
       _ticker.stop();
     }
   }
 
+  void _onHover() {
+    hoveringCard = true;
+  }
+
+  void _onHoverExit() {
+    hoveringCard = false;
+    if (!_ticker.isActive) {
+      _ticker.start();
+    }
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
-    _controller.dispose();
     _ticker.stop();
     _ticker.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      clipBehavior: Clip.none,
+      height: 500,
       color: MyColors.altBackgroud,
-      child: SizedBox(
-        height: 500,
-        width: MediaQuery.of(context).size.width,
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          controller: _controller,
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: _RecommendationCard(
-                recommendation: widget.recommendations[index],
-                onHover: (isHover) => hoveringCard = isHover,
-              ),
-            );
-          },
-        ),
+      child: ListView.builder(
+        clipBehavior: Clip.none,
+        controller: _controller,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          final itemIndex = index % widget.recommendations.length;
+          return _RecommendationCard(
+            recommendation: widget.recommendations[itemIndex],
+            onHover: _onHover,
+            onHoverExit: _onHoverExit,
+          );
+        },
       ),
     );
   }
 }
 
-class _RecommendationCard extends StatefulWidget {
+class _RecommendationCard extends StatelessWidget {
   const _RecommendationCard(
-      {super.key, required this.recommendation, required this.onHover});
+      {super.key,
+      required this.recommendation,
+      required this.onHover,
+      required this.onHoverExit});
   final RecommendationEntity recommendation;
-  final Function(bool isHover) onHover;
-
-  @override
-  State<_RecommendationCard> createState() => __RecommendationCardState();
-}
-
-class __RecommendationCardState extends State<_RecommendationCard> {
-  bool isHovering = false;
+  final VoidCallback onHover;
+  final VoidCallback onHoverExit;
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (event) {
-        widget.onHover(true);
-        setState(() {
-          isHovering = true;
-        });
-      },
-      onExit: (event) {
-        widget.onHover(false);
-        setState(() {
-          isHovering = false;
-        });
-      },
-      child: AnimatedScale(
-        scale: isHovering ? 1.1 : 1,
-        duration: Duration(milliseconds: 250),
-        alignment: Alignment.topCenter,
-        child: Material(
+    return Align(
+      alignment: Alignment.topCenter,
+      child: SizedBox(
+        width: 500,
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
             color: Colors.black12,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            elevation: 10,
-            child: SizedBox(
-              width: 500,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.recommendation.name,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    Text(
-                      widget.recommendation.role,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).textTheme.bodyLarge!.color,
-                            fontFamily: Fonts.poppins,
-                          ),
-                    ),
-                    SizedBox(height: 24),
-                    Expanded(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: MouseRegion(
+            onEnter: (event) => onHover(),
+            onExit: (event) => onHoverExit(),
+            child: ShaderMask(
+              shaderCallback: (bounds) => const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.white,
+                  Colors.white,
+                  Colors.transparent, // Fim com fade
+                ],
+                stops: [0.0, 0.89, 1.0],
+              ).createShader(bounds),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    recommendation.name,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  Text(
+                    recommendation.role,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).textTheme.bodyLarge!.color,
+                          fontFamily: Fonts.poppins,
+                        ),
+                  ),
+                  const SizedBox(height: 24),
+                  Flexible(
+                    child: SingleChildScrollView(
                       child: Text(
-                        widget.recommendation.text,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        recommendation.text,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(height: 1.75),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }

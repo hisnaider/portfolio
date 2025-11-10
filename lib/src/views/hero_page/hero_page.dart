@@ -68,9 +68,11 @@ class HeroPage extends StatelessWidget {
                       offset: Offset(250 * slideRight, 0),
                       child: SizedBox(
                         width: 650,
-                        child: MiniStarSystem(
-                          skillScale: skillScale,
-                          skillScaleDown: skillScaleDown,
+                        child: RepaintBoundary(
+                          child: MiniStarSystem(
+                            skillScale: skillScale,
+                            skillScaleDown: skillScaleDown,
+                          ),
                         ),
                       ),
                     ),

@@ -118,5 +118,5 @@ class _MiniStarSystemPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => skillScale > 0;
 }

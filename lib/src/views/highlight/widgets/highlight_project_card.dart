@@ -26,7 +26,6 @@ class HighlightProjectCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       color: Colors.black12,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      elevation: 10,
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Stack(
