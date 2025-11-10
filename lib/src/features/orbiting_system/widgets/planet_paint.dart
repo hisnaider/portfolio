@@ -8,35 +8,16 @@ import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.da
 class PlanetPaint extends CustomPainter {
   final Offset position;
   final PlanetEntity planet;
-  final double elapsedTime;
-  final bool hoveredPlanet;
   final double glowFactor;
   final double zoomFactor;
-  final double zoom;
   const PlanetPaint({
     required this.position,
     required this.planet,
-    required this.elapsedTime,
-    required this.hoveredPlanet,
     required this.glowFactor,
     required this.zoomFactor,
-    required this.zoom,
   });
   @override
   void paint(Canvas canvas, Size size) {
-    final circlePaint = Paint()
-      ..color = hoveredPlanet ? MyColors.primary : Colors.white30
-      ..style = PaintingStyle.stroke;
-
-    canvas.drawDashedCircle(
-      position,
-      (planet.size + kHoverIndicator) - (75 * zoomFactor),
-      segments: 4,
-      rotation: elapsedTime * 0.1,
-      gapProportion: 0.25,
-      paint: circlePaint,
-    );
-
     canvas.save(); // salva o estado atual
 
     canvas.clipPath(
@@ -116,6 +97,5 @@ class PlanetPaint extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant PlanetPaint oldDelegate) =>
-      elapsedTime != oldDelegate.elapsedTime;
+  bool shouldRepaint(covariant PlanetPaint oldDelegate) => true;
 }

@@ -79,47 +79,47 @@ class _MainPageState extends State<MainPage>
             Container(
               color: const Color(0xdd030F0F),
             ),
-            const IgnorePointer(child: StarSystemPage()),
-            Listener(
-              behavior: HitTestBehavior.translucent,
-              onPointerSignal: (event) {
-                if (event is PointerScrollEvent) {
-                  _onScroll(event.scrollDelta.dy);
-                }
-              },
-              child: ValueListenableBuilder(
-                  valueListenable: _scrollNormalized,
-                  builder: (context, value, child) {
-                    return Stack(
-                      children: [
-                        ///Container(color: Color.fromARGB(49, 7, 36, 36)),
-                        if (_scrollNormalized.value <= 0.25)
-                          Welcome(
-                              scrollValue: _scrollNormalized,
-                              start: 0,
-                              end: 0.25),
-                        if (_scrollNormalized.value <= 0.5)
-                          HeroPage(
-                              scrollValue: _scrollNormalized,
-                              start: 0.2,
-                              end: 0.5),
-                        if (_scrollNormalized.value >= 0.45 &&
-                            _scrollNormalized.value <= 1)
-                          ScrollableContainer(
-                            scrollValue: _scrollNormalized,
-                            start: 0.45,
-                            end: 1,
-                            children: (value) => [
-                              const AboutMePage(),
-                              //const HighlightPage(),
-                              const RecommendationsPage()
-                            ],
-                          ),
-                        Text('$_currentScroll\n${_scrollNormalized.value}'),
-                      ],
-                    );
-                  }),
-            ),
+            StarSystemPage(),
+            // Listener(
+            //   behavior: HitTestBehavior.translucent,
+            //   onPointerSignal: (event) {
+            //     if (event is PointerScrollEvent) {
+            //       _onScroll(event.scrollDelta.dy);
+            //     }
+            //   },
+            //   child: ValueListenableBuilder(
+            //       valueListenable: _scrollNormalized,
+            //       builder: (context, value, child) {
+            //         return Stack(
+            //           children: [
+            //             ///Container(color: Color.fromARGB(49, 7, 36, 36)),
+            //             if (_scrollNormalized.value <= 0.25)
+            //               Welcome(
+            //                   scrollValue: _scrollNormalized,
+            //                   start: 0,
+            //                   end: 0.25),
+            //             if (_scrollNormalized.value <= 0.5)
+            //               HeroPage(
+            //                   scrollValue: _scrollNormalized,
+            //                   start: 0.2,
+            //                   end: 0.5),
+            //             if (_scrollNormalized.value >= 0.45 &&
+            //                 _scrollNormalized.value <= 1)
+            //               ScrollableContainer(
+            //                 scrollValue: _scrollNormalized,
+            //                 start: 0.45,
+            //                 end: 1,
+            //                 children: (value) => [
+            //                   const AboutMePage(),
+            //                   const HighlightPage(),
+            //                   const RecommendationsPage()
+            //                 ],
+            //               ),
+            //             Text('$_currentScroll\n${_scrollNormalized.value}'),
+            //           ],
+            //         );
+            //       }),
+            // ),
           ],
         ),
       ),

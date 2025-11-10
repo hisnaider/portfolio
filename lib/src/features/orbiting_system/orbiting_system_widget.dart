@@ -5,6 +5,8 @@ import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_system_config.dart';
+import 'package:portfolio/src/features/orbiting_system/layers/orbit_texts_painter.dart';
+import 'package:portfolio/src/features/orbiting_system/layers/selection_indicator_painter.dart';
 import 'package:portfolio/src/features/orbiting_system/layers/star_system_painter.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/work_desc.dart';
 
@@ -30,7 +32,7 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
   @override
   void initState() {
     super.initState();
-    time = TimeController(this);
+    time = TimeController(this)..start();
     controller = StarSystemController(
       camera: camera,
       star: widget.star,
@@ -73,24 +75,39 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                       ///child: Container(),
                     ),
                   ),
-                  // AnimatedOpacity(
-                  //   opacity:
-                  //       controller.config.value.selectedBody != null ? 0 : 1,
-                  //   duration: Duration(milliseconds: 500),
-                  //   child: IgnorePointer(
-                  //     child: CustomPaint(
-                  //       size: Size.infinite,
-                  //       painter: OrbitTextsPainter(
-                  //         controller.celestialBodies,
-                  //         value,
-                  //         time.delta,
-                  //         controller.camera,
-                  //       ),
+                  AnimatedOpacity(
+                    opacity: 1,
+                    duration: Duration(milliseconds: 250),
+                    child: IgnorePointer(
+                      child: CustomPaint(
+                        size: Size.infinite,
+                        painter: SelectionIndicatorPainter(
+                          controller.celestialBodies,
+                          value,
+                          camera,
+                          controller.config.value.hoveredBody,
+                        ),
+                      ),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity:
+                        controller.config.value.selectedBody != null ? 0 : 1,
+                    duration: Duration(milliseconds: 500),
+                    child: IgnorePointer(
+                      child: CustomPaint(
+                        size: Size.infinite,
+                        painter: OrbitTextsPainter(
+                          controller.celestialBodies,
+                          value,
+                          time.delta,
+                          controller.camera,
+                        ),
 
-                  //       ///child: Container(),
-                  //     ),
-                  //   ),
-                  // ),
+                        ///child: Container(),
+                      ),
+                    ),
+                  ),
                 ],
               );
             }),

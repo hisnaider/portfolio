@@ -5,10 +5,14 @@ class TimeController {
   final ValueNotifier<double> elapsed = ValueNotifier(0);
   final ValueNotifier<double> simulationSpeed = ValueNotifier(1);
   late final Ticker _ticker;
+  final double targetFps = 120;
+  late final double frameTime;
+  double _accumulator = 0;
   double _lastTime = 0;
   double delta = 0;
 
   TimeController(TickerProvider vsync) {
+    frameTime = 1 / targetFps;
     _ticker = vsync.createTicker(
       (tickerElapsed) {
         final now = tickerElapsed.inMilliseconds / 1000;
@@ -16,10 +20,14 @@ class TimeController {
           _lastTime = now; // inicializa no primeiro frame
           return;
         }
-        delta = (now - _lastTime).clamp(0, 0.003);
-
-        elapsed.value += delta * simulationSpeed.value;
+        delta = frameTime;
         _lastTime = now;
+        _accumulator += delta;
+
+        while (_accumulator >= frameTime) {
+          elapsed.value += frameTime;
+          _accumulator -= frameTime;
+        }
       },
     );
   }

@@ -40,13 +40,11 @@ class HighlightProjectCard extends StatelessWidget {
                   scale: 75,
                   child: CustomPaint(
                     painter: PlanetPaint(
-                        position: Offset.zero,
-                        planet: work.planet,
-                        elapsedTime: elapsedTime,
-                        hoveredPlanet: false,
-                        glowFactor: 0,
-                        zoomFactor: 1,
-                        zoom: 1),
+                      position: Offset.zero,
+                      planet: work.planet,
+                      glowFactor: 0,
+                      zoomFactor: 1,
+                    ),
                   ),
                 ),
               ),

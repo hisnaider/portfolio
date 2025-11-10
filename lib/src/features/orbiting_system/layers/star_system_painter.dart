@@ -59,15 +59,11 @@ class StarSystemPainter extends CustomPainter {
           ..style = PaintingStyle.stroke;
         canvas.drawOval(orbitRect, orbitPaint);
         if (camera.isInCameraView(localPosition, body.size)) {
-          final bool hoveredPlanet = hovered == body.id;
           PlanetPaint(
             position: localPosition,
             planet: body,
-            elapsedTime: elapsed,
-            hoveredPlanet: hoveredPlanet,
             glowFactor: glowFactor(camera, 0.5),
             zoomFactor: camera.zoomFactor,
-            zoom: camera.zoom,
           ).paint(canvas, size);
         }
       }
