@@ -4,13 +4,43 @@ import 'package:portfolio/core/theme/my_text_theme.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 
-class OrbitTextsPainter extends CustomPainter {
+class OrbitTextsPainter extends StatelessWidget {
+  final List<CelestialBody> celestialBody;
+  final double elapsed;
+  final double deltaTime;
+  final Camera camera;
+  final bool showPlanetName;
+  const OrbitTextsPainter(
+      {super.key,
+      required this.celestialBody,
+      required this.elapsed,
+      required this.deltaTime,
+      required this.camera,
+      required this.showPlanetName});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      opacity: showPlanetName ? 1 : 0,
+      duration: Duration(milliseconds: 250),
+      child: IgnorePointer(
+        child: CustomPaint(
+          size: Size.infinite,
+          painter:
+              _OrbitTextsPainter(celestialBody, elapsed, deltaTime, camera),
+        ),
+      ),
+    );
+  }
+}
+
+class _OrbitTextsPainter extends CustomPainter {
   final List<CelestialBody> celestialBody;
   final double elapsed;
   final double deltaTime;
   final Camera camera;
 
-  OrbitTextsPainter(
+  _OrbitTextsPainter(
     this.celestialBody,
     this.elapsed,
     this.deltaTime,
@@ -21,7 +51,6 @@ class OrbitTextsPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     canvas.save();
     canvas.translate(camera.offset.dx, camera.offset.dy);
-
     for (CelestialBody body in celestialBody) {
       final Offset localPosition = camera.worldToScreen(body.worldPosition);
       if (body is PlanetEntity) {
@@ -48,6 +77,6 @@ class OrbitTextsPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant OrbitTextsPainter oldDelegate) =>
+  bool shouldRepaint(covariant _OrbitTextsPainter oldDelegate) =>
       oldDelegate.elapsed != elapsed;
 }

@@ -26,4 +26,18 @@ class Assets {
   static const String flutter = 'assets/images/svg/flutter_icon.svg';
   static const String cleanArchitecture =
       'assets/images/svg/clean_architecture_icon.svg';
+
+  //System star UI svg
+  static const String nameOn =
+      'assets/images/svg/star_system_icons/name_on.svg';
+  static const String nameOff =
+      'assets/images/svg/star_system_icons/name_off.svg';
+  static const String orbitOn =
+      'assets/images/svg/star_system_icons/orbit_on.svg';
+  static const String orbitOff =
+      'assets/images/svg/star_system_icons/orbit_off.svg';
+  static const String selectOn =
+      'assets/images/svg/star_system_icons/select_on.svg';
+  static const String selectOff =
+      'assets/images/svg/star_system_icons/select_off.svg';
 }

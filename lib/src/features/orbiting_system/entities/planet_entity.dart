@@ -50,8 +50,7 @@ class PlanetEntity extends CelestialBody {
 
   @override
   void update(double deltaTime) {
-    angle +=
-        (simulationSpeed / sqrt(normalizeRadius * orbitRadius) * deltaTime);
+    angle += (simulationSpeed / pow(orbitRadius, 1)) * deltaTime * 25;
     angle %= (2 * pi);
     updateClouds(deltaTime);
     updateContinents(deltaTime);

@@ -5,6 +5,8 @@ import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_system_config.dart';
+import 'package:portfolio/src/features/orbiting_system/layers/UI/ui_layer.dart';
+import 'package:portfolio/src/features/orbiting_system/layers/orbit_layer.dart';
 import 'package:portfolio/src/features/orbiting_system/layers/orbit_texts_painter.dart';
 import 'package:portfolio/src/features/orbiting_system/layers/selection_indicator_painter.dart';
 import 'package:portfolio/src/features/orbiting_system/layers/star_system_painter.dart';
@@ -28,6 +30,9 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
   final Camera camera = Camera();
   late TimeController time;
   late final StarSystemController controller;
+  late bool _hideOrbit;
+  late bool _hidePlanetName;
+  late bool _hideSelectionIndicator;
 
   @override
   void initState() {
@@ -57,26 +62,9 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
               controller.update(time.delta, screenSize);
               return Stack(
                 children: [
-                  Listener(
-                    onPointerHover: controller.getEvent,
-                    onPointerSignal: controller.getEvent,
-                    onPointerMove: controller.getEvent,
-                    onPointerDown: controller.getEvent,
-                    onPointerUp: controller.getEvent,
-                    child: CustomPaint(
-                      size: Size.infinite,
-                      painter: StarSystemPainter(
-                          controller.celestialBodies,
-                          value,
-                          time.delta,
-                          controller.camera,
-                          controller.config.value.hoveredBody?.id),
-
-                      ///child: Container(),
-                    ),
-                  ),
                   AnimatedOpacity(
-                    opacity: 1,
+                    opacity:
+                        !controller.config.value.showSelectionIndicator ? 0 : 1,
                     duration: Duration(milliseconds: 250),
                     child: IgnorePointer(
                       child: CustomPaint(
@@ -90,27 +78,43 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                       ),
                     ),
                   ),
-                  AnimatedOpacity(
-                    opacity:
-                        controller.config.value.selectedBody != null ? 0 : 1,
-                    duration: Duration(milliseconds: 500),
-                    child: IgnorePointer(
-                      child: CustomPaint(
-                        size: Size.infinite,
-                        painter: OrbitTextsPainter(
-                          controller.celestialBodies,
-                          value,
-                          time.delta,
-                          controller.camera,
-                        ),
-
-                        ///child: Container(),
+                  OrbitLayer(
+                    showOrbit: controller.config.value.showOrbitLine,
+                    celestialBody: controller.celestialBodies,
+                    camera: camera,
+                  ),
+                  Listener(
+                    onPointerHover: controller.getEvent,
+                    onPointerSignal: controller.getEvent,
+                    onPointerMove: controller.getEvent,
+                    onPointerDown: controller.getEvent,
+                    onPointerUp: controller.getEvent,
+                    child: CustomPaint(
+                      size: Size.infinite,
+                      painter: StarSystemPainter(
+                        controller.celestialBodies,
+                        value,
+                        time.delta,
+                        controller.camera,
+                        controller.config.value.hoveredBody?.id,
                       ),
+
+                      ///child: Container(),
                     ),
+                  ),
+                  OrbitTextsPainter(
+                    celestialBody: controller.celestialBodies,
+                    elapsed: value,
+                    deltaTime: time.delta,
+                    camera: controller.camera,
+                    showPlanetName:
+                        controller.config.value.selectedBody != null ||
+                            controller.config.value.showPlanetNames,
                   ),
                 ],
               );
             }),
+        UiLayer(config: controller.config),
         ValueListenableBuilder<StarSystemConfig>(
             valueListenable: controller.config,
             builder: (context, value, child) {

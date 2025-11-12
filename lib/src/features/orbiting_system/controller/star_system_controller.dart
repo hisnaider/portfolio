@@ -33,6 +33,7 @@ class StarSystemController {
 
   void update(double deltaTime, Size screenSize) {
     camera.update(screenSize, deltaTime);
+
     if (config.value.selectedBody != null) {
       camera.moveToObject(config.value.selectedBody!);
     }

@@ -4,28 +4,30 @@ class StarSystemConfig {
   CelestialBody? selectedBody;
   CelestialBody? hoveredBody;
   bool showUi;
-  bool showStar;
+  bool showSelectionIndicator;
   bool showPlanetNames;
   bool showOrbitLine;
+  bool showContact;
   StarSystemConfig({
     this.selectedBody,
     this.hoveredBody,
     this.showUi = true,
-    this.showStar = true,
+    this.showSelectionIndicator = true,
     this.showPlanetNames = true,
     this.showOrbitLine = true,
+    this.showContact = false,
   });
 
   static const _undefined = Object();
 
-  StarSystemConfig copyWith({
-    Object? selectedBody = _undefined,
-    Object? hoveredBody = _undefined,
-    bool? showUi,
-    bool? showStar,
-    bool? showPlanetNames,
-    bool? showOrbitLine,
-  }) {
+  StarSystemConfig copyWith(
+      {Object? selectedBody = _undefined,
+      Object? hoveredBody = _undefined,
+      bool? showUi,
+      bool? showSelectionIndicator,
+      bool? showPlanetNames,
+      bool? showOrbitLine,
+      bool? showContact}) {
     return StarSystemConfig(
       selectedBody: selectedBody == _undefined
           ? this.selectedBody
@@ -34,15 +36,17 @@ class StarSystemConfig {
           ? this.hoveredBody
           : hoveredBody as CelestialBody?,
       showUi: showUi ?? this.showUi,
-      showStar: showStar ?? this.showStar,
+      showSelectionIndicator:
+          showSelectionIndicator ?? this.showSelectionIndicator,
       showPlanetNames: showPlanetNames ?? this.showPlanetNames,
       showOrbitLine: showOrbitLine ?? this.showOrbitLine,
+      showContact: showContact ?? this.showContact,
     );
   }
 
   @override
   String toString() {
-    return 'StarSystemConfig(selectedBody: $selectedBody, hoveredBody: $hoveredBody, showUi: $showUi, showStar: $showStar, showPlanetNames: $showPlanetNames, showOrbitLine: $showOrbitLine)';
+    return 'StarSystemConfig(selectedBody: $selectedBody, hoveredBody: $hoveredBody, showUi: $showUi, showSelectionIndicator: $showSelectionIndicator, showPlanetNames: $showPlanetNames, showOrbitLine: $showOrbitLine)';
   }
 
   @override
@@ -52,7 +56,7 @@ class StarSystemConfig {
     return other.selectedBody == selectedBody &&
         other.hoveredBody == hoveredBody &&
         other.showUi == showUi &&
-        other.showStar == showStar &&
+        other.showSelectionIndicator == showSelectionIndicator &&
         other.showPlanetNames == showPlanetNames &&
         other.showOrbitLine == showOrbitLine;
   }
@@ -62,7 +66,7 @@ class StarSystemConfig {
     return selectedBody.hashCode ^
         hoveredBody.hashCode ^
         showUi.hashCode ^
-        showStar.hashCode ^
+        showSelectionIndicator.hashCode ^
         showPlanetNames.hashCode ^
         showOrbitLine.hashCode;
   }

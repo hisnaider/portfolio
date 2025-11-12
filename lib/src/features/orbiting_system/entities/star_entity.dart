@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/commons/entities/celestial_body_glow_config.dart';
+import 'package:portfolio/core/values/constants.dart';
 
 class StarEntity extends CelestialBody {
   final StarGlow glow;
@@ -86,7 +87,8 @@ class SolarCorona {
       final bool isSpike = Random().nextDouble() < _spikeProbability(intensity);
 
       final a = Random().nextDouble() * 3;
-      spikes[i]._update(deltaTime, angle, isSpike ? radiusSpike : a);
+      spikes[i]._update(
+          deltaTime * simulationSpeed, angle, isSpike ? radiusSpike : a);
     }
   }
 

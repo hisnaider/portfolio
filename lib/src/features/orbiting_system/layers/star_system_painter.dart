@@ -48,16 +48,6 @@ class StarSystemPainter extends CustomPainter {
                 glowFactor: glowFactor(camera, 0.15))
             .paint(canvas, size);
       } else if (body is PlanetEntity) {
-        final orbitRect = Rect.fromCenter(
-          center: center,
-          width: body.orbitRadius * 2,
-          height: body.verticalRadius * 2,
-        );
-
-        final orbitPaint = Paint()
-          ..color = Colors.white12
-          ..style = PaintingStyle.stroke;
-        canvas.drawOval(orbitRect, orbitPaint);
         if (camera.isInCameraView(localPosition, body.size)) {
           PlanetPaint(
             position: localPosition,

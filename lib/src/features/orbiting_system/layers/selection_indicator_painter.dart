@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/commons/extensions/canvas_extensions.dart';
@@ -26,17 +28,19 @@ class SelectionIndicatorPainter extends CustomPainter {
     canvas.translate(camera.offset.dx, camera.offset.dy);
     canvas.scale(camera.zoom);
     for (CelestialBody body in celestialBody) {
-      final double circleSize =
-          (body.size + kHoverIndicator) - (75 * camera.zoomFactor);
+      final double circleSize = min(
+          (body.size + kHoverIndicator) - (75 * camera.zoomFactor),
+          kHoverIndicator);
       if (circleSize > body.size) {
         final circlePaint = Paint()
           ..color =
               hoveredBody?.id == body.id ? MyColors.primary : Colors.white30
-          ..style = PaintingStyle.stroke;
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.25;
         canvas.drawDashedCircle(
           camera.worldToScreen(body.worldPosition),
           circleSize,
-          segments: 4,
+          segments: 3,
           rotation: elapsed * 0.1,
           gapProportion: 0.25,
           paint: circlePaint,

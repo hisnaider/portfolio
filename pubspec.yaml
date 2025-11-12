@@ -24,6 +24,7 @@ flutter:
     - assets/images/
     - assets/images/raquel/
     - assets/images/svg/
+    - assets/images/svg/star_system_icons/
     - assets/fonts/
 
   fonts:
