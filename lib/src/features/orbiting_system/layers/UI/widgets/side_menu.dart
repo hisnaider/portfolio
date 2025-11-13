@@ -72,6 +72,7 @@ class _UiButton extends StatelessWidget {
     return IconButton(
       onPressed: () => onPressed(!isActivate),
       icon: AnimatedCrossFade(
+          alignment: Alignment.centerLeft,
           firstChild: _svg(iconAssetOn),
           secondChild: _svg(iconAssetOff),
           crossFadeState:

@@ -7,6 +7,7 @@ class Assets {
 
   //Logo
   static const String myLogo = 'assets/images/my_logo.jpg';
+  static const String myLogoSvg = 'assets/images/svg/logo.svg';
   static const String ciex = 'assets/images/ciex.jpg';
   static const String itec = 'assets/images/itec.jpg';
 
@@ -40,4 +41,9 @@ class Assets {
       'assets/images/svg/star_system_icons/select_on.svg';
   static const String selectOff =
       'assets/images/svg/star_system_icons/select_off.svg';
+  //Contact icon svg
+  static const String email = 'assets/images/svg/contact_icons/email.svg';
+  static const String github = 'assets/images/svg/contact_icons/github.svg';
+  static const String linkedin = 'assets/images/svg/contact_icons/linkedin.svg';
+  static const String phone = 'assets/images/svg/contact_icons/phone.svg';
 }

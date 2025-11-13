@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 
 class StarSystemConfig {
@@ -45,11 +46,6 @@ class StarSystemConfig {
   }
 
   @override
-  String toString() {
-    return 'StarSystemConfig(selectedBody: $selectedBody, hoveredBody: $hoveredBody, showUi: $showUi, showSelectionIndicator: $showSelectionIndicator, showPlanetNames: $showPlanetNames, showOrbitLine: $showOrbitLine)';
-  }
-
-  @override
   bool operator ==(covariant StarSystemConfig other) {
     if (identical(this, other)) return true;
 
@@ -58,7 +54,8 @@ class StarSystemConfig {
         other.showUi == showUi &&
         other.showSelectionIndicator == showSelectionIndicator &&
         other.showPlanetNames == showPlanetNames &&
-        other.showOrbitLine == showOrbitLine;
+        other.showOrbitLine == showOrbitLine &&
+        other.showContact == showContact;
   }
 
   @override
@@ -68,6 +65,12 @@ class StarSystemConfig {
         showUi.hashCode ^
         showSelectionIndicator.hashCode ^
         showPlanetNames.hashCode ^
-        showOrbitLine.hashCode;
+        showOrbitLine.hashCode ^
+        showContact.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'StarSystemConfig(selectedBody: $selectedBody, hoveredBody: $hoveredBody, showUi: $showUi, showSelectionIndicator: $showSelectionIndicator, showPlanetNames: $showPlanetNames, showOrbitLine: $showOrbitLine, showContact: $showContact)';
   }
 }

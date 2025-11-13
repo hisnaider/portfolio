@@ -30,9 +30,6 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
   final Camera camera = Camera();
   late TimeController time;
   late final StarSystemController controller;
-  late bool _hideOrbit;
-  late bool _hidePlanetName;
-  late bool _hideSelectionIndicator;
 
   @override
   void initState() {
@@ -83,23 +80,26 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                     celestialBody: controller.celestialBodies,
                     camera: camera,
                   ),
-                  Listener(
-                    onPointerHover: controller.getEvent,
-                    onPointerSignal: controller.getEvent,
-                    onPointerMove: controller.getEvent,
-                    onPointerDown: controller.getEvent,
-                    onPointerUp: controller.getEvent,
-                    child: CustomPaint(
-                      size: Size.infinite,
-                      painter: StarSystemPainter(
-                        controller.celestialBodies,
-                        value,
-                        time.delta,
-                        controller.camera,
-                        controller.config.value.hoveredBody?.id,
-                      ),
+                  IgnorePointer(
+                    ignoring: controller.config.value.showContact,
+                    child: Listener(
+                      onPointerHover: controller.getEvent,
+                      onPointerSignal: controller.getEvent,
+                      onPointerMove: controller.getEvent,
+                      onPointerDown: controller.getEvent,
+                      onPointerUp: controller.getEvent,
+                      child: CustomPaint(
+                        size: Size.infinite,
+                        painter: StarSystemPainter(
+                          controller.celestialBodies,
+                          value,
+                          time.delta,
+                          controller.camera,
+                          controller.config.value.hoveredBody?.id,
+                        ),
 
-                      ///child: Container(),
+                        ///child: Container(),
+                      ),
                     ),
                   ),
                   OrbitTextsPainter(
