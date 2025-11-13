@@ -38,7 +38,7 @@ class StarSystemController {
       camera.moveToObject(config.value.selectedBody!);
     }
     for (CelestialBody body in celestialBodies) {
-      body.update(deltaTime);
+      body.update(deltaTime * config.value.simulationSpeed);
     }
 
     celestialBodies.sort((a, b) => a.depth.compareTo(b.depth));

@@ -165,51 +165,88 @@ class Planets {
   );
 
   static PlanetEntity ciex = PlanetEntity(
-    name: 'Hemera da Aurora',
-    orbitRadius: 230,
-    initialAngle: 0.4,
-    size: 2.2,
-    color: Color(0xffD5D9CA),
-    atmosphere: Atmosphere(
-      height: 1.6,
-      density: 1.1,
-      color: Color(0xffE3E7DA),
-    ),
-    rotationSpeed: 2.3,
-    numberOfClouds: 6,
-    continents: [
-      ContinentEntity(
-        color: Color(0xff283E49),
-        rawPoints: [
-          const Offset(0, 0.3),
-          const Offset(0.28, 0.12),
-          const Offset(0.55, 0.4),
-          const Offset(0.7, 0.7),
-          const Offset(0.35, 0.82),
-          const Offset(0.18, 0.72),
-          const Offset(0, 0.6),
-          const Offset(0.1, 0.4),
-        ],
+      name: 'CIEX',
+      orbitRadius: 510,
+      initialAngle: 350,
+      size: 2.2,
+      color: Color(0xffD5D9CA),
+      atmosphere: Atmosphere(
+        height: 1.6,
+        density: 1,
+        color: Color(0xffE3E7DA),
       ),
-      ContinentEntity(
-        color: Color(0xff283E49),
-        rawPoints: [
-          const Offset(0.85, 0.45),
-          const Offset(0.97, 0.56),
-          const Offset(0.72, 0.52),
-        ],
-      ),
-      ContinentEntity(
-        color: Color(0xff283E49),
-        rawPoints: [
-          const Offset(1.1, 0.48),
-          const Offset(1.32, 0.5),
-          const Offset(1.44, 0.34),
-          const Offset(1.52, 0.22),
-          const Offset(1.82, 0.48),
-          const Offset(1.46, 0.86),
-        ],
-      ),
-    ],
-  );
+      rotationSpeed: 2.3,
+      numberOfClouds: 6,
+      continents: [
+        // Continente Oeste
+        ContinentEntity(
+          color: Color(0xff283E49),
+          rawPoints: [
+            Offset(0.1, 0.25),
+            Offset(0.45, 0.1),
+            Offset(0.6, 0.35),
+            Offset(0.55, 0.55),
+            Offset(0.3, 0.7),
+            Offset(0.12, 0.55),
+          ],
+        ),
+
+        // Continente Central
+        ContinentEntity(
+          color: Color(0xff283E49),
+          rawPoints: [
+            Offset(0.8, 0.3),
+            Offset(1.0, 0.15),
+            Offset(1.3, 0.25),
+            Offset(1.4, 0.55),
+            Offset(1.1, 0.7),
+            Offset(0.85, 0.55),
+          ],
+        ),
+
+        // Continente Leste
+        ContinentEntity(
+          color: Color(0xff283E49),
+          rawPoints: [
+            Offset(1.6, 0.2),
+            Offset(2.0, 0.25),
+            Offset(2.0, 0.6),
+            Offset(1.7, 0.75),
+            Offset(1.55, 0.55),
+          ],
+        ),
+
+        // Ilha ao norte
+        ContinentEntity(
+          color: Color(0xff283E49),
+          rawPoints: [
+            Offset(0.4, 0.05),
+            Offset(0.45, 0.08),
+            Offset(0.42, 0.12),
+          ],
+        ),
+
+        // Ilha ao sul
+        ContinentEntity(
+          color: Color(0xff283E49),
+          rawPoints: [
+            Offset(1.2, 0.9),
+            Offset(1.3, 0.95),
+            Offset(1.25, 1.05),
+            Offset(1.1, 1.02),
+          ],
+        ),
+
+        // Península sudeste
+        ContinentEntity(
+          color: Color(0xff283E49),
+          rawPoints: [
+            Offset(1.8, 0.8),
+            Offset(2.0, 0.85),
+            Offset(2.1, 1.0),
+            Offset(1.9, 1.1),
+            Offset(1.7, 1.0),
+          ],
+        ),
+      ]);
 }

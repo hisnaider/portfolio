@@ -9,6 +9,7 @@ class StarSystemConfig {
   bool showPlanetNames;
   bool showOrbitLine;
   bool showContact;
+  double simulationSpeed;
   StarSystemConfig({
     this.selectedBody,
     this.hoveredBody,
@@ -17,18 +18,21 @@ class StarSystemConfig {
     this.showPlanetNames = true,
     this.showOrbitLine = true,
     this.showContact = false,
+    this.simulationSpeed = 1,
   });
 
   static const _undefined = Object();
 
-  StarSystemConfig copyWith(
-      {Object? selectedBody = _undefined,
-      Object? hoveredBody = _undefined,
-      bool? showUi,
-      bool? showSelectionIndicator,
-      bool? showPlanetNames,
-      bool? showOrbitLine,
-      bool? showContact}) {
+  StarSystemConfig copyWith({
+    Object? selectedBody = _undefined,
+    Object? hoveredBody = _undefined,
+    bool? showUi,
+    bool? showSelectionIndicator,
+    bool? showPlanetNames,
+    bool? showOrbitLine,
+    bool? showContact,
+    double? simulationSpeed,
+  }) {
     return StarSystemConfig(
       selectedBody: selectedBody == _undefined
           ? this.selectedBody
@@ -42,20 +46,23 @@ class StarSystemConfig {
       showPlanetNames: showPlanetNames ?? this.showPlanetNames,
       showOrbitLine: showOrbitLine ?? this.showOrbitLine,
       showContact: showContact ?? this.showContact,
+      simulationSpeed: simulationSpeed ?? this.simulationSpeed,
     );
   }
 
   @override
-  bool operator ==(covariant StarSystemConfig other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other.selectedBody == selectedBody &&
+    return other is StarSystemConfig &&
+        other.selectedBody == selectedBody &&
         other.hoveredBody == hoveredBody &&
         other.showUi == showUi &&
         other.showSelectionIndicator == showSelectionIndicator &&
         other.showPlanetNames == showPlanetNames &&
         other.showOrbitLine == showOrbitLine &&
-        other.showContact == showContact;
+        other.showContact == showContact &&
+        other.simulationSpeed == simulationSpeed;
   }
 
   @override
@@ -66,11 +73,12 @@ class StarSystemConfig {
         showSelectionIndicator.hashCode ^
         showPlanetNames.hashCode ^
         showOrbitLine.hashCode ^
-        showContact.hashCode;
+        showContact.hashCode ^
+        simulationSpeed.hashCode;
   }
 
   @override
   String toString() {
-    return 'StarSystemConfig(selectedBody: $selectedBody, hoveredBody: $hoveredBody, showUi: $showUi, showSelectionIndicator: $showSelectionIndicator, showPlanetNames: $showPlanetNames, showOrbitLine: $showOrbitLine, showContact: $showContact)';
+    return 'StarSystemConfig(selectedBody: $selectedBody, hoveredBody: $hoveredBody, showUi: $showUi, showSelectionIndicator: $showSelectionIndicator, showPlanetNames: $showPlanetNames, showOrbitLine: $showOrbitLine, showContact: $showContact, simulationSpeed: $simulationSpeed)';
   }
 }

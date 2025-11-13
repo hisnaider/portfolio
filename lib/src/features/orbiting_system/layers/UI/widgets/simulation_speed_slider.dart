@@ -12,9 +12,13 @@ import 'package:portfolio/core/values/my_colors.dart';
 
 class SimulationSpeedSlider extends StatefulWidget {
   const SimulationSpeedSlider(
-      {super.key, required this.values, required this.currentValue});
+      {super.key,
+      required this.values,
+      required this.currentValue,
+      required this.onChanged});
   final List<double> values;
   final double currentValue;
+  final Function(double value) onChanged;
 
   @override
   State<SimulationSpeedSlider> createState() => _SimulationSpeedSliderState();
@@ -44,8 +48,10 @@ class _SimulationSpeedSliderState extends State<SimulationSpeedSlider>
         child: Listener(
           onPointerDown: (event) =>
               controller.getMouseEvent(event, constraint.maxWidth),
-          onPointerUp: (event) =>
-              controller.getMouseEvent(event, constraint.maxWidth),
+          onPointerUp: (event) {
+            controller.getMouseEvent(event, constraint.maxWidth);
+            widget.onChanged(controller.getCurrentItem);
+          },
           onPointerMove: (event) =>
               controller.getMouseEvent(event, constraint.maxWidth),
           child: AnimatedBuilder(
@@ -140,11 +146,10 @@ class SimulationSpeedSliderPainter extends CustomPainter {
 
 class SliderController extends ChangeNotifier {
   final List<double> values;
-  final int currentIndex;
+  int currentIndex;
   double currentPos = 0;
   double targetPos = 0;
   double biggestTextWidth = 0;
-  bool _isMoving = false;
   final TextStyle textStyle;
 
   late final Ticker _ticker;
@@ -158,6 +163,8 @@ class SliderController extends ChangeNotifier {
     currentPos = currentIndex / (values.length - 1);
     targetPos = currentIndex / (values.length - 1);
   }
+
+  double get getCurrentItem => values[currentIndex];
 
   void _onTick(Duration tickerElapsed) {
     update(kTargetFps);
@@ -178,29 +185,23 @@ class SliderController extends ChangeNotifier {
   void getMouseEvent(PointerEvent event, double maxWidth) {
     final double dx = event.localPosition.dx - biggestTextWidth / 2;
     final double maxDx = maxWidth - biggestTextWidth;
-    if (event is PointerDownEvent) {
-      _isMoving = false;
-    } else if (event is PointerMoveEvent) {
-      _isMoving = true;
-      if (!_ticker.isActive) {
-        _ticker.start();
-      }
+
+    if (!_ticker.isActive) {
+      _ticker.start();
+    }
+    if (event is PointerMoveEvent) {
       setTargetPos(dx, maxDx);
     } else if (event is PointerUpEvent) {
-      if (!_isMoving) {
-        _ticker.start();
-        final proportion = maxDx / (values.length - 1);
-        final index = (dx / proportion).round();
-        setTargetPos(index * proportion, maxDx);
-      }
-      _isMoving = false;
+      final proportion = maxDx / (values.length - 1);
+      final index = (dx / proportion).round();
+      currentIndex = index;
+      setTargetPos(index * proportion, maxDx);
     }
   }
 
   void setTargetPos(double dx, double maxDx) {
     final target = dx / maxDx;
     targetPos = target.clamp(0, 1);
-    print(targetPos);
   }
 
   void update(double delta) {

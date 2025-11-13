@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/star_system_config.dart';
 import 'package:portfolio/src/features/orbiting_system/layers/UI/widgets/contact_section.dart';
@@ -16,15 +14,14 @@ class UiLayer extends StatelessWidget {
     return ValueListenableBuilder<StarSystemConfig>(
         valueListenable: config,
         builder: (context, value, child) {
-          final bool hideSideMenu =
-              value.showContact || value.selectedBody != null;
+          final bool hideUi = value.showContact || value.selectedBody != null;
           return Stack(
             fit: StackFit.expand,
             children: [
               IgnorePointer(
-                ignoring: hideSideMenu,
+                ignoring: hideUi,
                 child: AnimatedOpacity(
-                  opacity: hideSideMenu ? 0 : 1,
+                  opacity: hideUi ? 0 : 1,
                   duration: Duration(milliseconds: 250),
                   child: SideMenu(
                     config: value,
@@ -34,7 +31,7 @@ class UiLayer extends StatelessWidget {
               ),
               AnimatedOpacity(
                 duration: Duration(milliseconds: 250),
-                opacity: value.selectedBody != null ? 0 : 1,
+                opacity: hideUi ? 0 : 1,
                 child: ContactSection(
                   showContact: value.showContact,
                   toggleContact: (showContact) => config.value =
@@ -44,10 +41,9 @@ class UiLayer extends StatelessWidget {
               Positioned(
                 left: 12,
                 bottom: 12,
-                // left: 12,
-                // bottom: 12,
-                child: Transform.scale(
-                  scale: 1,
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds: 250),
+                  opacity: hideUi ? 0 : 1,
                   child: Material(
                     color: MyColors.backgroud.withOpacity(0.75),
                     shape: const RoundedRectangleBorder(
@@ -79,8 +75,10 @@ class UiLayer extends StatelessWidget {
                               7,
                               8,
                               9,
-                              10
+                              10,
                             ],
+                            onChanged: (value) => config.value =
+                                config.value.copyWith(simulationSpeed: value),
                           ),
                         ],
                       ),
