@@ -31,7 +31,7 @@ class UiLayer extends StatelessWidget {
               ),
               AnimatedOpacity(
                 duration: Duration(milliseconds: 250),
-                opacity: hideUi ? 0 : 1,
+                opacity: value.selectedBody != null ? 0 : 1,
                 child: ContactSection(
                   showContact: value.showContact,
                   toggleContact: (showContact) => config.value =

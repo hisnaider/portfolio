@@ -103,15 +103,8 @@ class SimulationSpeedSliderPainter extends CustomPainter {
 
     final start = Offset(textWidth / 2, horizontalLineCenter);
     final end = Offset(size.width - textWidth / 2, horizontalLineCenter);
-    canvas.drawLine(start, end, paint);
-    canvas.drawLine(
-        start,
-        Offset((textWidth / 2 + (size.width - textWidth) * pos), end.dy),
-        Paint()
-          ..color = MyColors.primary
-          ..strokeWidth = 8
-          ..style = PaintingStyle.stroke
-          ..strokeCap = StrokeCap.round);
+    final current =
+        Offset((textWidth / 2 + (size.width - textWidth) * pos), end.dy);
     for (int i = 0; i < length; i++) {
       textPainter.text = TextSpan(
           style: controller.textStyle.copyWith(color: Colors.white54),
@@ -137,6 +130,23 @@ class SimulationSpeedSliderPainter extends CustomPainter {
       //       ..color = Colors.white
       //       ..strokeCap = StrokeCap.round);
     }
+    canvas.drawLine(start, end, paint);
+    canvas.drawLine(
+        start,
+        current,
+        Paint()
+          ..color = MyColors.primary
+          ..strokeWidth = 8
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round);
+    canvas.drawLine(
+        Offset(current.dx, 0),
+        Offset(current.dx, 8),
+        Paint()
+          ..color = MyColors.primary
+          ..strokeWidth = 8
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round);
   }
 
   @override
