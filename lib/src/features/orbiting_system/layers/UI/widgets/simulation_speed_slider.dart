@@ -30,7 +30,6 @@ class _SimulationSpeedSliderState extends State<SimulationSpeedSlider>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller = SliderController(
         values: widget.values,
