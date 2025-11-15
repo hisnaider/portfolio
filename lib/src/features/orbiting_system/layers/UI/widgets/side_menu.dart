@@ -13,7 +13,7 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset: Offset(12, 0),
+      offset: const Offset(12, 0),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Material(
@@ -57,8 +57,7 @@ class SideMenu extends StatelessWidget {
 
 class _UiButton extends StatelessWidget {
   const _UiButton(
-      {super.key,
-      required this.iconAssetOn,
+      {required this.iconAssetOn,
       required this.iconAssetOff,
       required this.isActivate,
       required this.onPressed});

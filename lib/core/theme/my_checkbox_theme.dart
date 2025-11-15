@@ -11,7 +11,7 @@ class MyCheckboxTheme {
       if (states.contains(WidgetState.selected)) {
         return MyColors.primary;
       }
-      return Color(0xff29292e);
+      return const Color(0xff29292e);
     }),
   );
 }

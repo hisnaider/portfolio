@@ -23,7 +23,7 @@ class StarSystemPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
+    ///final center = Offset(size.width / 2, size.height / 2);
     canvas.save();
     canvas.translate(camera.offset.dx, camera.offset.dy);
     canvas.scale(camera.zoom);

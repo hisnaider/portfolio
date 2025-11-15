@@ -1,3 +1,4 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
@@ -18,6 +19,6 @@ class MainApp extends StatelessWidget {
         theme: darkTheme, // escuro como tema base
         darkTheme: darkTheme, // redundante, mas mantém compatibilidade
         themeMode: ThemeMode.dark,
-        home: MainPage());
+        home: const MainPage());
   }
 }

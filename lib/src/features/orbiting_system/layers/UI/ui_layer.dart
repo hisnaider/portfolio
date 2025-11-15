@@ -22,34 +22,25 @@ class UiLayer extends StatelessWidget {
                 ignoring: hideUi,
                 child: AnimatedOpacity(
                   opacity: hideUi ? 0 : 1,
-                  duration: Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 250),
                   child: SideMenu(
                     config: value,
                     onButtonPressed: (newConfig) => config.value = newConfig,
                   ),
                 ),
               ),
-              AnimatedOpacity(
-                duration: Duration(milliseconds: 250),
-                opacity: value.selectedBody != null ? 0 : 1,
-                child: ContactSection(
-                  showContact: value.showContact,
-                  toggleContact: (showContact) => config.value =
-                      config.value.copyWith(showContact: showContact),
-                ),
-              ),
               Positioned(
                 left: 12,
                 bottom: 12,
                 child: AnimatedOpacity(
-                  duration: Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 250),
                   opacity: hideUi ? 0 : 1,
                   child: Material(
                     color: MyColors.backgroud.withOpacity(0.75),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Container(
-                      padding: EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(12),
                       width: 750,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,10 +49,10 @@ class UiLayer extends StatelessWidget {
                             'Velocidade da simulação',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           SimulationSpeedSlider(
                             currentValue: 1,
-                            values: [
+                            values: const [
                               0,
                               0.25,
                               0.5,
@@ -85,7 +76,16 @@ class UiLayer extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 250),
+                opacity: value.selectedBody != null ? 0 : 1,
+                child: ContactSection(
+                  showContact: value.showContact,
+                  toggleContact: (showContact) => config.value =
+                      config.value.copyWith(showContact: showContact),
+                ),
+              ),
             ],
           );
         });

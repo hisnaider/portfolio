@@ -62,7 +62,7 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                   AnimatedOpacity(
                     opacity:
                         !controller.config.value.showSelectionIndicator ? 0 : 1,
-                    duration: Duration(milliseconds: 250),
+                    duration: const Duration(milliseconds: 250),
                     child: IgnorePointer(
                       child: CustomPaint(
                         size: Size.infinite,

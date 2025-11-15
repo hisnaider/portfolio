@@ -31,7 +31,7 @@ class WorkDesc extends StatelessWidget {
             ),
             child: Container(
               width: kWorkDescContainer + kWorkDescMargin,
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               color: MyColors.backgroud,
               child: SingleChildScrollView(
                 child: Padding(
@@ -39,12 +39,12 @@ class WorkDesc extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      work?.page ?? Text('Sem informações no momento'),
+                      work?.page ?? const Text('Sem informações no momento'),
                       Text(
                         '\nCompetências:',
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Wrap(
                           spacing: 10,
                           runSpacing: 10,
@@ -70,8 +70,8 @@ class WorkDesc extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(Icons.arrow_back_ios_new_rounded),
-                    SizedBox(width: 12),
+                    const Icon(Icons.arrow_back_ios_new_rounded),
+                    const SizedBox(width: 12),
                     Text(
                       'Voltar',
                       style: Theme.of(context).textTheme.titleSmall,

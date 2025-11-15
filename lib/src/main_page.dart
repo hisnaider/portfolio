@@ -1,16 +1,9 @@
 import 'dart:ui';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/src/views/about_me/about_me_page.dart';
-import 'package:portfolio/src/views/hero_page/hero_page.dart';
-import 'package:portfolio/src/views/highlight/highlight_page.dart';
-import 'package:portfolio/src/views/recommendations/recommendations_page.dart';
 import 'package:portfolio/src/views/star_system/star_system_page.dart';
-import 'package:portfolio/src/views/welcome/welcome.dart';
-import 'package:portfolio/src/widgets/scrollable_container.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -26,7 +19,7 @@ class _MainPageState extends State<MainPage>
   late final Ticker _ticker;
   double _currentScroll = 0;
   double _targetScroll = 0;
-  bool _stopAnimation = false;
+  final bool _stopAnimation = false;
 
   @override
   void initState() {
@@ -79,7 +72,7 @@ class _MainPageState extends State<MainPage>
             Container(
               color: const Color(0xdd030F0F),
             ),
-            StarSystemPage(),
+            const StarSystemPage(),
             // Listener(
             //   behavior: HitTestBehavior.translucent,
             //   onPointerSignal: (event) {

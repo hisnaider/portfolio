@@ -40,7 +40,7 @@ class SectionContainer extends StatelessWidget {
                 ),
               const SizedBox(height: 24),
               child,
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
             ],
           ),
         ),

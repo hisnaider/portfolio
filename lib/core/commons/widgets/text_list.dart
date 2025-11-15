@@ -21,7 +21,7 @@ class TextList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 30,
                 width: 20,
                 child: leadingIcon,

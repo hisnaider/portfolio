@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
@@ -27,7 +26,6 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _ticker = createTicker(_onTick)..start();
   }
@@ -61,7 +59,6 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _ticker.stop();
     _ticker.dispose();
     _controller.dispose();
@@ -94,8 +91,7 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
 
 class _RecommendationCard extends StatelessWidget {
   const _RecommendationCard(
-      {super.key,
-      required this.recommendation,
+      {required this.recommendation,
       required this.onHover,
       required this.onHoverExit});
   final RecommendationEntity recommendation;

@@ -1,11 +1,9 @@
 import 'dart:math';
 import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/core/values/constants.dart';
 
 abstract class HeroPageObjects {
   double depth = 0;
@@ -71,12 +69,12 @@ class MySkills extends HeroPageObjects {
   }
 
   void _updatePosition() {
-    final _tiltRadian = -30 * (pi / 180);
+    const tiltRadian = -30 * (pi / 180);
     final x = horizontalRadius * cos(angle);
     final y = verticalRadius * sin(angle);
     depth = sin(angle) * horizontalRadius;
-    final screenX = x * cos(_tiltRadian) - y * sin(_tiltRadian);
-    final screenY = x * sin(_tiltRadian) + y * cos(_tiltRadian);
+    final screenX = x * cos(tiltRadian) - y * sin(tiltRadian);
+    final screenY = x * sin(tiltRadian) + y * cos(tiltRadian);
 
     // 4. Define a posição final na tela
     position = Offset(screenX, screenY);

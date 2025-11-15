@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
-import 'package:portfolio/core/values/my_colors.dart';
 
 class ScrollableContainer extends StatefulWidget {
   const ScrollableContainer({
@@ -28,7 +27,6 @@ class _ScrollableContainerState extends State<ScrollableContainer> {
 
   @override
   void didUpdateWidget(covariant ScrollableContainer oldWidget) {
-    // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
   }
 
@@ -55,7 +53,7 @@ class _ScrollableContainerState extends State<ScrollableContainer> {
                 constraints: BoxConstraints(maxHeight: constraint.maxHeight),
                 child: SingleChildScrollView(
                     controller: _controller,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     child: Column(
                       children: widget.children(value),
                     )),

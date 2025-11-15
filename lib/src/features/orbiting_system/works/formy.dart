@@ -15,7 +15,7 @@ class Formy extends StatelessWidget {
         SvgPicture.asset(
           Assets.formy,
           width: 300,
-          colorFilter: ColorFilter.mode(
+          colorFilter: const ColorFilter.mode(
             Color(0xff6DFFC5),
             BlendMode.srcIn,
           ),

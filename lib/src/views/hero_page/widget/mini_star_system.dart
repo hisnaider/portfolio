@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/src/features/orbiting_system/controller/time_controller.dart';
 import 'package:portfolio/src/views/hero_page/entities/hero_page_objects.dart';
@@ -27,14 +26,12 @@ class _MiniStarSystemState extends State<MiniStarSystem>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     time = TimeController(this)..start();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     time.dispose();
     super.dispose();
   }
@@ -81,7 +78,7 @@ class _MiniStarSystemPainter extends CustomPainter {
         ///planet.update(deltaTime);
         final glowPaint = Paint()
           ..color = i.color.withOpacity(0.6)
-          ..maskFilter = MaskFilter.blur(BlurStyle.normal, 15);
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 15);
 
         // Primeiro desenha o brilho (círculo maior e borrado)
         canvas.drawCircle(position, size + 10, glowPaint);
@@ -94,7 +91,7 @@ class _MiniStarSystemPainter extends CustomPainter {
         final imageScale = i is MeStar ? 2.1 : 1;
         final imageColorFilter = i is MeStar
             ? null
-            : ColorFilter.mode(Color(0xff2EBD7A), BlendMode.srcIn);
+            : const ColorFilter.mode(Color(0xff2EBD7A), BlendMode.srcIn);
         canvas.save();
         final clip = Path()
           ..addOval(Rect.fromCircle(center: position, radius: size));

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/commons/extensions/canvas_extensions.dart';
-import 'package:portfolio/core/values/constants.dart';
-import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/cloud_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 

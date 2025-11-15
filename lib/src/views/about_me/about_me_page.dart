@@ -22,14 +22,14 @@ class AboutMePage extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 60),
+          const SizedBox(height: 60),
           Column(
             children: [
               Text(
                 'Habilidades Técnicas',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Wrap(
                 alignment: WrapAlignment.center,
                 runSpacing: 34,
@@ -45,7 +45,7 @@ class AboutMePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Wrap(
                 spacing: 34,
                 runSpacing: 34,
@@ -58,14 +58,14 @@ class AboutMePage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 60),
+          const SizedBox(height: 60),
           Column(
             children: [
               Text(
                 'Soft Skills',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Wrap(
                 spacing: 34,
                 runSpacing: 34,
@@ -78,7 +78,7 @@ class AboutMePage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 90),
+          const SizedBox(height: 90),
         ],
       ),
     );

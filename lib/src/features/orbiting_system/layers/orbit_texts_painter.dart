@@ -22,7 +22,7 @@ class OrbitTextsPainter extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       opacity: showPlanetName ? 1 : 0,
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 250),
       child: IgnorePointer(
         child: CustomPaint(
           size: Size.infinite,

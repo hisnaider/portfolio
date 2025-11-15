@@ -4,7 +4,7 @@ import 'package:portfolio/core/values/my_colors.dart';
 
 class MyButtonTheme {
   static ButtonStyle dark = ButtonStyle(
-      minimumSize: const WidgetStatePropertyAll(const Size(0, 60)),
+      minimumSize: const WidgetStatePropertyAll(Size(0, 60)),
       maximumSize: const WidgetStatePropertyAll(Size.fromHeight(70)),
       shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
@@ -16,9 +16,9 @@ class MyButtonTheme {
           return MyColors.primary;
         },
       ),
-      foregroundColor: WidgetStatePropertyAll(Colors.white),
+      foregroundColor: const WidgetStatePropertyAll(Colors.white),
       visualDensity: VisualDensity.standard,
-      padding: WidgetStatePropertyAll(
+      padding: const WidgetStatePropertyAll(
           EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
       animationDuration: const Duration(milliseconds: 250),
       alignment: Alignment.center,

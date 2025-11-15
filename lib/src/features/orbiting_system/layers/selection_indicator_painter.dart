@@ -3,11 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/commons/extensions/canvas_extensions.dart';
-import 'package:portfolio/core/theme/my_text_theme.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/camera.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 
 class SelectionIndicatorPainter extends CustomPainter {
   final List<CelestialBody> celestialBody;

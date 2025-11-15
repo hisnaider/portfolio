@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
-import 'package:portfolio/core/commons/widgets/primary_button.dart';
-import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/orbiting_system_widget.dart';
 import 'package:portfolio/src/views/hero_page/widget/introduction.dart';
 import 'package:portfolio/src/views/hero_page/widget/mini_star_system.dart';
 

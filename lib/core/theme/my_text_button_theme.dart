@@ -4,11 +4,11 @@ import 'package:portfolio/core/values/my_colors.dart';
 
 class MyTextButtonTheme {
   static ButtonStyle dark = ButtonStyle(
-      minimumSize: const WidgetStatePropertyAll(const Size(0, 40)),
+      minimumSize: const WidgetStatePropertyAll(Size(0, 40)),
       maximumSize: const WidgetStatePropertyAll(Size.fromHeight(70)),
-      foregroundColor: WidgetStatePropertyAll(MyColors.primary),
+      foregroundColor: const WidgetStatePropertyAll(MyColors.primary),
       visualDensity: VisualDensity.standard,
-      padding: WidgetStatePropertyAll(
+      padding: const WidgetStatePropertyAll(
           EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
       animationDuration: const Duration(milliseconds: 250),
       alignment: Alignment.center,

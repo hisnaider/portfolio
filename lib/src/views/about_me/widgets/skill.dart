@@ -34,19 +34,19 @@ class Skill extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               height: 60,
               width: 60,
               decoration: BoxDecoration(
-                  color: Color(0xff3E3E49),
+                  color: const Color(0xff3E3E49),
                   borderRadius: BorderRadius.circular(90)),
               child: SvgPicture.asset(
                 image!,
                 colorFilter:
-                    ColorFilter.mode(MyColors.primary, BlendMode.srcIn),
+                    const ColorFilter.mode(MyColors.primary, BlendMode.srcIn),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               text,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(

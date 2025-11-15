@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/core/commons/widgets/text_list.dart';
 import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/core/values/my_colors.dart';
 
 class Pinguim extends StatelessWidget {
   const Pinguim({super.key});

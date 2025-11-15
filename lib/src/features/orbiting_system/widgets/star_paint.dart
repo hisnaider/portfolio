@@ -31,10 +31,11 @@ class StarPaint extends CustomPainter {
       final finalRadius = normalized * maxRadius;
       final p1 = _moveAlong(current, prev, finalRadius);
       final p2 = _moveAlong(current, next, finalRadius);
-      if (i == 0)
+      if (i == 0) {
         coronaPath.moveTo(p1.dx, p1.dy);
-      else
+      } else {
         coronaPath.lineTo(p1.dx, p1.dy);
+      }
       coronaPath.quadraticBezierTo(current.dx, current.dy, p2.dx, p2.dy);
     }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
-import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/views/recommendations/entity/recommendation_entity.dart';
 import 'package:portfolio/src/views/recommendations/widgets/infinite_carousel.dart';
 

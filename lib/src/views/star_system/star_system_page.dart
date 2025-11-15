@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/celestial_body_glow_config.dart';
-import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/planets.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/continent_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
@@ -29,7 +28,7 @@ class _StarSystemPageState extends State<StarSystemPage> {
                 star: StarEntity(
                   name: 'Hisnaider',
                   size: 25,
-                  color: Color(0xffFCD703),
+                  color: const Color(0xffFCD703),
                   glow: const StarGlow(
                     radius: 50,
                     intensity: 0.5,
@@ -43,7 +42,7 @@ class _StarSystemPageState extends State<StarSystemPage> {
                     orbitRadius: 280,
                     initialAngle: 93,
                     size: 1.8,
-                    color: Color(0xff595C65),
+                    color: const Color(0xff595C65),
                     rotationSpeed: 1.3,
                     atmosphere: const Atmosphere(
                       height: 1.3,
@@ -114,59 +113,6 @@ class _StarSystemPageState extends State<StarSystemPage> {
                         ),
                       ]),
                   Planets.ciex,
-                  // PlanetEntity(
-                  //   name: 'Formy',
-                  //   orbitRadius: 480,
-                  //   initialAngle: 0,
-                  //   size: 1.5,
-                  //   color: Colors.deepPurpleAccent,
-                  //   rotationSpeed: 0.8,
-                  //   atmosphere: const Atmosphere(
-                  //     height: 1.8,
-                  //     density: 1,
-                  //     color: Colors.purpleAccent,
-                  //   ),
-                  //   numberOfClouds: 6,
-                  //   continents: [
-                  //     ContinentEntity(
-                  //       radius: 0.45,
-                  //       color: const Color.fromARGB(255, 170, 255, 0),
-                  //       rawPoints: [
-                  //         const Offset(0.2, 0.15),
-                  //         const Offset(0.55, 0.1),
-                  //         const Offset(0.65, 0.35),
-                  //         const Offset(0.6, 0.55),
-                  //         const Offset(0.4, 0.7),
-                  //         const Offset(0.2, 0.75),
-                  //         const Offset(0.18, 0.45),
-                  //       ],
-                  //     ),
-                  //     ContinentEntity(
-                  //       radius: 0.42,
-                  //       color: const Color.fromARGB(255, 170, 255, 0),
-                  //       rawPoints: [
-                  //         const Offset(0.75, 0.25),
-                  //         const Offset(1.1, 0.22),
-                  //         const Offset(1.15, 0.55),
-                  //         const Offset(0.95, 0.82),
-                  //         const Offset(0.7, 0.7),
-                  //         const Offset(0.68, 0.45),
-                  //       ],
-                  //     ),
-                  //     ContinentEntity(
-                  //       radius: 0.38,
-                  //       color: const Color.fromARGB(255, 170, 255, 0),
-                  //       rawPoints: [
-                  //         const Offset(0.3, 0.75),
-                  //         const Offset(0.5, 0.8),
-                  //         const Offset(0.7, 0.75),
-                  //         const Offset(0.8, 0.89),
-                  //         const Offset(0.6, 1),
-                  //         const Offset(0.35, 0.95),
-                  //       ],
-                  //     ),
-                  //   ],
-                  // ),
                 ],
               ),
             ),

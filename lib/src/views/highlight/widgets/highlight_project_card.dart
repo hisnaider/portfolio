@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/commons/widgets/competence.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
 import 'package:portfolio/src/views/highlight/entity/work_card_entity.dart';
 
@@ -58,7 +56,7 @@ class HighlightProjectCard extends StatelessWidget {
                       backgroundColor: MyColors.backgroud,
                       foregroundImage: AssetImage(work.image ?? Assets.myLogo),
                     ),
-                    SizedBox(width: 24),
+                    const SizedBox(width: 24),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -81,7 +79,7 @@ class HighlightProjectCard extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Expanded(
                   child: Text(
                     work.text,

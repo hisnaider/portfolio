@@ -26,7 +26,6 @@ class _ContactSectionState extends State<ContactSection>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     showContact = widget.showContact;
     _animationController = AnimationController(
@@ -39,10 +38,8 @@ class _ContactSectionState extends State<ContactSection>
 
   @override
   void didUpdateWidget(covariant ContactSection oldWidget) {
-    // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
     if (showContact != widget.showContact) {
-      print('aaaa: $showContact -------- ${widget.showContact}');
       final bool newToggleValue = widget.showContact;
       if (newToggleValue) {
         showContact = newToggleValue;
@@ -89,7 +86,6 @@ class _ContactSectionState extends State<ContactSection>
 
 class _ContactContainer extends StatelessWidget {
   const _ContactContainer({
-    super.key,
     required this.closed,
     required Animation<double> heightFactor,
   }) : _heightFactor = heightFactor;
@@ -99,7 +95,6 @@ class _ContactContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('asdasdasdasdasdasd');
     return Offstage(
       offstage: closed,
       child: TickerMode(
@@ -186,7 +181,6 @@ class _ContactContainer extends StatelessWidget {
 
 class _ToggleContact extends StatelessWidget {
   const _ToggleContact({
-    super.key,
     required this.onPressed,
     required this.flipValue,
     required this.opacityValue,
@@ -238,10 +232,7 @@ class _ToggleContact extends StatelessWidget {
 
 class _ContactLink extends StatelessWidget {
   const _ContactLink(
-      {super.key,
-      required this.asset,
-      required this.text,
-      required this.onPressed});
+      {required this.asset, required this.text, required this.onPressed});
   final String asset;
   final String text;
   final VoidCallback onPressed;
