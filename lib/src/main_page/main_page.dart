@@ -12,6 +12,7 @@ import 'package:portfolio/src/main_page/views/recommendations/recommendations_pa
 import 'package:portfolio/src/main_page/views/star_system/star_system_page.dart';
 import 'package:portfolio/src/main_page/views/welcome/welcome.dart';
 import 'package:portfolio/src/main_page/widgets/scrollable_container.dart';
+import 'package:portfolio/src/main_page/widgets/sliver_intro_section_scroll.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -39,11 +40,20 @@ class _MainPageState extends State<MainPage> {
             CustomScrollView(
               controller: controller,
               slivers: [
-                SliverIntro(),
+                SliverIntroSectionScroll(
+                  maxHeight: 300,
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: IntroSection(
+                      controller: controller,
+                      threshold: 300,
+                    ),
+                  ),
+                ),
                 SliverToBoxAdapter(
                   child: Container(
                     height: 1200,
-                    color: Colors.transparent,
+                    color: Colors.red,
                     child: const Center(
                       child: Text(
                         "conteúdo normal abaixo",
@@ -152,7 +162,7 @@ class _MainPageState extends State<MainPage> {
 //                               scrollValue: _scrollNormalized,
 //                               start: 0.2,
 //                               end: 0.5),
-    
+
 //                       ],
 //                     );
 //                   }),
