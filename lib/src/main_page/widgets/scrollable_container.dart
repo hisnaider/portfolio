@@ -35,10 +35,9 @@ class _ScrollableContainerState extends State<ScrollableContainer> {
     final value =
         widget.scrollValue.value.normalize(widget.end, min: widget.start);
     final slideUp = value.normalize(0.25, min: 0);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _onScroll(value.normalize(0.75, min: 0.25));
-    });
-    final slideUp2 = value.normalize(1, min: 0.75);
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _onScroll(value.normalize(1, min: 0.3));
+    // });
 
     return AnimatedBuilder(
         animation: widget.scrollValue,
@@ -48,21 +47,29 @@ class _ScrollableContainerState extends State<ScrollableContainer> {
               offset: Offset(
                   0,
                   MediaQuery.of(context).size.height -
-                      (constraint.maxHeight * (slideUp + slideUp2))),
+                      (constraint.maxHeight * slideUp)),
               child: Container(
                 constraints: BoxConstraints(maxHeight: constraint.maxHeight),
-                child: SingleChildScrollView(
-                    controller: _controller,
-                    physics: const NeverScrollableScrollPhysics(),
-                    child: Column(
-                      children: widget.children(value),
-                    )),
+                child: ListView(
+                  //controller: _controller,
+                  physics:
+                      value > 0.3 ? null : const NeverScrollableScrollPhysics(),
+
+                  children: [
+                    ...widget.children(value),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height,
+                    )
+                  ],
+                ),
               ),
             );
           });
         });
   }
 }
+
+
 
 // class ScrollableContainer extends StatefulWidget {
 //   const ScrollableContainer(

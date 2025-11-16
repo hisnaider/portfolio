@@ -3,8 +3,8 @@ import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/planets.dart';
 import 'package:portfolio/src/features/orbiting_system/controller/time_controller.dart';
-import 'package:portfolio/src/views/highlight/entity/work_card_entity.dart';
-import 'package:portfolio/src/views/highlight/widgets/highlight_project_card.dart';
+import 'package:portfolio/src/main_page/views/highlight/entity/work_card_entity.dart';
+import 'package:portfolio/src/main_page/views/highlight/widgets/highlight_project_card.dart';
 
 class HighlightPage extends StatelessWidget {
   const HighlightPage({super.key});

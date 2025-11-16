@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
-import 'package:portfolio/src/views/recommendations/entity/recommendation_entity.dart';
-import 'package:portfolio/src/views/recommendations/widgets/infinite_carousel.dart';
+import 'package:portfolio/src/main_page/views/recommendations/entity/recommendation_entity.dart';
+import 'package:portfolio/src/main_page/views/recommendations/widgets/infinite_carousel.dart';
 
 class RecommendationsPage extends StatelessWidget {
   const RecommendationsPage({super.key});

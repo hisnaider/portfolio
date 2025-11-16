@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
-import 'package:portfolio/src/views/recommendations/entity/recommendation_entity.dart';
+import 'package:portfolio/src/main_page/views/recommendations/entity/recommendation_entity.dart';
 
 class InfiniteCarousel extends StatefulWidget {
   const InfiniteCarousel({super.key, required this.recommendations});

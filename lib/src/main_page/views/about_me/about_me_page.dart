@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/enum/skills_enum.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/my_data.dart';
-import 'package:portfolio/src/views/about_me/widgets/skill.dart';
+import 'package:portfolio/src/main_page/views/about_me/widgets/skill.dart';
 
 class AboutMePage extends StatelessWidget {
   const AboutMePage({super.key});
@@ -11,7 +11,7 @@ class AboutMePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SectionContainer(
       title: 'Sobre mim',
-      padding: const EdgeInsets.fromLTRB(100, 60, 100, 0),
+      padding: const EdgeInsets.fromLTRB(100, 180, 100, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

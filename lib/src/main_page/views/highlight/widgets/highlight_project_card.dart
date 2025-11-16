@@ -3,7 +3,7 @@ import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
-import 'package:portfolio/src/views/highlight/entity/work_card_entity.dart';
+import 'package:portfolio/src/main_page/views/highlight/entity/work_card_entity.dart';
 
 class HighlightProjectCard extends StatelessWidget {
   const HighlightProjectCard({

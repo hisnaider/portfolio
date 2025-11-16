@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/src/features/orbiting_system/controller/time_controller.dart';
-import 'package:portfolio/src/views/hero_page/entities/hero_page_objects.dart';
+import 'package:portfolio/src/main_page/views/hero_page/entities/hero_page_objects.dart';
 
 class MiniStarSystem extends StatefulWidget {
   const MiniStarSystem(
