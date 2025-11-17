@@ -8,7 +8,7 @@ class SectionContainer extends StatelessWidget {
       this.subtitle,
       required this.child,
       this.maxWidth = 1500,
-      this.padding = const EdgeInsets.fromLTRB(0, 60, 0, 0)});
+      this.padding = const EdgeInsets.fromLTRB(0, 60, 0, 60)});
   final String title;
   final String? subtitle;
   final Widget child;
@@ -40,7 +40,6 @@ class SectionContainer extends StatelessWidget {
                 ),
               const SizedBox(height: 24),
               child,
-              const SizedBox(height: 100),
             ],
           ),
         ),

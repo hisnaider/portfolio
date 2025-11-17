@@ -24,49 +24,41 @@ class HeroPage extends StatelessWidget {
     final skillScale =
         Curves.easeInOut.transform(value.normalize(0.6, min: 0.3));
     final curriculumFade = value.normalize(0.6, min: 0.3);
-    final skillScaleDown =
-        Curves.easeInOut.transform(value.normalize(1, min: 0.8));
-    final slideUp = value.normalize(1, min: 0.8);
-    final fadeOut = value.normalize(1, min: 0.8);
-    return Transform.translate(
-      offset: Offset(0, -200 * slideUp),
-      child: Opacity(
-        opacity: fade - fadeOut,
-        child: Center(
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 1400, maxHeight: 875),
-            padding: const EdgeInsets.symmetric(vertical: 72, horizontal: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                    child: Transform.translate(
-                  offset: Offset(-250 * slideleft, 0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: SizedBox(
-                      width: 625,
-                      child: Introduction(
-                        fadeSlideSubtitle: fadeSlideSubtitle,
-                        curriculumFade: curriculumFade,
-                      ),
-                    ),
-                  ),
-                )),
-                Transform.translate(
-                  offset: Offset(250 * slideRight, 0),
+    return Opacity(
+      opacity: fade,
+      child: Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 1400, maxHeight: 875),
+          padding: const EdgeInsets.symmetric(vertical: 72, horizontal: 40),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                  child: Transform.translate(
+                offset: Offset(-250 * slideleft, 0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
                   child: SizedBox(
-                    width: 650,
-                    child: RepaintBoundary(
-                      child: MiniStarSystem(
-                        skillScale: skillScale,
-                        skillScaleDown: skillScaleDown,
-                      ),
+                    width: 625,
+                    child: Introduction(
+                      fadeSlideSubtitle: fadeSlideSubtitle,
+                      curriculumFade: curriculumFade,
                     ),
                   ),
                 ),
-              ],
-            ),
+              )),
+              Transform.translate(
+                offset: Offset(250 * slideRight, 0),
+                child: SizedBox(
+                  width: 650,
+                  child: RepaintBoundary(
+                    child: MiniStarSystem(
+                      skillScale: skillScale,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

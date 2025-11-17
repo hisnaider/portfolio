@@ -4,10 +4,8 @@ import 'package:portfolio/src/features/orbiting_system/controller/time_controlle
 import 'package:portfolio/src/main_page/views/hero_page/entities/hero_page_objects.dart';
 
 class MiniStarSystem extends StatefulWidget {
-  const MiniStarSystem(
-      {super.key, required this.skillScale, required this.skillScaleDown});
+  const MiniStarSystem({super.key, required this.skillScale});
   final double skillScale;
-  final double skillScaleDown;
 
   @override
   State<MiniStarSystem> createState() => _MiniStarSystemState();
@@ -50,8 +48,7 @@ class _MiniStarSystemState extends State<MiniStarSystem>
         return CustomPaint(
           size: Size.infinite,
           painter: _MiniStarSystemPainter(
-              objects: objects,
-              skillScale: widget.skillScale - widget.skillScaleDown),
+              objects: objects, skillScale: widget.skillScale),
 
           ///child: Container(),
         );

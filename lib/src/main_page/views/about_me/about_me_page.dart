@@ -3,6 +3,7 @@ import 'package:portfolio/core/commons/enum/skills_enum.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/my_data.dart';
 import 'package:portfolio/src/main_page/views/about_me/widgets/skill.dart';
+import 'package:portfolio/src/main_page/widgets/bottom_to_top_animation.dart';
 
 class AboutMePage extends StatelessWidget {
   const AboutMePage({super.key});
@@ -10,8 +11,9 @@ class AboutMePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionContainer(
-      title: 'Sobre mim',
-      padding: const EdgeInsets.fromLTRB(100, 180, 100, 0),
+      title: 'Estrela',
+      subtitle: 'Sobre mim',
+      padding: const EdgeInsets.fromLTRB(100, 90, 100, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -23,60 +25,66 @@ class AboutMePage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 60),
-          Column(
-            children: [
-              Text(
-                'Habilidades Técnicas',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 24),
-              Wrap(
-                alignment: WrapAlignment.center,
-                runSpacing: 34,
-                children: List.generate(
-                  MyData.mainSkills.length,
-                  (index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 60),
-                      child: Skill(
-                          image: MyData.mainSkills[index].image,
-                          text: MyData.mainSkills[index].name.toUpperCase()),
-                    );
-                  },
+          BottomToTopAnimation(
+            key: ValueKey('hardSkill'),
+            child: Column(
+              children: [
+                Text(
+                  'Habilidades Técnicas',
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-              ),
-              const SizedBox(height: 24),
-              Wrap(
-                spacing: 34,
-                runSpacing: 34,
-                children: [
-                  for (SkillsEnum skill in MyData.otherSkills)
-                    Skill(
-                      text: skill.name.toUpperCase(),
-                    ),
-                ],
-              ),
-            ],
+                const SizedBox(height: 24),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  runSpacing: 34,
+                  children: List.generate(
+                    MyData.mainSkills.length,
+                    (index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 60),
+                        child: Skill(
+                            image: MyData.mainSkills[index].image,
+                            text: MyData.mainSkills[index].name.toUpperCase()),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Wrap(
+                  spacing: 34,
+                  runSpacing: 34,
+                  children: [
+                    for (SkillsEnum skill in MyData.otherSkills)
+                      Skill(
+                        text: skill.name.toUpperCase(),
+                      ),
+                  ],
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 60),
-          Column(
-            children: [
-              Text(
-                'Soft Skills',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 24),
-              Wrap(
-                spacing: 34,
-                runSpacing: 34,
-                children: [
-                  for (SkillsEnum skill in MyData.softSkills)
-                    Skill(
-                      text: skill.name.toUpperCase(),
-                    ),
-                ],
-              ),
-            ],
+          BottomToTopAnimation(
+            key: ValueKey('softSkill'),
+            child: Column(
+              children: [
+                Text(
+                  'Soft Skills',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 24),
+                Wrap(
+                  spacing: 34,
+                  runSpacing: 34,
+                  children: [
+                    for (SkillsEnum skill in MyData.softSkills)
+                      Skill(
+                        text: skill.name.toUpperCase(),
+                      ),
+                  ],
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 90),
         ],

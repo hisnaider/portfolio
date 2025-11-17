@@ -66,7 +66,7 @@ final List<RecommendationEntity> _recommendations = [
     date: DateTime(2025, 7, 7),
   ),
   RecommendationEntity(
-    name: 'Lisandro Tavares da Silva',
+    name: 'Mikael Farias',
     role: 'Pesquisador Junior da área de visão computacional',
     text: '''
     Hisnaider é um excelente profissional, com sólidos conhecimentos em Flutter e desenvolvimento mobile. Tem ótima comunicação e trabalha muito bem em equipe. Sem dúvida, tê-lo na equipe será um grande diferencial técnico.
