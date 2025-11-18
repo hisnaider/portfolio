@@ -34,7 +34,7 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
   @override
   void initState() {
     super.initState();
-    time = TimeController(this)..start();
+    time = TimeController(this)..stop();
     controller = StarSystemController(
       camera: camera,
       star: widget.star,
@@ -81,7 +81,8 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                     camera: camera,
                   ),
                   IgnorePointer(
-                    ignoring: controller.config.value.showContact,
+                    ignoring: controller.config.value.showContact ||
+                        !controller.config.value.showUi,
                     child: Listener(
                       onPointerHover: controller.getEvent,
                       onPointerSignal: controller.getEvent,
@@ -114,7 +115,10 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
                 ],
               );
             }),
-        UiLayer(config: controller.config),
+        AnimatedOpacity(
+            opacity: controller.config.value.showUi ? 1 : 0,
+            duration: Duration(milliseconds: 500),
+            child: UiLayer(config: controller.config)),
         ValueListenableBuilder<StarSystemConfig>(
             valueListenable: controller.config,
             builder: (context, value, child) {

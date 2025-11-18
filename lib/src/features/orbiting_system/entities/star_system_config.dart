@@ -13,10 +13,10 @@ class StarSystemConfig {
   StarSystemConfig({
     this.selectedBody,
     this.hoveredBody,
-    this.showUi = true,
-    this.showSelectionIndicator = true,
-    this.showPlanetNames = true,
-    this.showOrbitLine = true,
+    this.showUi = false,
+    this.showSelectionIndicator = false,
+    this.showPlanetNames = false,
+    this.showOrbitLine = false,
     this.showContact = false,
     this.simulationSpeed = 1,
   });

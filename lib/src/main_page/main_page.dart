@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/src/main_page/sections/intro_section.dart';
+import 'package:portfolio/src/main_page/sections/transition_navigation_section.dart';
 import 'package:portfolio/src/main_page/views/about_me/about_me_page.dart';
 import 'package:portfolio/src/main_page/views/highlight/highlight_page.dart';
 import 'package:portfolio/src/main_page/views/recommendations/recommendations_page.dart';
+import 'package:portfolio/src/main_page/views/star_system/star_system_page.dart';
 import 'package:portfolio/src/main_page/widgets/section_divider.dart';
 import 'package:portfolio/src/main_page/widgets/smooth_scroll.dart';
 
@@ -16,6 +19,23 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final ScrollController controller = ScrollController();
+
+  final ValueNotifier<bool> showBackgroundColor = ValueNotifier(true);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.addListener(_listener);
+  }
+
+  void _listener() {
+    showBackgroundColor.value =
+        controller.offset > MediaQuery.of(context).size.height + 1000
+            ? false
+            : true;
+  }
+
   @override
   Widget build(BuildContext context) {
     print('asdasd');
@@ -24,24 +44,25 @@ class _MainPageState extends State<MainPage> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(Assets.universe),
-            colorFilter: ColorFilter.mode(
-                Color.fromARGB(255, 3, 95, 95), BlendMode.screen),
             fit: BoxFit.cover,
           ),
         ),
         child: Stack(
-          fit: StackFit.expand,
           children: [
+            ValueListenableBuilder(
+                valueListenable: showBackgroundColor,
+                builder: (context, value, child) {
+                  return Visibility(
+                      visible: value,
+                      child: Container(color: Color.fromARGB(150, 3, 95, 95)));
+                }),
             Container(
-              color: const Color(0xdd030F0F),
+              color: const Color(0xaa030F0F),
             ),
-            // Container(
-            //   color: Color.fromARGB(150, 7, 36, 36),
-            // ),
-            //TODO: sprint de estrela
             SmoothScroll(
               controller: controller,
               child: CustomScrollView(
+                scrollBehavior: ScrollBehavior(),
                 controller: controller,
                 physics: const NeverScrollableScrollPhysics(),
                 slivers: [
@@ -57,6 +78,7 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
+                  TransitionNavigationSection(controller: controller)
                 ],
               ),
             ),
