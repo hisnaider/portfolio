@@ -10,6 +10,7 @@ class AboutMePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('aaaaaaaaaaaaaaaaaaaa');
     return SectionContainer(
       title: 'Estrela',
       subtitle: 'Sobre mim',

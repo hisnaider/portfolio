@@ -40,7 +40,6 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
         _controller.jumpTo(position);
       }
     });
-    setState(() {});
     if ((targetPosition - position).abs() < 0.001) {
       _ticker.stop();
     }

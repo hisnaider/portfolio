@@ -18,6 +18,7 @@ class _MainPageState extends State<MainPage> {
   final ScrollController controller = ScrollController();
   @override
   Widget build(BuildContext context) {
+    print('asdasd');
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -45,7 +46,7 @@ class _MainPageState extends State<MainPage> {
                 physics: const NeverScrollableScrollPhysics(),
                 slivers: [
                   IntroSection(controller: controller),
-                  SliverToBoxAdapter(
+                  const SliverToBoxAdapter(
                       child: Column(children: [
                     AboutMePage(),
                     SectionDivider(),

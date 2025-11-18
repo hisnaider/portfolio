@@ -3,6 +3,7 @@ import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/planets.dart';
 import 'package:portfolio/src/features/orbiting_system/controller/time_controller.dart';
+import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
 import 'package:portfolio/src/main_page/views/highlight/entity/work_card_entity.dart';
 import 'package:portfolio/src/main_page/views/highlight/widgets/highlight_project_card.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -58,28 +59,34 @@ class _ProjectGridState extends State<_ProjectGrid>
 
   @override
   Widget build(BuildContext context) {
-    return VisibilityDetector(
-      key: ValueKey('asdasd'),
-      onVisibilityChanged: (info) {
-        print(info);
+    return GridView.builder(
+      shrinkWrap: true,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1,
+          crossAxisSpacing: 24,
+          mainAxisSpacing: 24,
+          mainAxisExtent: 300 + ((1420 - widget.maxWidth) / 5)),
+      itemCount: _works.length,
+      itemBuilder: (context, index) {
+        return HighlightProjectCard(
+            work: _works[index],
+            childPainter: ValueListenableBuilder(
+              valueListenable: time.elapsed,
+              builder: (context, value, child) {
+                _works[index].planet.updateContinents(time.delta);
+                _works[index].planet.updateClouds(time.delta);
+                return CustomPaint(
+                  painter: PlanetPaint(
+                    position: Offset.zero,
+                    planet: _works[index].planet,
+                    glowFactor: 0,
+                    zoomFactor: 1,
+                  ),
+                );
+              },
+            ));
       },
-      child: ValueListenableBuilder(
-        valueListenable: time.elapsed,
-        builder: (context, value, child) {
-          return GridView.builder(
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1,
-                crossAxisSpacing: 24,
-                mainAxisSpacing: 24,
-                mainAxisExtent: 300 + ((1420 - widget.maxWidth) / 5)),
-            itemCount: _works.length,
-            itemBuilder: (context, index) => HighlightProjectCard(
-                work: _works[index], deltaTime: time.delta, elapsedTime: value),
-          );
-        },
-      ),
     );
   }
 }

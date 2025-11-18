@@ -9,17 +9,14 @@ class HighlightProjectCard extends StatelessWidget {
   const HighlightProjectCard({
     super.key,
     required this.work,
-    required this.deltaTime,
-    required this.elapsedTime,
+    required this.childPainter,
   });
   final WorkCardEntity work;
-  final double deltaTime;
-  final double elapsedTime;
+  final Widget childPainter;
 
   @override
   Widget build(BuildContext context) {
-    work.planet.updateContinents(deltaTime);
-    work.planet.updateClouds(deltaTime);
+    print('asdasdasdasd');
     return Material(
       clipBehavior: Clip.antiAlias,
       color: Colors.black12,
@@ -36,14 +33,7 @@ class HighlightProjectCard extends StatelessWidget {
                 opacity: 0.35,
                 child: Transform.scale(
                   scale: 75,
-                  child: CustomPaint(
-                    painter: PlanetPaint(
-                      position: Offset.zero,
-                      planet: work.planet,
-                      glowFactor: 0,
-                      zoomFactor: 1,
-                    ),
-                  ),
+                  child: RepaintBoundary(child: childPainter),
                 ),
               ),
             ),
