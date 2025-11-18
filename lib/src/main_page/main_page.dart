@@ -47,13 +47,16 @@ class _MainPageState extends State<MainPage> {
                 slivers: [
                   IntroSection(controller: controller),
                   const SliverToBoxAdapter(
-                      child: Column(children: [
-                    AboutMePage(),
-                    SectionDivider(),
-                    HighlightPage(),
-                    SectionDivider(),
-                    RecommendationsPage(),
-                  ])),
+                    child: Column(
+                      children: [
+                        AboutMePage(),
+                        SectionDivider(),
+                        HighlightPage(),
+                        SectionDivider(),
+                        RecommendationsPage(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

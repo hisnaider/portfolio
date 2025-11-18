@@ -19,6 +19,7 @@ class SmoothScroll extends StatefulWidget {
 class _SmoothScrollState extends State<SmoothScroll> {
   double _targetScroll = 0;
   final int speed = 1;
+  DateTime _lastEvent = DateTime.now();
 
   @override
   void initState() {
@@ -26,12 +27,22 @@ class _SmoothScrollState extends State<SmoothScroll> {
     super.initState();
   }
 
-  void _smoothTo(double delta) {
-    _targetScroll = ((_targetScroll + delta) * speed)
-        .clamp(0, widget.controller.position.maxScrollExtent);
+  void _smoothTo(PointerScrollEvent event) {
+    final now = DateTime.now();
+    final diff = now.difference(_lastEvent).inMilliseconds;
+    _lastEvent = now;
+    if (diff > 50) {
+      _targetScroll = ((_targetScroll + event.scrollDelta.dy) * speed)
+          .clamp(0, widget.controller.position.maxScrollExtent);
 
-    widget.controller.animateTo(_targetScroll,
-        duration: Duration(milliseconds: 250), curve: Curves.linear);
+      widget.controller.animateTo(_targetScroll,
+          duration: Duration(milliseconds: 250), curve: Curves.linear);
+    } else {
+      print(diff);
+      _targetScroll = (_targetScroll + event.scrollDelta.dy)
+          .clamp(0, widget.controller.position.maxScrollExtent);
+      widget.controller.jumpTo(_targetScroll);
+    }
   }
 
   @override
@@ -39,7 +50,7 @@ class _SmoothScrollState extends State<SmoothScroll> {
     return Listener(
       onPointerSignal: (event) {
         if (event is PointerScrollEvent) {
-          _smoothTo(event.scrollDelta.dy);
+          _smoothTo(event);
         }
       },
       child: widget.child,

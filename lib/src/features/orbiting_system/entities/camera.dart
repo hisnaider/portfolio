@@ -6,6 +6,7 @@ import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/src/features/orbiting_system/entities/transform_position.dart';
 
 class Camera {
+  DateTime _lastUpdateTime = DateTime.now();
   double _speed = 5;
   double _targetSpeed = 5;
   double _startTargetSpeed = 5;
@@ -37,6 +38,9 @@ class Camera {
   double _duration = 1;
 
   void update(Size worldSize, double deltaTime) {
+    final now = DateTime.now();
+    final diff = now.difference(_lastUpdateTime).inMilliseconds;
+    _lastUpdateTime = now;
     _transformPosition.update(worldSize, _scale, _offset);
 
     screenSize = worldSize;
@@ -52,8 +56,13 @@ class Camera {
     }
 
     screenCenter = Offset(worldSize.width / 2, worldSize.height / 2);
-    _scale += (_targetscale - _scale) * (_speed * deltaTime);
-    _offset += (_targetOffset - _offset) * (_speed * deltaTime);
+    if (diff > 50) {
+      _scale += (_targetscale - _scale) * (_speed * deltaTime);
+      _offset += (_targetOffset - _offset) * (_speed * deltaTime);
+    } else {
+      _scale += _targetscale - _scale;
+      _offset += _targetOffset - _offset;
+    }
   }
 
   void zoomUpdate(double delta) {

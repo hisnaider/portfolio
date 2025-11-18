@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/assets.dart';
+import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/planets.dart';
 import 'package:portfolio/src/features/orbiting_system/controller/time_controller.dart';
 import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
@@ -43,17 +44,21 @@ class _ProjectGrid extends StatefulWidget {
 
 class _ProjectGridState extends State<_ProjectGrid>
     with SingleTickerProviderStateMixin {
-  late TimeController time;
+  late final AnimationController controller;
+  // late TimeController time;
 
   @override
   void initState() {
     super.initState();
-    time = TimeController(this)..start();
+    // time = TimeController(this)..start();
+    controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1))
+          ..repeat();
   }
 
   @override
   void dispose() {
-    time.dispose();
+    // time.dispose();
     super.dispose();
   }
 
@@ -71,11 +76,11 @@ class _ProjectGridState extends State<_ProjectGrid>
       itemBuilder: (context, index) {
         return HighlightProjectCard(
             work: _works[index],
-            childPainter: ValueListenableBuilder(
-              valueListenable: time.elapsed,
-              builder: (context, value, child) {
-                _works[index].planet.updateContinents(time.delta);
-                _works[index].planet.updateClouds(time.delta);
+            childPainter: AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) {
+                _works[index].planet.updateContinents(kTargetFps);
+                _works[index].planet.updateClouds(kTargetFps);
                 return CustomPaint(
                   painter: PlanetPaint(
                     position: Offset.zero,
