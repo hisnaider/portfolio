@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
+import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
 import 'package:portfolio/src/main_page/views/hero_page/hero_page.dart';
 import 'package:portfolio/src/main_page/views/welcome/welcome.dart';
 import 'package:portfolio/src/main_page/widgets/custom_sliver_persistent_header_delegate.dart';
 
 class IntroSection extends StatelessWidget {
-  final ScrollController controller;
   const IntroSection({
     super.key,
-    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     const double threshold = 1000;
+    final ScrollController controller =
+        MainPageController.of(context).scrollController;
     return SliverPersistentHeader(
       floating: false,
       pinned: false,

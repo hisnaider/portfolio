@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/core/values/assets.dart';
+import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
 import 'package:portfolio/src/main_page/sections/intro_section.dart';
 import 'package:portfolio/src/main_page/sections/transition_navigation_section.dart';
 import 'package:portfolio/src/main_page/views/about_me/about_me_page.dart';
@@ -19,26 +20,18 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final ScrollController controller = ScrollController();
-
-  final ValueNotifier<bool> showBackgroundColor = ValueNotifier(true);
+  final MainPageState state = MainPageState();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    controller.addListener(_listener);
-  }
-
-  void _listener() {
-    showBackgroundColor.value =
-        controller.offset > MediaQuery.of(context).size.height + 1000
-            ? false
-            : true;
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.dispose();
+    state.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('asdasd');
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -47,42 +40,51 @@ class _MainPageState extends State<MainPage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Stack(
-          children: [
-            ValueListenableBuilder(
-                valueListenable: showBackgroundColor,
-                builder: (context, value, child) {
-                  return Visibility(
-                      visible: value,
-                      child: Container(color: Color.fromARGB(150, 3, 95, 95)));
-                }),
-            Container(
-              color: const Color(0xaa030F0F),
-            ),
-            SmoothScroll(
-              controller: controller,
-              child: CustomScrollView(
-                scrollBehavior: ScrollBehavior(),
-                controller: controller,
-                physics: const NeverScrollableScrollPhysics(),
-                slivers: [
-                  IntroSection(controller: controller),
-                  const SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        AboutMePage(),
-                        SectionDivider(),
-                        HighlightPage(),
-                        SectionDivider(),
-                        RecommendationsPage(),
-                      ],
-                    ),
-                  ),
-                  TransitionNavigationSection(controller: controller)
-                ],
+        child: MainPageController(
+          scrollController: controller,
+          state: state,
+          child: Stack(
+            children: [
+              ValueListenableBuilder(
+                  valueListenable: state.hideBackground,
+                  builder: (context, value, child) {
+                    return Visibility(
+                        visible: !value,
+                        child: Container(
+                            color: const Color.fromARGB(150, 3, 95, 95)));
+                  }),
+              Container(
+                color: const Color(0xaa030F0F),
               ),
-            ),
-          ],
+              ValueListenableBuilder(
+                  valueListenable: state.transitionStatus,
+                  builder: (context, value, child) {
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 250),
+                      child: value == TransitionStatus.finished
+                          ? const StarSystemPage()
+                          : SmoothScroll(
+                              controller: controller,
+                              slivers: const [
+                                IntroSection(),
+                                AboutMePage(),
+                                SectionDivider(),
+                                HighlightPage(),
+                                SectionDivider(),
+                                RecommendationsPage(),
+                                SliverToBoxAdapter(
+                                  child: Column(
+                                    children: [],
+                                  ),
+                                ),
+
+                                ///TransitionNavigationSection(controller: controller)
+                              ],
+                            ),
+                    );
+                  }),
+            ],
+          ),
         ),
       ),
     );

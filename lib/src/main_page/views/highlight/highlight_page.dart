@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/assets.dart';
@@ -9,40 +11,14 @@ import 'package:portfolio/src/main_page/views/highlight/entity/work_card_entity.
 import 'package:portfolio/src/main_page/views/highlight/widgets/highlight_project_card.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class HighlightPage extends StatelessWidget {
+class HighlightPage extends StatefulWidget {
   const HighlightPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return SectionContainer(
-        title: 'Planetas',
-        subtitle: 'Projetos e trabalhos',
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-        child: LayoutBuilder(builder: (context, constraint) {
-          return Column(mainAxisSize: MainAxisSize.min, children: [
-            RepaintBoundary(
-              child: _ProjectGrid(maxWidth: constraint.maxWidth),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Esses são apenas os planetas mais próximos. Continue sua jornada até o fim do portfólio e descubra todo o meu sistema estelar — a viagem vai valer a pena!',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleSmall!,
-            )
-          ]);
-        }));
-  }
+  State<HighlightPage> createState() => _HighlightPageState();
 }
 
-class _ProjectGrid extends StatefulWidget {
-  const _ProjectGrid({required this.maxWidth});
-  final double maxWidth;
-
-  @override
-  State<_ProjectGrid> createState() => _ProjectGridState();
-}
-
-class _ProjectGridState extends State<_ProjectGrid>
+class _HighlightPageState extends State<HighlightPage>
     with SingleTickerProviderStateMixin {
   late final AnimationController controller;
   // late TimeController time;
@@ -50,7 +26,6 @@ class _ProjectGridState extends State<_ProjectGrid>
   @override
   void initState() {
     super.initState();
-    // time = TimeController(this)..start();
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 1))
           ..repeat();
@@ -58,41 +33,63 @@ class _ProjectGridState extends State<_ProjectGrid>
 
   @override
   void dispose() {
-    // time.dispose();
     super.dispose();
+    controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1,
-          crossAxisSpacing: 24,
-          mainAxisSpacing: 24,
-          mainAxisExtent: 300 + ((1420 - widget.maxWidth) / 5)),
-      itemCount: _works.length,
-      itemBuilder: (context, index) {
-        return HighlightProjectCard(
-            work: _works[index],
-            childPainter: AnimatedBuilder(
-              animation: controller,
-              builder: (context, child) {
-                _works[index].planet.updateContinents(kTargetFps);
-                _works[index].planet.updateClouds(kTargetFps);
-                return CustomPaint(
-                  painter: PlanetPaint(
-                    position: Offset.zero,
-                    planet: _works[index].planet,
-                    glowFactor: 0,
-                    zoomFactor: 1,
-                  ),
-                );
+    return SliverLayoutBuilder(builder: (context, sliverConstraints) {
+      print(sliverConstraints);
+      final double mainAxisExtent =
+          (300) + ((1420 - min(1420, sliverConstraints.crossAxisExtent)) / 5);
+      print(mainAxisExtent);
+      return SectionContainer(
+          title: 'Planetas',
+          subtitle: 'Projetos e trabalhos',
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1,
+                crossAxisSpacing: 24,
+                mainAxisSpacing: 24,
+                mainAxisExtent: mainAxisExtent,
+              ),
+              itemCount: 8,
+              itemBuilder: (context, index) {
+                ///return SizedBox();
+                return HighlightProjectCard(
+                    work: _works[index],
+                    childPainter: AnimatedBuilder(
+                      animation: controller,
+                      builder: (context, child) {
+                        _works[index].planet.updateContinents(kTargetFps);
+                        _works[index].planet.updateClouds(kTargetFps);
+                        return RepaintBoundary(
+                          child: CustomPaint(
+                            painter: PlanetPaint(
+                              position: Offset.zero,
+                              planet: _works[index].planet,
+                              glowFactor: 0,
+                              zoomFactor: 1,
+                            ),
+                          ),
+                        );
+                      },
+                    ));
               },
-            ));
-      },
-    );
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'Esses são apenas os planetas mais próximos. Continue sua jornada até o fim do portfólio e descubra todo o meu sistema estelar — a viagem vai valer a pena!',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleSmall!,
+            )
+          ]));
+    });
   }
 }
 

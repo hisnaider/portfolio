@@ -56,13 +56,14 @@ class Camera {
     }
 
     screenCenter = Offset(worldSize.width / 2, worldSize.height / 2);
-    if (diff > 50) {
-      _scale += (_targetscale - _scale) * (_speed * deltaTime);
-      _offset += (_targetOffset - _offset) * (_speed * deltaTime);
-    } else {
-      _scale += _targetscale - _scale;
-      _offset += _targetOffset - _offset;
-    }
+
+    ///if (diff > 50) {
+    _scale += (_targetscale - _scale) * (_speed * deltaTime);
+    _offset += (_targetOffset - _offset) * (_speed * deltaTime);
+    // } else {
+    //   _scale += _targetscale - _scale;
+    //   _offset += _targetOffset - _offset;
+    // }
   }
 
   void zoomUpdate(double delta) {

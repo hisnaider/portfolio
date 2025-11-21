@@ -34,7 +34,7 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
   @override
   void initState() {
     super.initState();
-    time = TimeController(this)..stop();
+    time = TimeController(this)..start();
     controller = StarSystemController(
       camera: camera,
       star: widget.star,
@@ -57,7 +57,9 @@ class _OrbitingSystemWidgetState extends State<OrbitingSystemWidget>
             valueListenable: time.elapsed,
             builder: (context, value, child) {
               controller.update(time.delta, screenSize);
+              print('teste: aaaaaaaaaa');
               return Stack(
+                fit: StackFit.expand,
                 children: [
                   AnimatedOpacity(
                     opacity:

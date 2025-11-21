@@ -37,6 +37,7 @@ class AboutMePage extends StatelessWidget {
                 const SizedBox(height: 24),
                 Wrap(
                   alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   runSpacing: 34,
                   children: List.generate(
                     MyData.mainSkills.length,
@@ -54,6 +55,7 @@ class AboutMePage extends StatelessWidget {
                 Wrap(
                   spacing: 34,
                   runSpacing: 34,
+                  alignment: WrapAlignment.center,
                   children: [
                     for (SkillsEnum skill in MyData.otherSkills)
                       Skill(
@@ -77,6 +79,7 @@ class AboutMePage extends StatelessWidget {
                 Wrap(
                   spacing: 34,
                   runSpacing: 34,
+                  alignment: WrapAlignment.center,
                   children: [
                     for (SkillsEnum skill in MyData.softSkills)
                       Skill(

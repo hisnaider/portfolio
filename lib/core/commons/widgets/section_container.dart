@@ -17,30 +17,32 @@ class SectionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: MyColors.backgroud,
-      child: Center(
-        child: Container(
-          constraints: BoxConstraints(maxWidth: maxWidth),
-          padding: padding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                title.toUpperCase(),
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              if (subtitle != null)
-                Opacity(
-                  opacity: 0.75,
-                  child: Text(
-                    subtitle!,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+    return SliverToBoxAdapter(
+      child: Material(
+        color: MyColors.backgroud,
+        child: Center(
+          child: Container(
+            constraints: BoxConstraints(maxWidth: maxWidth),
+            padding: padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  title.toUpperCase(),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-              const SizedBox(height: 24),
-              child,
-            ],
+                if (subtitle != null)
+                  Opacity(
+                    opacity: 0.75,
+                    child: Text(
+                      subtitle!,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ),
+                const SizedBox(height: 24),
+                child,
+              ],
+            ),
           ),
         ),
       ),

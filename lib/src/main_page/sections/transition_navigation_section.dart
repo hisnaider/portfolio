@@ -1,12 +1,14 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/src/main_page/views/star_system/star_system_page.dart';
 import 'package:portfolio/src/main_page/widgets/custom_sliver_persistent_header_delegate.dart';
+import 'package:portfolio/src/main_page/widgets/text_animation.dart';
 
 class TransitionNavigationSection extends StatelessWidget {
   const TransitionNavigationSection({super.key, required this.controller});
@@ -24,10 +26,6 @@ class TransitionNavigationSection extends StatelessWidget {
         screenHeight: screenHeight,
         threshold: threshold,
         child: (context, shrinkOffset, overlapsContent) {
-          final double progress = (shrinkOffset / threshold).clamp(0, 1);
-          final double firtTextTransition = progress.normalize(0.1, min: 0.15);
-          final double secondTextTransition =
-              pow(sin(pi * progress.normalize(0.2, min: 0.4)), 0.5) as double;
           return SizedBox(
             height: screenHeight,
             child: AnimatedBuilder(
@@ -35,35 +33,39 @@ class TransitionNavigationSection extends StatelessWidget {
               builder: (context, child) {
                 return Stack(
                   children: [
-                    _StarSystemTransition(progress: progress),
-                    Transform.translate(
-                      offset: Offset(0, 50 * firtTextTransition),
-                      child: Opacity(
-                        opacity: firtTextTransition,
-                        child: Center(
-                            child: Text(
-                          'Que bom ver você aqui! Mas o melhor tá por vir. Continue descendo.',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .copyWith(color: Colors.white),
-                        )),
-                      ),
-                    ),
-                    Transform.translate(
-                      offset: Offset(0, 50 * secondTextTransition),
-                      child: Opacity(
-                        opacity: secondTextTransition,
-                        child: Center(
-                            child: Text(
-                          'Só mais um pouquinho…',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .copyWith(color: Colors.white),
-                        )),
-                      ),
-                    ),
+                    const _StarSystemTransition(),
+                    // Center(
+                    //   child: DefaultTextStyle(
+                    //     style: Theme.of(context)
+                    //         .textTheme
+                    //         .headlineMedium!
+                    //         .copyWith(color: Colors.white),
+                    //     child: AnimatedTextKit(
+                    //       repeatForever: true,
+                    //       animatedTexts: [
+                    //         SlideInOutText(
+                    //           text:
+                    //               'Que bom ver você aqui! Mas o melhor tá por vir. Continue descendo.',
+                    //           duration: const Duration(seconds: 1),
+                    //           startOffset: const Offset(0, -100),
+                    //           endOffset: const Offset(0, 100),
+                    //         ),
+                    //         SlideInOutText(
+                    //           text: 'Só mais um pouquinho…',
+                    //           duration: const Duration(seconds: 1),
+                    //           startOffset: const Offset(0, -100),
+                    //           endOffset: const Offset(0, 100),
+                    //         ),
+                    //         ScaleShakeText(
+                    //           text:
+                    //               'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE...',
+                    //           duration: const Duration(seconds: 1),
+                    //           shakeIntensity: 100,
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 );
               },
@@ -75,69 +77,107 @@ class TransitionNavigationSection extends StatelessWidget {
   }
 }
 
-class _StarSystemTransition extends StatelessWidget {
-  const _StarSystemTransition({super.key, required this.progress});
-  final double progress;
+class _StarSystemTransition extends StatefulWidget {
+  const _StarSystemTransition({super.key});
+
+  @override
+  State<_StarSystemTransition> createState() => _StarSystemTransitionState();
+}
+
+class _StarSystemTransitionState extends State<_StarSystemTransition>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController controller;
+  late final Animation<double> backgroundOpacity;
+  late final Animation<double> starSystemScale;
+  late final Animation<double> glowUp;
+  late final Animation<double> glowDown;
+  late final Animation<double> glowOpacity;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 10));
+    backgroundOpacity = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0, 0.5, curve: Curves.easeInExpo),
+    );
+    starSystemScale = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.6, 1),
+    );
+    glowUp = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0, 0.6, curve: Curves.easeInExpo),
+    );
+    glowDown = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.6, 1, curve: Curves.easeOutCubic),
+    );
+    glowOpacity = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.8, 1),
+    );
+    controller.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final backgroundOpacity =
-        Curves.easeInExpo.transform(progress.normalize(0.5, min: 0));
-
-    final starSystemSize = progress.normalize(1, min: 0.6);
-
-    final glowSizeUp =
-        Curves.easeInExpo.transform(progress.normalize(0.6, min: 0.0));
-    final glowSizeDown =
-        Curves.easeOutCubic.transform(progress.normalize(1, min: 0.6));
-    final glowOpacity = progress.normalize(0.8, min: 1);
-    return Stack(
-      children: [
-        Opacity(
-          opacity: backgroundOpacity,
-          child: Container(
-            color: const Color(0xaa030F0F),
-          ),
-        ),
-        Transform.scale(scale: starSystemSize, child: StarSystemPage()),
-        if (progress <= 0.6)
-          Center(
-            child: Container(
-              height: 10 + (20 * glowSizeUp),
-              width: 10 + (20 * glowSizeUp),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.white,
-                    blurRadius: 5,
-                    spreadRadius: 1 + Random().nextDouble() * 3,
-                  ),
-                ],
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        print('${glowUp.value} - ${glowDown.value}');
+        return Stack(
+          children: [
+            Opacity(
+              opacity: backgroundOpacity.value,
+              child: Container(
+                color: const Color(0xaa030F0F),
               ),
             ),
-          ),
-        if (progress < 1)
-          Opacity(
-            opacity: glowOpacity,
-            child: Center(
-              child: Container(
-                height: 0,
-                width: 0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.white.withOpacity(1),
-                      blurRadius: 1 + 500 * (glowSizeUp - glowSizeDown),
-                      spreadRadius: 5 + 500 * (glowSizeUp - glowSizeDown),
-                    ),
-                  ],
+            Transform.scale(
+                scale: starSystemScale.value, child: const StarSystemPage()),
+            if (controller.value <= 0.6)
+              Center(
+                child: Container(
+                  height: 10 + (20 * glowUp.value),
+                  width: 10 + (20 * glowUp.value),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 5,
+                        spreadRadius: 1 + Random().nextDouble() * 3,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ),
-      ],
+            if (controller.value < 1)
+              Opacity(
+                opacity: 1 - glowOpacity.value,
+                child: Center(
+                  child: Container(
+                    height: 0,
+                    width: 0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(1),
+                          blurRadius: 1 + 500 * (glowUp.value - glowDown.value),
+                          spreadRadius:
+                              5 + 500 * (glowUp.value - glowDown.value),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
     );
   }
 }

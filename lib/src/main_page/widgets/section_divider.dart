@@ -5,14 +5,16 @@ class SectionDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1600),
-        child: const Divider(
-          height: 0,
-          endIndent: 24,
-          indent: 24,
-          color: Colors.white12,
+    return SliverToBoxAdapter(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1600),
+          child: const Divider(
+            height: 0,
+            endIndent: 24,
+            indent: 24,
+            color: Colors.white12,
+          ),
         ),
       ),
     );
