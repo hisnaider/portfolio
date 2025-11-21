@@ -16,6 +16,7 @@ class IntroSection extends StatelessWidget {
     const double threshold = 1000;
     final ScrollController controller =
         MainPageController.of(context).scrollController;
+
     return SliverPersistentHeader(
       floating: false,
       pinned: false,

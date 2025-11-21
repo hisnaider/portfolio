@@ -9,6 +9,7 @@ import 'package:portfolio/src/features/orbiting_system/controller/time_controlle
 import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
 import 'package:portfolio/src/main_page/views/highlight/entity/work_card_entity.dart';
 import 'package:portfolio/src/main_page/views/highlight/widgets/highlight_project_card.dart';
+import 'package:portfolio/src/main_page/widgets/offset_fade_animation.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class HighlightPage extends StatefulWidget {
@@ -40,10 +41,9 @@ class _HighlightPageState extends State<HighlightPage>
   @override
   Widget build(BuildContext context) {
     return SliverLayoutBuilder(builder: (context, sliverConstraints) {
-      print(sliverConstraints);
+      const double spacing = 24;
       final double mainAxisExtent =
           (300) + ((1420 - min(1420, sliverConstraints.crossAxisExtent)) / 5);
-      print(mainAxisExtent);
       return SectionContainer(
           title: 'Planetas',
           subtitle: 'Projetos e trabalhos',
@@ -54,32 +54,41 @@ class _HighlightPageState extends State<HighlightPage>
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 1,
-                crossAxisSpacing: 24,
-                mainAxisSpacing: 24,
+                crossAxisSpacing: spacing,
+                mainAxisSpacing: spacing,
                 mainAxisExtent: mainAxisExtent,
               ),
-              itemCount: 8,
+              itemCount: _works.length,
               itemBuilder: (context, index) {
-                ///return SizedBox();
-                return HighlightProjectCard(
-                    work: _works[index],
-                    childPainter: AnimatedBuilder(
-                      animation: controller,
-                      builder: (context, child) {
-                        _works[index].planet.updateContinents(kTargetFps);
-                        _works[index].planet.updateClouds(kTargetFps);
-                        return RepaintBoundary(
-                          child: CustomPaint(
-                            painter: PlanetPaint(
-                              position: Offset.zero,
-                              planet: _works[index].planet,
-                              glowFactor: 0,
-                              zoomFactor: 1,
-                            ),
-                          ),
-                        );
-                      },
-                    ));
+                final int row = ((index) / 2).floor();
+                final double cardPos =
+                    mainAxisExtent + ((mainAxisExtent + spacing) * row);
+                return OffsetFadeAnimation(
+                    condition:
+                        100 + cardPos < sliverConstraints.remainingPaintExtent,
+                    initialOffset: Offset(index % 2 == 0 ? -1 : 1, 0),
+                    duration: const Duration(milliseconds: 500),
+                    firstWidget: HighlightProjectCard(
+                        key: ValueKey('Row $row'),
+                        work: _works[index],
+                        childPainter: AnimatedBuilder(
+                          animation: controller,
+                          builder: (context, child) {
+                            _works[index].planet.updateContinents(kTargetFps);
+                            _works[index].planet.updateClouds(kTargetFps);
+                            return RepaintBoundary(
+                              child: CustomPaint(
+                                painter: PlanetPaint(
+                                  position: Offset.zero,
+                                  planet: _works[index].planet,
+                                  glowFactor: 0,
+                                  zoomFactor: 1,
+                                ),
+                              ),
+                            );
+                          },
+                        )),
+                    secondWidget: SizedBox());
               },
             ),
             const SizedBox(height: 24),

@@ -65,18 +65,28 @@ class _MainPageState extends State<MainPage> {
                           ? const StarSystemPage()
                           : SmoothScroll(
                               controller: controller,
-                              slivers: const [
+                              slivers: [
                                 IntroSection(),
                                 AboutMePage(),
                                 SectionDivider(),
                                 HighlightPage(),
                                 SectionDivider(),
                                 RecommendationsPage(),
-                                SliverToBoxAdapter(
-                                  child: Column(
-                                    children: [],
-                                  ),
-                                ),
+                                // SliverToBoxAdapter(
+                                //   child: Column(
+                                //     children: List.generate(
+                                //       100,
+                                //       (index) => Container(
+                                //         height: 100,
+                                //         color: Colors.blue,
+                                //         margin: EdgeInsets.all(10),
+                                //         child: Center(
+                                //           child: Text(index.toString()),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
 
                                 ///TransitionNavigationSection(controller: controller)
                               ],

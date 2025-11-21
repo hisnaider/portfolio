@@ -16,7 +16,6 @@ class HighlightProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('asdasdasdasd');
     return Material(
       clipBehavior: Clip.antiAlias,
       color: Colors.black12,
