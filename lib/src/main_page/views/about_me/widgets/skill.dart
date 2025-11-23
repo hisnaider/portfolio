@@ -18,6 +18,7 @@ class Skill extends StatelessWidget {
     if (image == null) {
       return Text(
         text,
+        textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               color: Colors.white70,
               fontWeight: FontWeight.w500,
@@ -30,7 +31,7 @@ class Skill extends StatelessWidget {
       child: OverflowBox(
         fit: OverflowBoxFit.deferToChild,
         minWidth: 60,
-        maxWidth: 250,
+        maxWidth: 100,
         child: Column(
           children: [
             Container(
@@ -49,6 +50,9 @@ class Skill extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               text,
+              maxLines: 2,
+              overflow: TextOverflow.visible,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

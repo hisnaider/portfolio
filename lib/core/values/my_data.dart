@@ -35,7 +35,7 @@ class MyData {
         competences: [
           'Flutter',
           'Dart',
-          'Clean Architecture',
+          'Clean Arch”',
           'Bloc',
           'Consumo de API',
           'Liderança',
@@ -52,7 +52,7 @@ class MyData {
         competences: [
           'Flutter',
           'Dart',
-          'Clean Architecture',
+          'Clean Arch”',
           'GetX',
           'Consumo de API',
           'Liderança',
@@ -83,7 +83,7 @@ class MyData {
 //       competences: [
 //         'Flutter',
 //         'Dart',
-//         'Clean Architecture',
+//         'Clean Arch”',
 //         'Bloc',
 //         'Consumo de API',
 //         'Liderança',
@@ -101,7 +101,7 @@ class MyData {
 //       competences: [
 //         'Flutter',
 //         'Dart',
-//         'Clean Architecture',
+//         'Clean Arch”',
 //         'GetX',
 //         'Consumo de API',
 //         'Liderança',

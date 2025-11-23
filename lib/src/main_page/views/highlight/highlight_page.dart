@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/commons/extensions/normalize.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/constants.dart';
@@ -12,6 +13,10 @@ import 'package:portfolio/src/main_page/views/highlight/widgets/highlight_projec
 import 'package:portfolio/src/main_page/widgets/offset_fade_animation.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+const double _pageMaxWidth = 1500;
+const double _pageHorizontalPadding = 40;
+const double _cardSpacing = 12;
+
 class HighlightPage extends StatefulWidget {
   const HighlightPage({super.key});
 
@@ -22,13 +27,14 @@ class HighlightPage extends StatefulWidget {
 class _HighlightPageState extends State<HighlightPage>
     with SingleTickerProviderStateMixin {
   late final AnimationController controller;
-  // late TimeController time;
+  Size _lastSize = Size.zero;
+  double _lastPageWidth = 0;
 
   @override
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1))
+        AnimationController(vsync: this, duration: const Duration(seconds: 1))
           ..repeat();
   }
 
@@ -38,35 +44,80 @@ class _HighlightPageState extends State<HighlightPage>
     controller.dispose();
   }
 
+  void calculateCardDimension({
+    required double maxWidth,
+  }) {
+    double higherText = 0;
+    for (WorkCardEntity work in _works) {
+      final TextPainter painter = TextPainter(
+        text: TextSpan(
+            text: work.text, style: Theme.of(context).textTheme.bodyMedium),
+        textDirection: TextDirection.ltr,
+      );
+
+      painter.layout(maxWidth: maxWidth - 48);
+      higherText = max(higherText, painter.height);
+    }
+
+    _lastSize = Size(maxWidth, higherText + 80 + 24 + 48);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SliverLayoutBuilder(builder: (context, sliverConstraints) {
-      const double spacing = 24;
-      final double mainAxisExtent =
-          (300) + ((1420 - min(1420, sliverConstraints.crossAxisExtent)) / 5);
+      final int columns;
+      final double offsetToAnimate;
+      if (sliverConstraints.crossAxisExtent <= 1000) {
+        columns = 1;
+        offsetToAnimate =
+            100 + (-300 * _lastPageWidth.normalize(400, min: 1000));
+        print(_lastPageWidth.normalize(400, min: 1000));
+      } else {
+        columns = 2;
+        offsetToAnimate = 100;
+      }
+
+      if (_lastPageWidth !=
+          min((_pageMaxWidth), sliverConstraints.crossAxisExtent)) {
+        _lastPageWidth =
+            min((_pageMaxWidth), sliverConstraints.crossAxisExtent);
+        final double pageWidth = (_lastPageWidth - _pageHorizontalPadding * 2);
+        final double currentCardWidth =
+            pageWidth / columns - (_cardSpacing * (columns - 1));
+        calculateCardDimension(maxWidth: currentCardWidth);
+      }
+      const double spacing = _cardSpacing * 2;
       return SectionContainer(
           title: 'Planetas',
           subtitle: 'Projetos e trabalhos',
-          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+          maxWidth: _pageMaxWidth,
+          padding: const EdgeInsets.symmetric(
+              horizontal: _pageHorizontalPadding, vertical: 60),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             GridView.builder(
               shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: columns,
                 childAspectRatio: 1,
                 crossAxisSpacing: spacing,
                 mainAxisSpacing: spacing,
-                mainAxisExtent: mainAxisExtent,
+                mainAxisExtent: _lastSize.height,
               ),
               itemCount: _works.length,
               itemBuilder: (context, index) {
-                final int row = ((index) / 2).floor();
+                final int row = ((index) / columns).floor();
+                final Offset offset = columns == 1
+                    ? const Offset(0, 1)
+                    : Offset(index % columns == 0 ? -1 : 1, 0);
                 final double cardPos =
-                    mainAxisExtent + ((mainAxisExtent + spacing) * row);
+                    _lastSize.height + ((_lastSize.height + spacing) * row);
+
                 return OffsetFadeAnimation(
-                    condition:
-                        100 + cardPos < sliverConstraints.remainingPaintExtent,
-                    initialOffset: Offset(index % 2 == 0 ? -1 : 1, 0),
+                    condition: offsetToAnimate + cardPos <
+                        sliverConstraints.remainingPaintExtent +
+                            sliverConstraints.scrollOffset,
+                    initialOffset: offset,
                     duration: const Duration(milliseconds: 500),
                     firstWidget: HighlightProjectCard(
                         key: ValueKey('Row $row'),
@@ -88,7 +139,7 @@ class _HighlightPageState extends State<HighlightPage>
                             );
                           },
                         )),
-                    secondWidget: SizedBox());
+                    secondWidget: const SizedBox());
               },
             ),
             const SizedBox(height: 24),

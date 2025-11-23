@@ -2,7 +2,7 @@ import 'package:portfolio/core/values/assets.dart';
 
 enum SkillsEnum {
   cleanArchitecture(
-    name: 'Clean Architecture',
+    name: 'Clean Arch',
     image: Assets.cleanArchitecture,
   ),
   flutter(

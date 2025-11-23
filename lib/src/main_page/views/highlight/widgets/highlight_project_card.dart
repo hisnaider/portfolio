@@ -18,7 +18,8 @@ class HighlightProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       clipBehavior: Clip.antiAlias,
-      color: Colors.black12,
+      color: Color(0XFF111113),
+      elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -37,6 +38,7 @@ class HighlightProjectCard extends StatelessWidget {
               ),
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
                   children: [
@@ -46,25 +48,32 @@ class HighlightProjectCard extends StatelessWidget {
                       foregroundImage: AssetImage(work.image ?? Assets.myLogo),
                     ),
                     const SizedBox(width: 24),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          work.companyName,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        Text(
-                          work.role,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .color,
-                                    fontFamily: Fonts.poppins,
-                                  ),
-                        ),
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            work.companyName,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                          Text(
+                            work.role,
+                            maxLines: 2,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color,
+                                  fontFamily: Fonts.poppins,
+                                ),
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),

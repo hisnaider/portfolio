@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/values/my_colors.dart';
 
 class SectionDivider extends StatelessWidget {
   const SectionDivider({super.key});
@@ -6,14 +7,17 @@ class SectionDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1600),
-          child: const Divider(
-            height: 0,
-            endIndent: 24,
-            indent: 24,
-            color: Colors.white12,
+      child: Container(
+        color: MyColors.backgroud,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1600),
+            child: const Divider(
+              height: 1,
+              endIndent: 24,
+              indent: 24,
+              color: Colors.white12,
+            ),
           ),
         ),
       ),

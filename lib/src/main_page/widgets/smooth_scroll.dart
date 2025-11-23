@@ -34,9 +34,10 @@ class _SmoothScrollState extends State<SmoothScroll> {
     _lastEvent = now;
     _targetScroll = ((_targetScroll + event.scrollDelta.dy) * speed)
         .clamp(0, widget.controller.position.maxScrollExtent);
+    print(event.scrollDelta.dy.abs());
     if (event.scrollDelta.dy.abs() >= 100) {
       widget.controller.animateTo(_targetScroll,
-          duration: Duration(milliseconds: 1), curve: Curves.linear);
+          duration: Duration(milliseconds: 250), curve: Curves.linear);
     } else {
       widget.controller.jumpTo(_targetScroll);
     }

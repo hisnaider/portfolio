@@ -2,7 +2,7 @@ class MyValues {
   const MyValues._();
 
   static const List<String> skills = [
-    'Clean Architecture',
+    'Clean Arch”',
     'Flutter',
     'Web Development (Flutter)',
     'Dart',

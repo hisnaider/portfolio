@@ -13,14 +13,14 @@ class AboutMePage extends StatelessWidget {
     return SectionContainer(
       title: 'Estrela',
       subtitle: 'Sobre mim',
-      padding: const EdgeInsets.fromLTRB(100, 90, 100, 0),
+      padding: const EdgeInsets.fromLTRB(24, 90, 24, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             '''Sou Hisnaider Campello, desenvolvedor mobile focado em Flutter, com background em design e Figma. Formado em Sistemas de Informação e pós-graduando em Desenvolvimento Mobile, busco unir lógica, estética e experiência do usuário em interfaces rápidas e funcionais.
                 
-                Valorizo código limpo, testável e componentes reutilizáveis, e gosto de trabalhar em equipe compartilhando aprendizados. Atualmente exploro Python e aprimoro minha capacidade de criar sistemas escaláveis e bem estruturados.''',
+Valorizo código limpo, testável e componentes reutilizáveis, e gosto de trabalhar em equipe compartilhando aprendizados. Atualmente exploro Python e aprimoro minha capacidade de criar sistemas escaláveis e bem estruturados.''',
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
@@ -31,18 +31,20 @@ class AboutMePage extends StatelessWidget {
               children: [
                 Text(
                   'Habilidades Técnicas',
+                  textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 24),
                 Wrap(
                   alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  runAlignment: WrapAlignment.start,
                   runSpacing: 34,
                   children: List.generate(
                     MyData.mainSkills.length,
                     (index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 60),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Skill(
                             image: MyData.mainSkills[index].image,
                             text: MyData.mainSkills[index].name.toUpperCase()),
@@ -55,6 +57,8 @@ class AboutMePage extends StatelessWidget {
                   spacing: 34,
                   runSpacing: 34,
                   alignment: WrapAlignment.center,
+                  runAlignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     for (SkillsEnum skill in MyData.otherSkills)
                       Skill(
@@ -71,7 +75,10 @@ class AboutMePage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Soft Skills',
+                  'Habilidades Comportamentais',
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.visible,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 24),
@@ -79,6 +86,7 @@ class AboutMePage extends StatelessWidget {
                   spacing: 34,
                   runSpacing: 34,
                   alignment: WrapAlignment.center,
+                  runAlignment: WrapAlignment.center,
                   children: [
                     for (SkillsEnum skill in MyData.softSkills)
                       Skill(
