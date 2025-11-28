@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class BottomToTopAnimation extends StatefulWidget {
   final Widget child;
+  final bool condition;
 
   const BottomToTopAnimation({
-    required super.key,
+    super.key,
     required this.child,
+    required this.condition,
   });
 
   @override
@@ -23,7 +24,7 @@ class _BottomToTopAnimationState extends State<BottomToTopAnimation>
     super.initState();
 
     _controller = AnimationController(
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
 
@@ -43,24 +44,33 @@ class _BottomToTopAnimationState extends State<BottomToTopAnimation>
         curve: Curves.easeOut,
       ),
     );
+    _animate();
+  }
+
+  @override
+  void didUpdateWidget(covariant BottomToTopAnimation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.condition != widget.condition) {
+      _animate();
+    }
+  }
+
+  void _animate() {
+    if (widget.condition && _controller.status != AnimationStatus.completed) {
+      _controller.forward();
+    } else if (!widget.condition &&
+        _controller.status != AnimationStatus.dismissed) {
+      _controller.reverse();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return VisibilityDetector(
-      key: widget.key!,
-      onVisibilityChanged: (info) {
-        if (info.visibleFraction == 1 &&
-            _controller.status == AnimationStatus.dismissed) {
-          _controller.forward();
-        }
-      },
-      child: FadeTransition(
-        opacity: _opacity,
-        child: SlideTransition(
-          position: _offset,
-          child: widget.child,
-        ),
+    return FadeTransition(
+      opacity: _opacity,
+      child: SlideTransition(
+        position: _offset,
+        child: widget.child,
       ),
     );
   }

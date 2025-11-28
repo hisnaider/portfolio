@@ -2,6 +2,7 @@ class Assets {
   const Assets._();
 
   static const String universe = 'assets/images/universe.jpg';
+  static const String firstRecord = 'assets/images/first_record.webp';
   static const String photo = 'assets/images/photo.jpg';
   static const String pinguim = 'assets/images/pinguim.png';
 

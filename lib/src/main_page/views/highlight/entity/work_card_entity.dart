@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
+import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
 
 class WorkCardEntity {
   final String companyName;

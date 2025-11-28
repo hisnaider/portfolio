@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
 import 'package:portfolio/src/main_page/views/highlight/entity/work_card_entity.dart';
 
 class HighlightProjectCard extends StatelessWidget {
@@ -18,7 +17,7 @@ class HighlightProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       clipBehavior: Clip.antiAlias,
-      color: Color(0XFF111113),
+      color: MyColors.backgroudDarker,
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(

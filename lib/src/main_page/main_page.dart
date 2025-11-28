@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
-import 'package:portfolio/src/main_page/sections/intro_section.dart';
-import 'package:portfolio/src/main_page/sections/transition_navigation_section.dart';
+import 'package:portfolio/src/main_page/views/intro/intro_section.dart';
 import 'package:portfolio/src/main_page/views/about_me/about_me_page.dart';
 import 'package:portfolio/src/main_page/views/highlight/highlight_page.dart';
 import 'package:portfolio/src/main_page/views/recommendations/recommendations_page.dart';
 import 'package:portfolio/src/main_page/views/star_system/star_system_page.dart';
+import 'package:portfolio/src/main_page/views/transition_navigation/transition_navigation.dart';
 import 'package:portfolio/src/main_page/widgets/section_divider.dart';
 import 'package:portfolio/src/main_page/widgets/smooth_scroll.dart';
 
@@ -24,7 +23,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     controller.dispose();
     state.dispose();
@@ -61,34 +59,18 @@ class _MainPageState extends State<MainPage> {
                   builder: (context, value, child) {
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 250),
-                      child: value == TransitionStatus.finished
+                      child: value != TransitionStatus.finished
                           ? const StarSystemPage()
                           : SmoothScroll(
                               controller: controller,
-                              slivers: [
+                              slivers: const [
                                 IntroSection(),
                                 AboutMePage(),
                                 SectionDivider(),
                                 HighlightPage(),
                                 SectionDivider(),
                                 RecommendationsPage(),
-                                // SliverToBoxAdapter(
-                                //   child: Column(
-                                //     children: List.generate(
-                                //       100,
-                                //       (index) => Container(
-                                //         height: 100,
-                                //         color: Colors.blue,
-                                //         margin: EdgeInsets.all(10),
-                                //         child: Center(
-                                //           child: Text(index.toString()),
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
-
-                                ///TransitionNavigationSection(controller: controller)
+                                TransitionNavigationSection(),
                               ],
                             ),
                     );

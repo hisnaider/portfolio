@@ -1,8 +1,8 @@
 import 'package:portfolio/core/commons/entities/works.dart';
 import 'package:portfolio/core/commons/enum/skills_enum.dart';
-import 'package:portfolio/src/features/orbiting_system/works/formy.dart';
-import 'package:portfolio/src/features/orbiting_system/works/pinguim.dart';
-import 'package:portfolio/src/features/orbiting_system/works/raquel.dart';
+import 'package:portfolio/src/main_page/views/star_system/works/formy.dart';
+import 'package:portfolio/src/main_page/views/star_system/works/pinguim.dart';
+import 'package:portfolio/src/main_page/views/star_system/works/raquel.dart';
 
 class MyData {
   const MyData._();

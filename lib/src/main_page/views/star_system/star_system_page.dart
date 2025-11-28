@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/commons/entities/celestial_body_glow_config.dart';
 import 'package:portfolio/core/values/planets.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/continent_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/planet_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/entities/star_entity.dart';
-import 'package:portfolio/src/features/orbiting_system/orbiting_system_widget.dart';
+import 'package:portfolio/src/main_page/views/star_system/controller/star_system_controller.dart';
+import 'package:portfolio/src/main_page/views/star_system/controller/time_controller.dart';
+import 'package:portfolio/src/main_page/views/star_system/entities/camera.dart';
+import 'package:portfolio/src/main_page/views/star_system/entities/star_system_config.dart';
+import 'package:portfolio/src/main_page/views/star_system/layers/UI/ui_layer.dart';
+import 'package:portfolio/src/main_page/views/star_system/layers/orbit_layer.dart';
+import 'package:portfolio/src/main_page/views/star_system/layers/orbit_texts_painter.dart';
+import 'package:portfolio/src/main_page/views/star_system/layers/selection_indicator_painter.dart';
+import 'package:portfolio/src/main_page/views/star_system/layers/star_system_painter.dart';
+import 'package:portfolio/src/main_page/views/star_system/views/welcome_modal.dart';
+import 'package:portfolio/src/main_page/views/star_system/widgets/work_desc.dart';
 
 class StarSystemPage extends StatefulWidget {
   const StarSystemPage({super.key});
@@ -13,101 +19,183 @@ class StarSystemPage extends StatefulWidget {
   State<StarSystemPage> createState() => _StarSystemPageState();
 }
 
-class _StarSystemPageState extends State<StarSystemPage> {
+class _StarSystemPageState extends State<StarSystemPage>
+    with SingleTickerProviderStateMixin {
+  final Camera camera = Camera();
+  late TimeController time;
+  late final StarSystemController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    time = TimeController(this)..stop();
+    controller = StarSystemController(
+      camera: camera,
+      star: CelestialBodies.hisnaider,
+      planets: [
+        CelestialBodies.raquel,
+        CelestialBodies.formy,
+        CelestialBodies.perroni,
+        CelestialBodies.pinguim,
+        CelestialBodies.ciex,
+      ],
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await showGeneralDialog(
+        context: context,
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const WelcomeModal(),
+      ).then((value) {
+        time.start();
+        controller.config.value = controller.config.value.start();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    time.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: OrbitingSystemWidget(
-        star: StarEntity(
-          name: 'Hisnaider',
-          size: 25,
-          color: const Color(0xffFCD703),
-          glow: const StarGlow(
-            radius: 50,
-            intensity: 0.5,
-          ),
-        ),
-        planets: [
-          Planets.raquel,
-          Planets.formy,
-          PlanetEntity(
-            name: 'perroni sanvicente & ...',
-            orbitRadius: 280,
-            initialAngle: 93,
-            size: 1.8,
-            color: const Color(0xff595C65),
-            rotationSpeed: 1.3,
-            atmosphere: const Atmosphere(
-              height: 1.3,
-              density: 0.9,
-              color: Colors.white,
-            ),
-            numberOfClouds: 4,
-            continents: [
-              ContinentEntity(
-                radius: 0.38,
-                color: Colors.white,
-                rawPoints: [
-                  const Offset(0.25, 0.2),
-                  const Offset(0.55, 0.18),
-                  const Offset(0.6, 0.42),
-                  const Offset(0.48, 0.65),
-                  const Offset(0.3, 0.6),
-                  const Offset(0.18, 0.4),
+    final bool isDesktop = [
+      TargetPlatform.windows,
+      TargetPlatform.linux,
+      TargetPlatform.macOS
+    ].contains(Theme.of(context).platform);
+    final Size screenSize = MediaQuery.of(context).size;
+    return Stack(
+      children: [
+        ValueListenableBuilder<double>(
+            valueListenable: time.elapsed,
+            builder: (context, value, child) {
+              controller.update(time.delta, screenSize);
+              return Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(
+                    color: const Color(0xaa030F0F),
+                  ),
+                  Container(
+                    color: const Color(0xaa030F0F),
+                  ),
+                  AnimatedOpacity(
+                    opacity:
+                        !controller.config.value.showSelectionIndicator ? 0 : 1,
+                    duration: const Duration(milliseconds: 250),
+                    child: IgnorePointer(
+                      child: CustomPaint(
+                        size: Size.infinite,
+                        painter: SelectionIndicatorPainter(
+                          controller.celestialBodies,
+                          value,
+                          camera,
+                          controller.config.value.hoveredBody,
+                        ),
+                      ),
+                    ),
+                  ),
+                  OrbitLayer(
+                    showOrbit: controller.config.value.showOrbitLine,
+                    celestialBody: controller.celestialBodies,
+                    camera: camera,
+                  ),
+                  IgnorePointer(
+                    ignoring: !controller.config.value.showUi,
+                    child: Listener(
+                      onPointerHover: (event) {
+                        if (!isDesktop) return;
+                        controller.getEvent(event);
+                      },
+                      onPointerSignal: (event) {
+                        if (!isDesktop) return;
+                        controller.getEvent(event);
+                      },
+                      onPointerMove: controller.getEvent,
+                      onPointerDown: controller.getEvent,
+                      onPointerUp: controller.getEvent,
+                      child: GestureDetector(
+                        onScaleStart: (details) =>
+                            print('onScaleStart: ${details.focalPoint}'),
+                        onScaleUpdate: (details) =>
+                            print('onScaleStart: ${details.scale}'),
+                        onScaleEnd: (details) =>
+                            print('onScaleStart: ${details.scaleVelocity}'),
+                        child: CustomPaint(
+                          size: Size.infinite,
+                          painter: StarSystemPainter(
+                            controller.celestialBodies,
+                            value,
+                            time.delta,
+                            controller.camera,
+                            controller.config.value.hoveredBody?.id,
+                          ),
+
+                          ///child: Container(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  OrbitTextsPainter(
+                    celestialBody: controller.celestialBodies,
+                    elapsed: value,
+                    deltaTime: time.delta,
+                    camera: controller.camera,
+                    showPlanetName:
+                        controller.config.value.selectedBody != null ||
+                            controller.config.value.showPlanetNames,
+                  ),
                 ],
-              ),
-              ContinentEntity(
-                radius: 0.36,
-                color: Colors.white,
-                rawPoints: [
-                  const Offset(0.72, 0.35),
-                  const Offset(1.0, 0.3),
-                  const Offset(1.05, 0.55),
-                  const Offset(0.85, 0.72),
-                  const Offset(0.68, 0.6),
-                ],
-              ),
-            ],
-          ),
-          Planets.pinguim,
-          PlanetEntity(
-              orbitRadius: 350,
-              initialAngle: 119,
-              size: 2,
-              color: Colors.blue,
-              rotationSpeed: 1,
-              atmosphere:
-                  const Atmosphere(height: 1.5, density: 1, color: Colors.blue),
-              numberOfClouds: 5,
-              continents: [
-                ContinentEntity(
-                  color: const Color.fromARGB(255, 0, 255, 8),
-                  rawPoints: [
-                    const Offset(0.24, 0.13),
-                    const Offset(0.6, 0.13),
-                    const Offset(0.55, 0.42),
-                    const Offset(0.53, 0.61),
-                    const Offset(0.43, 0.75),
-                    const Offset(0.24, 0.84),
-                    const Offset(0.27, 0.61),
-                    const Offset(0.16, 0.38),
-                  ],
-                ),
-                ContinentEntity(
-                  color: const Color.fromARGB(255, 0, 255, 8),
-                  rawPoints: [
-                    const Offset(0.75, 0.32),
-                    const Offset(1.09, 0.17),
-                    const Offset(1.09, 0.88),
-                    const Offset(0.78, 0.88),
-                    const Offset(0.64, 0.59),
-                    const Offset(0.8, 0.49),
-                  ],
-                ),
-              ]),
-          Planets.ciex,
-        ],
-      ),
+              );
+            }),
+        UiLayer(config: controller.config),
+        ValueListenableBuilder<StarSystemConfig>(
+            valueListenable: controller.config,
+            builder: (context, value, child) {
+              return AnimatedSwitcher(
+                duration: const Duration(milliseconds: 500),
+                switchInCurve: Curves.easeIn,
+                switchOutCurve: Curves.easeOut,
+                transitionBuilder: (child, animation) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+                child: value.selectedBody != null
+                    ? WorkDesc(
+                        celestialBody: value.selectedBody!,
+                        backButton: controller.unselectCelestialBody,
+                      )
+                    : const SizedBox.shrink(),
+              );
+            }),
+      ],
     );
   }
 }
+
+// class StarSystemPage extends StatefulWidget {
+//   const StarSystemPage({super.key});
+
+//   @override
+//   State<StarSystemPage> createState() => _StarSystemPageState();
+// }
+
+// class _StarSystemPageState extends State<StarSystemPage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     print('asdasd');
+//     return Center(
+//       child: OrbitingSystemWidget(
+//         star: CelestialBodies.hisnaider,
+//         planets: [
+//           CelestialBodies.raquel,
+//           CelestialBodies.formy,
+//           CelestialBodies.perroni,
+//           CelestialBodies.pinguim,
+//           CelestialBodies.ciex,
+//         ],
+//       ),
+//     );
+//   }
+// }

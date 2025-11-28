@@ -2,13 +2,20 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:portfolio/core/values/fonts.dart';
-import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/main_page/views/recommendations/entity/recommendation_entity.dart';
+import 'package:portfolio/src/main_page/views/recommendations/widgets/recommendation_card.dart';
+import 'package:visibility_detector/visibility_detector.dart';
+
+const double _maxCardWidth = 500;
 
 class InfiniteCarousel extends StatefulWidget {
-  const InfiniteCarousel({super.key, required this.recommendations});
+  const InfiniteCarousel({
+    super.key,
+    required this.recommendations,
+    required this.isDesktop,
+  });
   final List<RecommendationEntity> recommendations;
+  final bool isDesktop;
 
   @override
   State<InfiniteCarousel> createState() => _InfiniteCarouselState();
@@ -27,7 +34,7 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
   @override
   void initState() {
     super.initState();
-    _ticker = createTicker(_onTick)..start();
+    _ticker = createTicker(_onTick);
   }
 
   void _onTick(Duration tickerElapsed) {
@@ -66,95 +73,47 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 500,
-      color: MyColors.altBackgroud,
-      child: ListView.builder(
-        clipBehavior: Clip.none,
-        controller: _controller,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          final itemIndex = index % widget.recommendations.length;
-          return _RecommendationCard(
-            recommendation: widget.recommendations[itemIndex],
-            onHover: _onHover,
-            onHoverExit: _onHoverExit,
-          );
-        },
-      ),
-    );
-  }
-}
-
-class _RecommendationCard extends StatelessWidget {
-  const _RecommendationCard(
-      {required this.recommendation,
-      required this.onHover,
-      required this.onHoverExit});
-  final RecommendationEntity recommendation;
-  final VoidCallback onHover;
-  final VoidCallback onHoverExit;
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
+    return VisibilityDetector(
+      key: const ValueKey('infinite_carousel'),
+      onVisibilityChanged: (info) {
+        if (_ticker.isActive && info.visibleFraction == 0) {
+          _ticker.stop();
+        } else if (!_ticker.isActive && info.visibleFraction > 0) {
+          _ticker.start();
+        }
+      },
       child: SizedBox(
-        width: 500,
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: MouseRegion(
-            onEnter: (event) => onHover(),
-            onExit: (event) => onHoverExit(),
-            child: ShaderMask(
-              shaderCallback: (bounds) => const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white,
-                  Colors.white,
-                  Colors.transparent, // Fim com fade
-                ],
-                stops: [0.0, 0.89, 1.0],
-              ).createShader(bounds),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    recommendation.name,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Text(
-                    recommendation.role,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).textTheme.bodyLarge!.color,
-                          fontFamily: Fonts.poppins,
-                        ),
-                  ),
-                  const SizedBox(height: 24),
-                  Flexible(
-                    child: SingleChildScrollView(
-                      child: Text(
-                        recommendation.text,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(height: 1.75),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+        height: _maxCardWidth,
+        child: ListView.builder(
+          clipBehavior: Clip.none,
+          controller: _controller,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            final itemIndex = index % widget.recommendations.length;
+            final RecommendationEntity recommendation =
+                widget.recommendations[itemIndex];
+            return widget.isDesktop
+                ? MouseRegion(
+                    onEnter: (event) {
+                      _onHover();
+                    },
+                    onExit: (event) {
+                      _onHoverExit();
+                    },
+                    child: RecommendationCard(
+                      width: _maxCardWidth,
+                      recommendation: recommendation,
+                    ))
+                : GestureDetector(
+                    onTapDown: (detail) =>
+                        hoveringCard ? _onHoverExit() : _onHover(),
+                    child: RecommendationCard(
+                      width: _maxCardWidth,
+                      recommendation: recommendation,
+                    ));
+          },
         ),
       ),
     );

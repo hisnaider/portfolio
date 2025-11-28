@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
@@ -20,24 +18,13 @@ class SmoothScroll extends StatefulWidget {
 class _SmoothScrollState extends State<SmoothScroll> {
   double _targetScroll = 0;
   final int speed = 1;
-  DateTime _lastEvent = DateTime.now();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   void _smoothTo(PointerScrollEvent event) {
-    final now = DateTime.now();
-    final diff = now.difference(_lastEvent).inMilliseconds;
-    _lastEvent = now;
     _targetScroll = ((_targetScroll + event.scrollDelta.dy) * speed)
         .clamp(0, widget.controller.position.maxScrollExtent);
-    print(event.scrollDelta.dy.abs());
     if (event.scrollDelta.dy.abs() >= 100) {
       widget.controller.animateTo(_targetScroll,
-          duration: Duration(milliseconds: 250), curve: Curves.linear);
+          duration: const Duration(milliseconds: 250), curve: Curves.linear);
     } else {
       widget.controller.jumpTo(_targetScroll);
     }

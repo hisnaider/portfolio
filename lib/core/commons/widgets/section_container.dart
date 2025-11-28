@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 
 class SectionContainer extends StatelessWidget {
-  const SectionContainer(
-      {super.key,
-      required this.title,
-      this.subtitle,
-      required this.child,
-      this.maxWidth = 1500,
-      this.padding = const EdgeInsets.fromLTRB(0, 60, 0, 60)});
+  const SectionContainer({
+    super.key,
+    required this.title,
+    this.subtitle,
+    required this.child,
+    this.maxWidth = 1500,
+    this.padding = const EdgeInsets.fromLTRB(0, 60, 0, 60),
+    this.titlePadding = EdgeInsets.zero,
+  });
   final String title;
   final String? subtitle;
   final Widget child;
   final EdgeInsets padding;
+  final EdgeInsets titlePadding;
   final double maxWidth;
 
   @override
@@ -27,9 +30,13 @@ class SectionContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  title.toUpperCase(),
-                  style: Theme.of(context).textTheme.titleLarge,
+                Padding(
+                  padding: titlePadding,
+                  child: Text(
+                    title.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 ),
                 if (subtitle != null)
                   Opacity(

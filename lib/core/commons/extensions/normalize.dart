@@ -4,4 +4,8 @@ extension Normalize on double {
     final n = (this - min) / (max - min);
     return n.clamp(0, 1);
   }
+
+  double getInterval(double max, double min) {
+    return min + (max - min) * this;
+  }
 }

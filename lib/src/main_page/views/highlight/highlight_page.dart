@@ -6,12 +6,10 @@ import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/planets.dart';
-import 'package:portfolio/src/features/orbiting_system/controller/time_controller.dart';
-import 'package:portfolio/src/features/orbiting_system/widgets/planet_paint.dart';
+import 'package:portfolio/src/main_page/views/star_system/widgets/planet_paint.dart';
 import 'package:portfolio/src/main_page/views/highlight/entity/work_card_entity.dart';
 import 'package:portfolio/src/main_page/views/highlight/widgets/highlight_project_card.dart';
 import 'package:portfolio/src/main_page/widgets/offset_fade_animation.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 const double _pageMaxWidth = 1500;
 const double _pageHorizontalPadding = 40;
@@ -71,7 +69,6 @@ class _HighlightPageState extends State<HighlightPage>
         columns = 1;
         offsetToAnimate =
             100 + (-300 * _lastPageWidth.normalize(400, min: 1000));
-        print(_lastPageWidth.normalize(400, min: 1000));
       } else {
         columns = 2;
         offsetToAnimate = 100;
@@ -96,7 +93,7 @@ class _HighlightPageState extends State<HighlightPage>
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             GridView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: columns,
                 childAspectRatio: 1,
@@ -146,7 +143,10 @@ class _HighlightPageState extends State<HighlightPage>
             Text(
               'Esses são apenas os planetas mais próximos. Continue sua jornada até o fim do portfólio e descubra todo o meu sistema estelar — a viagem vai valer a pena!',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleSmall!,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontStyle: FontStyle.italic),
             )
           ]));
     });
@@ -156,7 +156,7 @@ class _HighlightPageState extends State<HighlightPage>
 List<WorkCardEntity> _works = [
   WorkCardEntity(
     companyName: 'CIEX',
-    planet: Planets.ciex,
+    planet: CelestialBodies.ciex,
     image: Assets.ciex,
     role: 'Pesquisador Front-end',
     text:
@@ -164,14 +164,14 @@ List<WorkCardEntity> _works = [
   ),
   WorkCardEntity(
     companyName: 'Formy',
-    planet: Planets.formy,
+    planet: CelestialBodies.formy,
     role: 'Projeto pessoal',
     text:
         'Biblioteca open source para Flutter desenvolvida para simplificar o gerenciamento de formulários complexos com controle total de estado e validação. Criei o pacote do zero com foco em escalabilidade, reatividade e API enxuta, aplicando princípios de arquitetura limpa e testabilidade. O Formy permite formulários dinâmicos, validação granular e integração fluida com UIs personalizadas.',
   ),
   WorkCardEntity(
     companyName: 'iTec/FURG-Embrapii - Projeto Plena',
-    planet: Planets.raquel,
+    planet: CelestialBodies.raquel,
     image: Assets.itec,
     role: 'Pesquisador Júnior',
     text:
@@ -179,7 +179,7 @@ List<WorkCardEntity> _works = [
   ),
   WorkCardEntity(
     companyName: 'iTec/FURG-Embrapii - Projeto Pinguim',
-    planet: Planets.pinguim,
+    planet: CelestialBodies.pinguim,
     image: Assets.itec,
     role: 'Pesquisador Júnior',
     text:
