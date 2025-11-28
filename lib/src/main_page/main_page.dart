@@ -59,17 +59,17 @@ class _MainPageState extends State<MainPage> {
                   builder: (context, value, child) {
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 250),
-                      child: value != TransitionStatus.finished
+                      child: value == TransitionStatus.finished
                           ? const StarSystemPage()
                           : SmoothScroll(
                               controller: controller,
                               slivers: const [
-                                IntroSection(),
-                                AboutMePage(),
-                                SectionDivider(),
-                                HighlightPage(),
-                                SectionDivider(),
-                                RecommendationsPage(),
+                                // IntroSection(),
+                                // AboutMePage(),
+                                // SectionDivider(),
+                                // HighlightPage(),
+                                // SectionDivider(),
+                                // RecommendationsPage(),
                                 TransitionNavigationSection(),
                               ],
                             ),

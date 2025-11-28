@@ -60,6 +60,7 @@ class _StarSystemPageState extends State<StarSystemPage>
 
   @override
   Widget build(BuildContext context) {
+    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa desgraça');
     final bool isDesktop = [
       TargetPlatform.windows,
       TargetPlatform.linux,
@@ -117,12 +118,9 @@ class _StarSystemPageState extends State<StarSystemPage>
                       onPointerDown: controller.getEvent,
                       onPointerUp: controller.getEvent,
                       child: GestureDetector(
-                        onScaleStart: (details) =>
-                            print('onScaleStart: ${details.focalPoint}'),
-                        onScaleUpdate: (details) =>
-                            print('onScaleStart: ${details.scale}'),
-                        onScaleEnd: (details) =>
-                            print('onScaleStart: ${details.scaleVelocity}'),
+                        onScaleStart: controller.handleScaleStart,
+                        onScaleUpdate: controller.handleScaleUpdate,
+                        onScaleEnd: controller.handleScaleEnd,
                         child: CustomPaint(
                           size: Size.infinite,
                           painter: StarSystemPainter(

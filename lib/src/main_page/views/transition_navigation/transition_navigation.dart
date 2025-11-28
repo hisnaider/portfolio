@@ -72,12 +72,18 @@ class _StarSystemTransitionState extends State<_StarSystemTransition>
   late final Animation<double> glowUp;
   late final Animation<double> glowDown;
   late final Animation<double> glowOpacity;
+  late final Animation<double> firstTextEnd;
+  late final Animation<double> secondTextBegin;
+  late final Animation<double> secondTextEnd;
+  late final Animation<double> thirdTextBegin;
+  late final Animation<double> thirdTextEnd;
+  late final Animation<double> thirdTextScale;
 
   @override
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
+        AnimationController(vsync: this, duration: const Duration(seconds: 22));
     backgroundOpacity = CurvedAnimation(
       parent: controller,
       curve: const Interval(0, 0.5, curve: Curves.easeInExpo),
@@ -98,6 +104,37 @@ class _StarSystemTransitionState extends State<_StarSystemTransition>
       parent: controller,
       curve: const Interval(0.8, 1),
     );
+
+    ///
+    ///
+    ///
+    ///
+    ///
+
+    firstTextEnd = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.2, 0.3, curve: Curves.easeOutCubic),
+    );
+    secondTextBegin = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.25, 0.3, curve: Curves.easeOutCubic),
+    );
+    secondTextEnd = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.4, 0.5, curve: Curves.easeOutCubic),
+    );
+    thirdTextBegin = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.45, 0.55, curve: Curves.easeOutCubic),
+    );
+    thirdTextEnd = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.7, 1, curve: Curves.easeOutCubic),
+    );
+    thirdTextScale = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.45, 1, curve: Curves.easeOutCubic),
+    );
     controller.forward();
   }
 
@@ -106,6 +143,7 @@ class _StarSystemTransitionState extends State<_StarSystemTransition>
     return AnimatedBuilder(
       animation: controller,
       builder: (context, child) {
+        print(1 + Random().nextDouble() * 0.01);
         return Stack(
           children: [
             Opacity(
@@ -168,6 +206,40 @@ class _StarSystemTransitionState extends State<_StarSystemTransition>
                   ),
                 ),
               ),
+            Transform.translate(
+              offset: Offset(0, -50 * firstTextEnd.value),
+              child: Center(
+                child: Opacity(
+                  opacity: 1 - firstTextEnd.value,
+                  child: Text(
+                    'Que bom ver você aqui! Mas o melhor tá por vir. Aguarde...',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+              ),
+            ),
+            Transform.translate(
+              offset: Offset(
+                  0, 50 - 50 * (secondTextBegin.value + secondTextEnd.value)),
+              child: Center(
+                child: Opacity(
+                  opacity: (secondTextBegin.value - secondTextEnd.value),
+                  child: Text('Só mais um pouquinho…',
+                      style: Theme.of(context).textTheme.titleSmall),
+                ),
+              ),
+            ),
+            Transform.scale(
+              scale:
+                  5 * thirdTextScale.value + (1 + Random().nextDouble() * 0.03),
+              child: Center(
+                child: Opacity(
+                  opacity: (thirdTextBegin.value - thirdTextEnd.value),
+                  child: Text('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE...',
+                      style: Theme.of(context).textTheme.titleSmall),
+                ),
+              ),
+            ),
           ],
         );
       },

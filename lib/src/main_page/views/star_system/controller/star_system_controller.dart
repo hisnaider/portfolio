@@ -16,6 +16,9 @@ class StarSystemController {
 
   final Camera camera;
   late final List<CelestialBody> celestialBodies;
+  DateTime _lastZoomEvent = DateTime.now();
+  double _lastScale = 1.0;
+  double _deadzone = 0.02; // 2% de tolerância, evita zoom fantasma
 
   StarSystemController(
       {required this.camera,
@@ -49,6 +52,9 @@ class StarSystemController {
       _isMouseHovered(event.position);
     } else if (event is PointerScrollEvent) {
       if (config.value.selectedBody == null) {
+        final DateTime now = DateTime.now();
+        print(now.difference(_lastZoomEvent));
+        _lastZoomEvent = now;
         final double delta = 1 - (event.scrollDelta.dy * 0.0025);
         camera.zoomUpdate(delta);
       }
@@ -64,6 +70,32 @@ class StarSystemController {
         camera.setAnimation(100, 1);
       }
     }
+  }
+
+  void handleScaleStart(ScaleStartDetails details) {
+    _lastScale = 1.0;
+  }
+
+  void handleScaleUpdate(ScaleUpdateDetails details) {
+    final scale = details.scale;
+
+    // calcula o delta real
+    final deltaScale = scale - _lastScale;
+
+    // se NÃO passou da deadzone, ignora (usuário parado)
+    if (deltaScale.abs() < _deadzone) return;
+
+    // converte deltaScale em um multiplicador que teu zoomUpdate entende
+    // deltaScale perto de 0 → multiplicador perto de 1
+    final double multiplier = 1.0 + deltaScale;
+
+    camera.zoomUpdate(multiplier);
+
+    _lastScale = scale;
+  }
+
+  void handleScaleEnd(ScaleEndDetails details) {
+    _lastScale = 1.0;
   }
 
   void unselectCelestialBody() {
