@@ -64,13 +64,13 @@ class _MainPageState extends State<MainPage> {
                           : SmoothScroll(
                               controller: controller,
                               slivers: const [
-                                // IntroSection(),
-                                // AboutMePage(),
-                                // SectionDivider(),
-                                // HighlightPage(),
-                                // SectionDivider(),
-                                // RecommendationsPage(),
-                                TransitionNavigationSection(),
+                                IntroSection(),
+                                AboutMePage(),
+                                SectionDivider(),
+                                HighlightPage(),
+                                SectionDivider(),
+                                RecommendationsPage(),
+                                //TransitionNavigationSection(),
                               ],
                             ),
                     );

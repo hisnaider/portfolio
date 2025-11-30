@@ -73,10 +73,12 @@ class StarSystemController {
   }
 
   void handleScaleStart(ScaleStartDetails details) {
+    print(details);
     _lastScale = 1.0;
   }
 
   void handleScaleUpdate(ScaleUpdateDetails details) {
+    print(details);
     final scale = details.scale;
 
     // calcula o delta real
@@ -95,6 +97,7 @@ class StarSystemController {
   }
 
   void handleScaleEnd(ScaleEndDetails details) {
+    print(details);
     _lastScale = 1.0;
   }
 
