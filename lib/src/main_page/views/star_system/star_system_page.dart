@@ -79,9 +79,6 @@ class _StarSystemPageState extends State<StarSystemPage>
                   Container(
                     color: const Color(0xaa030F0F),
                   ),
-                  Container(
-                    color: const Color(0xaa030F0F),
-                  ),
                   AnimatedOpacity(
                     opacity:
                         !controller.config.value.showSelectionIndicator ? 0 : 1,
