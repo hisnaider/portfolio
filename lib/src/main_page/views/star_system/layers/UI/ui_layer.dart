@@ -4,23 +4,6 @@ import 'package:portfolio/src/main_page/views/star_system/layers/UI/widgets/cont
 import 'package:portfolio/src/main_page/views/star_system/layers/UI/widgets/side_menu.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/UI/widgets/simulation_speed.dart';
 
-const List<double> simulationSpeed = [
-  0,
-  0.25,
-  0.5,
-  0.75,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-];
-
 class UiLayer extends StatelessWidget {
   const UiLayer({super.key, required this.config});
   final ValueNotifier<StarSystemConfig> config;
@@ -42,7 +25,6 @@ class UiLayer extends StatelessWidget {
                 ),
                 SimulationSpeed(
                   currentValue: value.simulationSpeed,
-                  values: simulationSpeed,
                   onChanged: (value) => config.value =
                       config.value.copyWith(simulationSpeed: value),
                 ),

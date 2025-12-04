@@ -9,13 +9,26 @@ import 'package:portfolio/core/theme/my_text_theme.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 
+const List<double> _simulationSpeed = [
+  0,
+  0.25,
+  0.5,
+  0.75,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+];
+
 class SimulationSpeed extends StatelessWidget {
   const SimulationSpeed(
-      {super.key,
-      required this.values,
-      required this.currentValue,
-      required this.onChanged});
-  final List<double> values;
+      {super.key, required this.currentValue, required this.onChanged});
   final double currentValue;
   final Function(double value) onChanged;
 
@@ -32,23 +45,17 @@ class SimulationSpeed extends StatelessWidget {
               ? _Slider(
                   currentValue: currentValue,
                   onChanged: onChanged,
-                  values: values,
                 )
               : _Buttons(
                   currentValue: currentValue,
                   onChanged: onChanged,
-                  values: values,
                 )),
     );
   }
 }
 
 class _Buttons extends StatefulWidget {
-  const _Buttons(
-      {required this.values,
-      required this.currentValue,
-      required this.onChanged});
-  final List<double> values;
+  const _Buttons({required this.currentValue, required this.onChanged});
   final double currentValue;
   final Function(double value) onChanged;
 
@@ -63,16 +70,16 @@ class __ButtonsState extends State<_Buttons> {
   @override
   void initState() {
     super.initState();
-    index = widget.values.indexOf(widget.currentValue);
+    index = _simulationSpeed.indexOf(widget.currentValue);
     pageController = PageController(viewportFraction: 0.5, initialPage: index);
   }
 
   void _buttonPressed(int value) {
-    index = (index + value).clamp(0, widget.values.length - 1);
+    index = (index + value).clamp(0, _simulationSpeed.length - 1);
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 1000),
         curve: Curves.easeOutExpo);
-    widget.onChanged(widget.values[index]);
+    widget.onChanged(_simulationSpeed[index]);
   }
 
   @override
@@ -94,10 +101,10 @@ class __ButtonsState extends State<_Buttons> {
                   borderRadius: BorderRadius.circular(10)),
               child: PageView.builder(
                 controller: pageController,
-                itemCount: widget.values.length,
+                itemCount: _simulationSpeed.length,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  final double value = widget.values[index];
+                  final double value = _simulationSpeed[index];
                   return Opacity(
                     opacity: value == widget.currentValue ? 1 : 0.25,
                     child: Center(
@@ -118,11 +125,7 @@ class __ButtonsState extends State<_Buttons> {
 }
 
 class _Slider extends StatefulWidget {
-  const _Slider(
-      {required this.values,
-      required this.currentValue,
-      required this.onChanged});
-  final List<double> values;
+  const _Slider({required this.currentValue, required this.onChanged});
   final double currentValue;
   final Function(double value) onChanged;
 
@@ -138,7 +141,7 @@ class __SliderState extends State<_Slider> with SingleTickerProviderStateMixin {
     super.initState();
 
     controller = _SliderController(
-        values: widget.values,
+        values: _simulationSpeed,
         currentValue: widget.currentValue,
         vsync: this,
         textStyle: MyTextTheme.dark.bodyMedium!.copyWith(fontSize: 12))

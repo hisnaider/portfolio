@@ -60,7 +60,6 @@ class _StarSystemPageState extends State<StarSystemPage>
 
   @override
   Widget build(BuildContext context) {
-    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa desgraça');
     final bool isDesktop = [
       TargetPlatform.windows,
       TargetPlatform.linux,
