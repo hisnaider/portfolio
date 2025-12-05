@@ -7,11 +7,9 @@ class MainPageController extends InheritedWidget {
     super.key,
     required super.child,
     required this.state,
-    required this.scrollController,
   });
 
   final MainPageState state;
-  final ScrollController scrollController;
 
   static MainPageController of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<MainPageController>()!;
@@ -28,9 +26,6 @@ class MainPageController extends InheritedWidget {
 
 class MainPageState {
   final ValueNotifier<bool> hideBackground = ValueNotifier<bool>(false);
-  final ValueNotifier<bool> showSkills = ValueNotifier<bool>(false);
-  final ValueNotifier<bool> showWorks = ValueNotifier<bool>(false);
-  final ValueNotifier<bool> initRecommendations = ValueNotifier<bool>(false);
   final ValueNotifier<TransitionStatus> transitionStatus =
       ValueNotifier<TransitionStatus>(TransitionStatus.notStarted);
 
@@ -38,9 +33,6 @@ class MainPageState {
 
   void dispose() {
     hideBackground.dispose();
-    showSkills.dispose();
-    showWorks.dispose();
-    initRecommendations.dispose();
     transitionStatus.dispose();
   }
 }

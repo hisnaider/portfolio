@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
 import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
-import 'package:portfolio/src/main_page/views/intro/hero_page/hero_page.dart';
-import 'package:portfolio/src/main_page/views/intro/welcome/welcome.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/intro/hero_page/hero_page.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/intro/welcome/welcome.dart';
 
 class IntroSection extends StatelessWidget {
   const IntroSection({
     super.key,
+    required this.scrollController,
   });
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     const double threshold = 1000;
-    final ScrollController controller =
-        MainPageController.of(context).scrollController;
 
     return SliverPersistentHeader(
       floating: false,
@@ -28,10 +28,10 @@ class IntroSection extends StatelessWidget {
             decoration: const BoxDecoration(),
             height: screenHeight,
             child: AnimatedBuilder(
-              animation: controller,
+              animation: scrollController,
               builder: (context, child) {
                 final double progress =
-                    (controller.offset / threshold).clamp(0, 1);
+                    (scrollController.offset / threshold).clamp(0, 1);
                 final double shrinkProgress = shrinkOffset
                     .normalize(screenHeight + threshold - 250, min: threshold);
                 return Stack(

@@ -7,11 +7,11 @@ class SmoothScroll extends StatefulWidget {
     super.key,
     required this.slivers,
     required this.controller,
-    required this.transitionStatus,
+    required this.enableScroll,
   });
   final List<Widget> slivers;
   final ScrollController controller;
-  final TransitionStatus transitionStatus;
+  final bool enableScroll;
 
   @override
   State<SmoothScroll> createState() => _SmoothScrollState();
@@ -34,15 +34,12 @@ class _SmoothScrollState extends State<SmoothScroll> {
 
   @override
   Widget build(BuildContext context) {
-    final bool canScroll =
-        widget.transitionStatus == TransitionStatus.notStarted;
     final bool isDesktop =
         MainPageController.isDesktop(Theme.of(context).platform);
     if (isDesktop) {
       return Listener(
         onPointerSignal: (event) {
-          if (event is PointerScrollEvent &&
-              widget.transitionStatus == TransitionStatus.notStarted) {
+          if (event is PointerScrollEvent && widget.enableScroll) {
             _smoothTo(event);
           }
         },
@@ -56,7 +53,8 @@ class _SmoothScrollState extends State<SmoothScroll> {
     }
     return CustomScrollView(
       scrollBehavior: const ScrollBehavior(),
-      physics: canScroll ? null : const NeverScrollableScrollPhysics(),
+      physics:
+          widget.enableScroll ? null : const NeverScrollableScrollPhysics(),
       controller: widget.controller,
       slivers: widget.slivers,
     );

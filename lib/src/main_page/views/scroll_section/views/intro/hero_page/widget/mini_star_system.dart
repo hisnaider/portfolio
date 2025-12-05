@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/src/main_page/views/star_system/controller/time_controller.dart';
-import 'package:portfolio/src/main_page/views/intro/hero_page/entities/hero_page_objects.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/intro/hero_page/entities/hero_page_objects.dart';
 
 class MiniStarSystem extends StatefulWidget {
   const MiniStarSystem({super.key, required this.skillScale});

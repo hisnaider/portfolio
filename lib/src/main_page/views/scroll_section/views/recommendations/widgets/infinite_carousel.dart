@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:portfolio/src/main_page/views/recommendations/entity/recommendation_entity.dart';
-import 'package:portfolio/src/main_page/views/recommendations/widgets/recommendation_card.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/entity/recommendation_entity.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/widgets/recommendation_card.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 const double _maxCardWidth = 500;

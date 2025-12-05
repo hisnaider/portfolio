@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
-import 'package:portfolio/src/main_page/views/recommendations/entity/recommendation_entity.dart';
-import 'package:portfolio/src/main_page/views/recommendations/widgets/infinite_carousel.dart';
-import 'package:portfolio/src/main_page/views/recommendations/widgets/recommendation_carousel.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/entity/recommendation_entity.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/widgets/infinite_carousel.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/widgets/recommendation_carousel.dart';
 
 class RecommendationsPage extends StatelessWidget {
   const RecommendationsPage({super.key});

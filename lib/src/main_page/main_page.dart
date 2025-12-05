@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
-import 'package:portfolio/src/main_page/views/intro/intro_section.dart';
-import 'package:portfolio/src/main_page/views/about_me/about_me_page.dart';
-import 'package:portfolio/src/main_page/views/highlight/highlight_page.dart';
-import 'package:portfolio/src/main_page/views/recommendations/recommendations_page.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/scroll_section.dart';
 import 'package:portfolio/src/main_page/views/star_system/star_system_page.dart';
-import 'package:portfolio/src/main_page/views/transition_navigation/transition_navigation.dart';
-import 'package:portfolio/src/main_page/widgets/section_divider.dart';
-import 'package:portfolio/src/main_page/widgets/smooth_scroll.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -39,7 +33,6 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         child: MainPageController(
-          scrollController: controller,
           state: state,
           child: Stack(
             children: [
@@ -58,29 +51,19 @@ class _MainPageState extends State<MainPage> {
                   valueListenable: state.transitionStatus,
                   builder: (context, value, child) {
                     return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 250),
-                      transitionBuilder: (child, animation) {
-                        return FadeTransition(
-                          opacity: animation,
-                          child: child,
-                        );
-                      },
-                      child: value == TransitionStatus.finished
-                          ? const StarSystemPage()
-                          : SmoothScroll(
-                              controller: controller,
-                              transitionStatus: value,
-                              slivers: const [
-                                IntroSection(),
-                                AboutMePage(),
-                                SectionDivider(),
-                                HighlightPage(),
-                                SectionDivider(),
-                                RecommendationsPage(),
-                                TransitionNavigationSection(),
-                              ],
-                            ),
-                    );
+                        duration: const Duration(milliseconds: 250),
+                        transitionBuilder: (child, animation) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                        child: value != TransitionStatus.finished
+                            ? const StarSystemPage()
+                            : ScrollSection(
+                                enableScroll:
+                                    value == TransitionStatus.notStarted,
+                              ));
                   }),
             ],
           ),

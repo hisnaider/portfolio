@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
-import 'package:portfolio/src/main_page/views/intro/hero_page/widget/introduction.dart';
-import 'package:portfolio/src/main_page/views/intro/hero_page/widget/mini_star_system.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/intro/hero_page/widget/introduction.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/intro/hero_page/widget/mini_star_system.dart';
 
 class HeroPage extends StatelessWidget {
   const HeroPage(

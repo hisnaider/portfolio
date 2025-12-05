@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
-import 'package:portfolio/src/main_page/views/recommendations/entity/recommendation_entity.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/entity/recommendation_entity.dart';
 
 class RecommendationCard extends StatelessWidget {
   const RecommendationCard({

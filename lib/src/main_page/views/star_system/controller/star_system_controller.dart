@@ -53,7 +53,6 @@ class StarSystemController {
     } else if (event is PointerScrollEvent) {
       if (config.value.selectedBody == null) {
         final DateTime now = DateTime.now();
-        print(now.difference(_lastZoomEvent));
         _lastZoomEvent = now;
         final double delta = 1 - (event.scrollDelta.dy * 0.0025);
         camera.zoomUpdate(delta);
@@ -73,12 +72,10 @@ class StarSystemController {
   }
 
   void handleScaleStart(ScaleStartDetails details) {
-    print(details);
     _lastScale = 1.0;
   }
 
   void handleScaleUpdate(ScaleUpdateDetails details) {
-    print(details);
     final scale = details.scale;
 
     // calcula o delta real
@@ -97,7 +94,6 @@ class StarSystemController {
   }
 
   void handleScaleEnd(ScaleEndDetails details) {
-    print(details);
     _lastScale = 1.0;
   }
 

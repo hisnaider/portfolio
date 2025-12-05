@@ -7,8 +7,8 @@ import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/planets.dart';
 import 'package:portfolio/src/main_page/views/star_system/widgets/planet_paint.dart';
-import 'package:portfolio/src/main_page/views/highlight/entity/work_card_entity.dart';
-import 'package:portfolio/src/main_page/views/highlight/widgets/highlight_project_card.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/highlight/entity/work_card_entity.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/highlight/widgets/highlight_project_card.dart';
 import 'package:portfolio/src/main_page/widgets/offset_fade_animation.dart';
 
 const double _pageMaxWidth = 1500;
