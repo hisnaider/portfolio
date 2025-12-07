@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage> {
                             child: child,
                           );
                         },
-                        child: value != TransitionStatus.finished
+                        child: value == TransitionStatus.finished
                             ? const StarSystemPage()
                             : ScrollSection(
                                 enableScroll:

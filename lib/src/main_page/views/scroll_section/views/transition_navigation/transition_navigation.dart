@@ -82,10 +82,9 @@ class _TransitionNavigationSectionState
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: VisibilityDetector(
-          key: ValueKey('TransitionNavigationSection'),
+          key: const ValueKey('TransitionNavigationSection'),
           onVisibilityChanged: (info) {
             if (info.visibleBounds.bottom == info.size.height) {
-              print('qqqqqqqqqqq');
               MainPageController.of(context).state.transitionStatus.value =
                   TransitionStatus.running;
               controller.forward();

@@ -84,11 +84,21 @@ class Camera {
     double screenMin = 0;
     double dxAdjustment = 0;
     double dyAdjustment = 0;
+    final double aspectRadio = max(screenSize.width / screenSize.height, 1.3);
 
     ///DESKTOP
-    screenMin = min(screenSize.width - (kWorkDescContainer + (kWorkDescMargin)),
-        screenSize.height);
-    dxAdjustment = (kWorkDescContainer + (kWorkDescMargin)) / 2;
+    if (aspectRadio > 1.3) {
+      screenMin = min(
+          screenSize.width - (kWorkDescContainer + (kWorkDescMargin)),
+          screenSize.height);
+      dxAdjustment =
+          screenCenter.dx - ((kWorkDescContainer + (kWorkDescMargin)) / 2);
+      dyAdjustment = screenCenter.dy;
+    } else {
+      screenMin = 400;
+      dyAdjustment = 225;
+      dxAdjustment = screenCenter.dx;
+    }
 
     ///MOBILE
     /// screenMin focado no height
@@ -97,7 +107,7 @@ class Camera {
     final Offset offsetAdjustment = Offset(dxAdjustment, dyAdjustment);
     double zoom = (screenMin * 0.25) / celestialBody.size;
     _targetscale = zoom;
-    _targetOffset = (((screenCenter) - offsetAdjustment) -
+    _targetOffset = ((offsetAdjustment) -
         worldToScreen(celestialBody.worldPosition) * _targetscale);
   }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
-import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/intro/hero_page/hero_page.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/intro/welcome/welcome.dart';
 

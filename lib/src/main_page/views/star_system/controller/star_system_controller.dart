@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,9 +17,8 @@ class StarSystemController {
 
   final Camera camera;
   late final List<CelestialBody> celestialBodies;
-  DateTime _lastZoomEvent = DateTime.now();
   double _lastScale = 1.0;
-  double _deadzone = 0.02; // 2% de tolerância, evita zoom fantasma
+  final double _deadzone = 0.02; // 2% de tolerância, evita zoom fantasma
 
   StarSystemController(
       {required this.camera,
@@ -52,8 +52,6 @@ class StarSystemController {
       _isMouseHovered(event.position);
     } else if (event is PointerScrollEvent) {
       if (config.value.selectedBody == null) {
-        final DateTime now = DateTime.now();
-        _lastZoomEvent = now;
         final double delta = 1 - (event.scrollDelta.dy * 0.0025);
         camera.zoomUpdate(delta);
       }
@@ -64,41 +62,38 @@ class StarSystemController {
     } else if (event is PointerDownEvent) {
       if (config.value.selectedBody == null &&
           config.value.hoveredBody != null) {
-        config.value = config.value.copyWith(
-            selectedBody: config.value.hoveredBody, showContact: false);
+        config.value = config.value
+            .copyWith(selectedBody: config.value.hoveredBody, showUi: false);
         camera.setAnimation(100, 1);
       }
     }
   }
 
-  void handleScaleStart(ScaleStartDetails details) {
-    _lastScale = 1.0;
-  }
-
-  void handleScaleUpdate(ScaleUpdateDetails details) {
-    final scale = details.scale;
-
-    // calcula o delta real
-    final deltaScale = scale - _lastScale;
-
-    // se NÃO passou da deadzone, ignora (usuário parado)
-    if (deltaScale.abs() < _deadzone) return;
-
-    // converte deltaScale em um multiplicador que teu zoomUpdate entende
-    // deltaScale perto de 0 → multiplicador perto de 1
-    final double multiplier = 1.0 + deltaScale;
-
-    camera.zoomUpdate(multiplier);
-
-    _lastScale = scale;
-  }
-
-  void handleScaleEnd(ScaleEndDetails details) {
-    _lastScale = 1.0;
+  void getGestureEvent(Diagnosticable event) {
+    if (event is ScaleStartDetails) {
+      _lastScale = 1.0;
+    } else if (event is ScaleUpdateDetails) {
+      final scale = event.scale;
+      final deltaScale = scale - _lastScale;
+      if (deltaScale.abs() < _deadzone) return;
+      final double multiplier = 1.0 + deltaScale;
+      camera.zoomUpdate(multiplier);
+      _lastScale = scale;
+    } else if (event is ScaleEndDetails) {
+      _lastScale = 1.0;
+    } else if (event is TapDownDetails) {
+      _isMouseHovered(event.globalPosition);
+      if (config.value.hoveredBody != null) {
+        config.value = config.value
+            .copyWith(selectedBody: config.value.hoveredBody, showUi: false);
+        camera.setAnimation(100, 1);
+      }
+    }
   }
 
   void unselectCelestialBody() {
-    config.value = config.value.copyWith(selectedBody: null, showContact: true);
+    config.value = config.value
+        .copyWith(selectedBody: null, showUi: true, hoveredBody: null);
     camera.setAnimation(5, 0.1);
   }
 

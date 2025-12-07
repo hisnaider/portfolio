@@ -4,6 +4,7 @@ import 'package:portfolio/src/main_page/views/star_system/controller/star_system
 import 'package:portfolio/src/main_page/views/star_system/controller/time_controller.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/camera.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_system_config.dart';
+import 'package:portfolio/src/main_page/views/star_system/layers/UI/mobile_ui_layer.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/UI/ui_layer.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/orbit_layer.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/orbit_texts_painter.dart';
@@ -79,8 +80,10 @@ class _StarSystemPageState extends State<StarSystemPage>
                     color: const Color(0xaa030F0F),
                   ),
                   AnimatedOpacity(
-                    opacity:
-                        !controller.config.value.showSelectionIndicator ? 0 : 1,
+                    opacity: !controller.config.value.showSelectionIndicator ||
+                            !controller.config.value.showUi
+                        ? 0
+                        : 1,
                     duration: const Duration(milliseconds: 250),
                     child: IgnorePointer(
                       child: CustomPaint(
@@ -114,9 +117,22 @@ class _StarSystemPageState extends State<StarSystemPage>
                       onPointerDown: controller.getEvent,
                       onPointerUp: controller.getEvent,
                       child: GestureDetector(
-                        onScaleStart: controller.handleScaleStart,
-                        onScaleUpdate: controller.handleScaleUpdate,
-                        onScaleEnd: controller.handleScaleEnd,
+                        onScaleStart: (event) {
+                          if (isDesktop) return;
+                          controller.getGestureEvent(event);
+                        },
+                        onScaleUpdate: (event) {
+                          if (isDesktop) return;
+                          controller.getGestureEvent(event);
+                        },
+                        onScaleEnd: (event) {
+                          if (isDesktop) return;
+                          controller.getGestureEvent(event);
+                        },
+                        onTapDown: (event) {
+                          if (isDesktop) return;
+                          controller.getGestureEvent(event);
+                        },
                         child: CustomPaint(
                           size: Size.infinite,
                           painter: StarSystemPainter(
@@ -144,7 +160,9 @@ class _StarSystemPageState extends State<StarSystemPage>
                 ],
               );
             }),
-        UiLayer(config: controller.config),
+        MediaQuery.of(context).size.width <= 800
+            ? MobileUiLayer(config: controller.config)
+            : UiLayer(config: controller.config),
         ValueListenableBuilder<StarSystemConfig>(
             valueListenable: controller.config,
             builder: (context, value, child) {

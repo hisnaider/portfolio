@@ -17,42 +17,42 @@ class WorkDesc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isHorizontal = MediaQuery.of(context).size.aspectRatio > 1.3;
     final Work? work = MyData.allWorks[celestialBody.name];
     return Stack(
       key: ValueKey(celestialBody.id),
       children: [
-        Positioned(
-          bottom: 0,
-          top: 0,
-          right: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: kWorkDescMargin,
-            ),
-            child: Container(
-              width: kWorkDescContainer + kWorkDescMargin,
-              padding: const EdgeInsets.all(12),
-              color: MyColors.backgroud,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      work?.page ?? const Text('Sem informações no momento'),
-                      Text(
-                        '\nCompetências:',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      const SizedBox(height: 10),
-                      Wrap(
-                          spacing: 10,
-                          runSpacing: 10,
-                          children: (work?.competences ?? [])
-                              .map((e) => Competence(text: e))
-                              .toList()),
-                    ],
-                  ),
+        Align(
+          alignment: isHorizontal
+              ? AlignmentGeometry.centerRight
+              : AlignmentGeometry.bottomCenter,
+          child: Container(
+            width: isHorizontal
+                ? kWorkDescContainer + kWorkDescMargin
+                : double.infinity,
+            height: isHorizontal
+                ? double.infinity
+                : MediaQuery.of(context).size.height - 325 - kWorkDescMargin,
+            color: MyColors.backgroud,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    work?.page ?? const Text('Sem informações no momento'),
+                    Text(
+                      '\nCompetências:',
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: (work?.competences ?? [])
+                            .map((e) => Competence(text: e))
+                            .toList()),
+                  ],
                 ),
               ),
             ),

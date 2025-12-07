@@ -34,23 +34,19 @@ class SimulationSpeed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      left: 12,
-      bottom: 12,
-      child: Container(
-          decoration: BoxDecoration(
-              color: MyColors.backgroud.withOpacity(0.75),
-              borderRadius: BorderRadius.circular(20)),
-          child: MediaQuery.of(context).size.width >= 1200
-              ? _Slider(
-                  currentValue: currentValue,
-                  onChanged: onChanged,
-                )
-              : _Buttons(
-                  currentValue: currentValue,
-                  onChanged: onChanged,
-                )),
-    );
+    return Container(
+        decoration: BoxDecoration(
+            color: MyColors.backgroud.withOpacity(0.75),
+            borderRadius: BorderRadius.circular(20)),
+        child: MediaQuery.of(context).size.width >= 1200
+            ? _Slider(
+                currentValue: currentValue,
+                onChanged: onChanged,
+              )
+            : _Buttons(
+                currentValue: currentValue,
+                onChanged: onChanged,
+              ));
   }
 }
 
@@ -89,10 +85,12 @@ class __ButtonsState extends State<_Buttons> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
               onPressed: () => _buttonPressed(-1),
               icon: const Icon(Icons.fast_rewind_rounded)),
+          const SizedBox(width: 5),
           Container(
               width: 100,
               height: 50,
@@ -115,6 +113,7 @@ class __ButtonsState extends State<_Buttons> {
                   );
                 },
               )),
+          const SizedBox(width: 5),
           IconButton(
               onPressed: () => _buttonPressed(1),
               icon: const Icon(Icons.fast_forward_rounded)),

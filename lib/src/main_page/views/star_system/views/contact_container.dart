@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/my_colors.dart';
+import 'dart:html' as html;
 
 class ContactContainer extends StatelessWidget {
   const ContactContainer({
@@ -13,7 +14,7 @@ class ContactContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(64),
+      padding: const EdgeInsets.all(24),
       color: const Color(0xff0C0C0E),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -31,14 +32,18 @@ class ContactContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                '''Gostou do meu trabalho ou quer saber mais sobre mim?
-Vamos bater um papo! Me chama por onde preferir''',
-                textAlign: isVertical ? TextAlign.center : TextAlign.end,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(fontSize: 20),
+              Flexible(
+                flex: 1,
+                fit: isVertical ? FlexFit.loose : FlexFit.tight,
+                child: Text(
+                  '''Gostou do meu trabalho ou quer saber mais sobre mim?
+              Vamos bater um papo! Me chama por onde preferir''',
+                  textAlign: isVertical ? TextAlign.center : TextAlign.end,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 20),
+                ),
               ),
               if (!isVertical)
                 const SizedBox(
@@ -50,11 +55,11 @@ Vamos bater um papo! Me chama por onde preferir''',
                   ),
                 )
               else
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
               Flexible(
                 flex: 1,
                 fit: isVertical ? FlexFit.loose : FlexFit.tight,
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -62,26 +67,21 @@ Vamos bater um papo! Me chama por onde preferir''',
                     _ContactLink(
                       asset: Assets.email,
                       text: 'hisnaider.dev@gmail.com',
-                      onPressed: () {},
                     ),
                     _ContactLink(
                       asset: Assets.github,
                       text: 'hisnaider ',
-                      onPressed: () {
-                        print('github.com/hisnaider');
-                      },
+                      url: 'github.com/hisnaider',
                     ),
                     _ContactLink(
                       asset: Assets.linkedin,
                       text: 'Hisnaider R. Campello',
-                      onPressed: () {
-                        print('linkedin.com/in/hisnaider-r-campello-3a420698');
-                      },
+                      url: 'linkedin.com/in/hisnaider-r-campello-3a420698',
                     ),
                     _ContactLink(
                       asset: Assets.phone,
                       text: '+55 53 99128-0480',
-                      onPressed: () {},
+                      url: 'wa.me/5553991280480',
                     ),
                   ],
                 ),
@@ -97,11 +97,10 @@ Vamos bater um papo! Me chama por onde preferir''',
 }
 
 class _ContactLink extends StatelessWidget {
-  const _ContactLink(
-      {required this.asset, required this.text, required this.onPressed});
+  const _ContactLink({required this.asset, required this.text, this.url});
   final String asset;
   final String text;
-  final VoidCallback onPressed;
+  final String? url;
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +114,15 @@ class _ContactLink extends StatelessWidget {
           ),
           Flexible(
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                if (url == null) {
+                  final String uri =
+                      'mailto:$text?subject=${Uri.encodeComponent("Contato via portfólio")}&body=${Uri.encodeComponent("Olá, encontrei seu portfólio e gostaria de falar com você sobre projetos, ideias ou oportunidades.")}';
+                  html.window.open(uri, '_self');
+                } else {
+                  html.window.open('http://$url', '_blank');
+                }
+              },
               style: const ButtonStyle(
                   padding: WidgetStatePropertyAll(
                       EdgeInsets.symmetric(horizontal: 10, vertical: 5))),
