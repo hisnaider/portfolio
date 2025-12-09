@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:portfolio/core/commons/entities/works.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/transform_position.dart';
 
 abstract class CelestialBody {
@@ -13,9 +14,11 @@ abstract class CelestialBody {
   final double size;
   final double rotationSpeed;
   final Color color;
+  final AboutInfo aboutInfo;
 
   CelestialBody({
     this.name = '',
+    required this.aboutInfo,
     required this.size,
     required this.color,
     this.rotationSpeed = 0.5,

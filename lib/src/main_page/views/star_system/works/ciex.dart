@@ -20,7 +20,7 @@ class _CiexState extends State<Ciex> {
       children: [
         Text(
           '''O Centro Interinstitucional de Observação e Previsão de Eventos Extremos (CIEX – FURG) é uma iniciativa estratégica voltada à criação e 
-operação do Digital Twin Lagoa dos Patos (DT–LAGOA). O objetivo principal é implementar uma plataforma digital de alta fidelidade capaz de simular, 
+operação do Digital Twin Lagoa dos Patos (DT-LAGOA). O objetivo principal é implementar uma plataforma digital de alta fidelidade capaz de simular, 
 monitorar e prever, em tempo real, fenômenos meteocenográficos, hidrológicos, hidrodinâmicos e de inundação que impactam a região sul do 
 Rio Grande do Sul.
 
@@ -59,7 +59,7 @@ Eventos de capacitação, alinhamento operacional e formação técnica para equ
           style: Theme.of(context).textTheme.titleSmall,
         ),
         Text(
-          '''Desenvolvi integralmente a interface do Video Wall do CIEX – DT LAGOA utilizando Flutter, 
+          '''Desenvolvi integralmente a interface do Video Wall do CIEX - DT LAGOA utilizando Flutter, 
 criando uma aplicação otimizada para exibir dados e conteúdos institucionais em 
 tempo real. Além de implementar os componentes visuais para gráficos, indicadores, 
 e vídeos institucionais, integrei a aplicação às APIs oficiais para garantir 

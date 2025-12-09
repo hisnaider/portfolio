@@ -30,6 +30,7 @@ class PlanetEntity extends CelestialBody {
     required super.rotationSpeed,
     required super.size,
     required super.color,
+    required super.aboutInfo,
   }) : clouds = List.generate(
           numberOfClouds,
           (index) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/celestial_body_glow_config.dart';
+import 'package:portfolio/core/values/my_data.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/continent_entity.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_entity.dart';
@@ -8,6 +9,7 @@ class CelestialBodies {
   const CelestialBodies._();
 
   static PlanetEntity raquel = PlanetEntity(
+      aboutInfo: MyData.raquelMenopausa,
       name: 'Raquel Menopausa',
       orbitRadius: 200,
       initialAngle: 0,
@@ -53,6 +55,7 @@ class CelestialBodies {
       ]);
 
   static PlanetEntity pinguim = PlanetEntity(
+    aboutInfo: MyData.pinguim,
     name: 'Pinguim',
     orbitRadius: 420,
     initialAngle: 25,
@@ -152,6 +155,7 @@ class CelestialBodies {
   );
 
   static PlanetEntity formy = PlanetEntity(
+    aboutInfo: MyData.formy,
     name: 'Formy',
     orbitRadius: 480,
     initialAngle: 57,
@@ -167,6 +171,7 @@ class CelestialBodies {
   );
 
   static PlanetEntity ciex = PlanetEntity(
+      aboutInfo: MyData.ciex,
       name: 'CIEX',
       orbitRadius: 510,
       initialAngle: 350,
@@ -253,6 +258,7 @@ class CelestialBodies {
       ]);
 
   static PlanetEntity perroni = PlanetEntity(
+    aboutInfo: MyData.mySelf,
     name: 'perroni sanvicente & ...',
     orbitRadius: 280,
     initialAngle: 93,
@@ -293,6 +299,7 @@ class CelestialBodies {
   );
 
   static StarEntity hisnaider = StarEntity(
+    aboutInfo: MyData.mySelf,
     name: 'Hisnaider',
     size: 25,
     color: const Color(0xffFCD703),

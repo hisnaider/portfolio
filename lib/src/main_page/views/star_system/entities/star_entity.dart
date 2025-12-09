@@ -12,13 +12,13 @@ class StarEntity extends CelestialBody {
   final List<StarLayer> layers = [];
   final double energyConcentration;
   late final SolarCorona solarCorona;
-  StarEntity({
-    this.energyConcentration = 0.75,
-    required this.glow,
-    required super.name,
-    required super.size,
-    required super.color,
-  }) {
+  StarEntity(
+      {this.energyConcentration = 0.75,
+      required this.glow,
+      required super.name,
+      required super.size,
+      required super.color,
+      required super.aboutInfo}) {
     _init();
   }
 
