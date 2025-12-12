@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/commons/widgets/project_header.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
@@ -39,43 +40,7 @@ class HighlightProjectCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundColor: MyColors.backgroud,
-                      foregroundImage: AssetImage(work.image ?? Assets.myLogo),
-                    ),
-                    const SizedBox(width: 24),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            work.companyName,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          Text(
-                            work.role,
-                            maxLines: 2,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .color,
-                                  fontFamily: Fonts.poppins,
-                                ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                ProjectHeader(companyName: work.companyName, role: work.role),
                 const SizedBox(height: 24),
                 Expanded(
                   child: Text(

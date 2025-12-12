@@ -14,6 +14,7 @@ class RecommendationsPage extends StatelessWidget {
     final bool isDesktop =
         MainPageController.isDesktop(Theme.of(context).platform);
     return SectionContainer(
+        key: ValueKey('Recommendations'),
         titlePadding: const EdgeInsets.symmetric(horizontal: 24),
         title: 'Estrelas proximas',
         subtitle: 'Recomendações',

@@ -9,50 +9,51 @@ class CelestialBodies {
   const CelestialBodies._();
 
   static PlanetEntity raquel = PlanetEntity(
-      aboutInfo: MyData.raquelMenopausa,
-      name: 'Raquel Menopausa',
-      orbitRadius: 200,
-      initialAngle: 0,
-      size: 2,
-      color: const Color(0xff3B574B),
-      atmosphere:
-          const Atmosphere(height: 1.5, density: 1, color: Color(0xffDDE6CD)),
-      rotationSpeed: 2,
-      numberOfClouds: 5,
-      continents: [
-        ContinentEntity(
-          color: const Color(0xffBD5A0A),
-          rawPoints: [
-            const Offset(0, 0.29),
-            const Offset(0.33, 0.13),
-            const Offset(0.6, 0.42),
-            const Offset(0.71, 0.75),
-            const Offset(0.33, 0.84),
-            const Offset(0.16, 0.75),
-            const Offset(0, 0.61),
-            const Offset(0.07, 0.42),
-          ],
-        ),
-        ContinentEntity(
-          color: const Color(0xffBD5A0A),
-          rawPoints: [
-            const Offset(0.8, 0.45),
-            const Offset(0.95, 0.55),
-            const Offset(0.7, 0.5),
-          ],
-        ),
-        ContinentEntity(
-          color: const Color(0xffBD5A0A),
-          rawPoints: [
-            const Offset(1.1, 0.5),
-            const Offset(1.3, 0.5),
-            const Offset(1.44, 0.32),
-            const Offset(1.5, 0.21),
-            const Offset(1.84, 0.5),
-            const Offset(1.48, 0.88),
-          ],
-        ),
-      ]);
+    aboutInfo: MyData.raquelMenopausa,
+    name: 'Raquel Menopausa',
+    orbitRadius: 200,
+    initialAngle: 0,
+    size: 2,
+    color: const Color(0xff3B574B),
+    atmosphere:
+        const Atmosphere(height: 1.5, density: 1, color: Color(0xffDDE6CD)),
+    rotationSpeed: 2,
+    numberOfClouds: 5,
+    continents: [
+      ContinentEntity(
+        color: const Color(0xffBD5A0A),
+        rawPoints: [
+          const Offset(0, 0.29),
+          const Offset(0.33, 0.13),
+          const Offset(0.6, 0.42),
+          const Offset(0.71, 0.75),
+          const Offset(0.33, 0.84),
+          const Offset(0.16, 0.75),
+          const Offset(0, 0.61),
+          const Offset(0.07, 0.42),
+        ],
+      ),
+      ContinentEntity(
+        color: const Color(0xffBD5A0A),
+        rawPoints: [
+          const Offset(0.8, 0.45),
+          const Offset(0.95, 0.55),
+          const Offset(0.7, 0.5),
+        ],
+      ),
+      ContinentEntity(
+        color: const Color(0xffBD5A0A),
+        rawPoints: [
+          const Offset(1.1, 0.5),
+          const Offset(1.3, 0.5),
+          const Offset(1.44, 0.32),
+          const Offset(1.5, 0.21),
+          const Offset(1.84, 0.5),
+          const Offset(1.48, 0.88),
+        ],
+      ),
+    ],
+  );
 
   static PlanetEntity pinguim = PlanetEntity(
     aboutInfo: MyData.pinguim,
@@ -160,12 +161,12 @@ class CelestialBodies {
     orbitRadius: 480,
     initialAngle: 57,
     size: 1.5,
-    color: const Color(0xff6DFFC5),
+    color: const Color(0xff56d1a0),
     rotationSpeed: 0.8,
     atmosphere: const Atmosphere(
       height: 1.8,
       density: 1,
-      color: Color(0xff6DFFC5),
+      color: Color(0xff56d1a0),
     ),
     numberOfClouds: 6,
   );
@@ -257,9 +258,9 @@ class CelestialBodies {
         ),
       ]);
 
-  static PlanetEntity perroni = PlanetEntity(
-    aboutInfo: MyData.mySelf,
-    name: 'perroni sanvicente & ...',
+  static PlanetEntity pss = PlanetEntity(
+    aboutInfo: MyData.pss,
+    name: 'PSS',
     orbitRadius: 280,
     initialAngle: 93,
     size: 1.8,

@@ -85,6 +85,7 @@ class _HighlightPageState extends State<HighlightPage>
       }
       const double spacing = _cardSpacing * 2;
       return SectionContainer(
+          key: const ValueKey('Projects'),
           title: 'Planetas',
           subtitle: 'Projetos e trabalhos',
           maxWidth: _pageMaxWidth,

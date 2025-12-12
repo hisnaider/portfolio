@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:portfolio/core/commons/entities/works.dart';
+import 'package:portfolio/core/commons/entities/about_info.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/transform_position.dart';
 
 abstract class CelestialBody {

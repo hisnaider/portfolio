@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/constants.dart';
 
 class ContinentEntity {
-  final List<Offset> points; // pontos já normalizados
-  double offsetX; // posição inicial no mapa mundo
+  final List<Offset> points;
+  late final double initialOffsetX;
+  double offsetX;
   double width;
   final Color color;
   final double radius;
@@ -30,6 +31,7 @@ class ContinentEntity {
   }
 
   void _init() {
+    initialOffsetX = offsetX;
     path = Path();
     if (points.isEmpty) return;
 

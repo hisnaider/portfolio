@@ -9,11 +9,10 @@ class Assets {
   //Logo
   static const String myLogo = 'assets/images/my_logo.jpg';
   static const String myLogoSvg = 'assets/images/svg/logo.svg';
-  static const String ciex = 'assets/images/ciex.jpg';
   static const String itec = 'assets/images/itec.jpg';
 
   //Raquel
-  static const String raquel = 'assets/images/raquel_logo.png';
+  static const String raquel = 'assets/images/raquel.png';
   static const String raquelPrint1 = 'assets/images/raquel/raquel_print_1.jpg';
   static const String raquelPrint2 = 'assets/images/raquel/raquel_print_2.jpg';
   static const String raquelPrint3 = 'assets/images/raquel/raquel_print_3.jpg';
@@ -28,6 +27,8 @@ class Assets {
   static const String flutter = 'assets/images/svg/flutter_icon.svg';
   static const String cleanArchitecture =
       'assets/images/svg/clean_architecture_icon.svg';
+  static const String ciex = 'assets/images/svg/ciex_logo.svg';
+  static const String bigCiex = 'assets/images/svg/ciex_big_logo.svg';
 
   //System star UI svg
   static const String nameOn =

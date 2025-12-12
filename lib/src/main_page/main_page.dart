@@ -12,13 +12,11 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final ScrollController controller = ScrollController();
   final MainPageState state = MainPageState();
 
   @override
   void dispose() {
     super.dispose();
-    controller.dispose();
     state.dispose();
   }
 
@@ -58,7 +56,7 @@ class _MainPageState extends State<MainPage> {
                             child: child,
                           );
                         },
-                        child: value == TransitionStatus.finished
+                        child: value != TransitionStatus.finished
                             ? const StarSystemPage()
                             : ScrollSection(
                                 enableScroll:

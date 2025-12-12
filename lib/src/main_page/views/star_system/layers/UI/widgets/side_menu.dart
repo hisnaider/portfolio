@@ -12,42 +12,39 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(12, 0),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Material(
-          color: MyColors.backgroud.withOpacity(0.75),
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _UiButton(
-                    iconAssetOn: Assets.orbitOn,
-                    iconAssetOff: Assets.orbitOff,
-                    isActivate: config.showOrbitLine,
-                    onPressed: (bool newValue) => onButtonPressed(
-                        config.copyWith(showOrbitLine: newValue))),
-                const SizedBox(height: 10),
-                _UiButton(
-                    iconAssetOn: Assets.nameOn,
-                    iconAssetOff: Assets.nameOff,
-                    isActivate: config.showPlanetNames,
-                    onPressed: (bool newValue) => onButtonPressed(
-                        config.copyWith(showPlanetNames: newValue))),
-                const SizedBox(height: 10),
-                _UiButton(
-                    iconAssetOn: Assets.selectOn,
-                    iconAssetOff: Assets.selectOff,
-                    isActivate: config.showSelectionIndicator,
-                    onPressed: (bool newValue) => onButtonPressed(
-                        config.copyWith(showSelectionIndicator: newValue))),
-              ],
-            ),
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Material(
+        color: MyColors.backgroud.withOpacity(0.75),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.horizontal(right: Radius.circular(20))),
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _UiButton(
+                  iconAssetOn: Assets.orbitOn,
+                  iconAssetOff: Assets.orbitOff,
+                  isActivate: config.showOrbitLine,
+                  onPressed: (bool newValue) => onButtonPressed(
+                      config.copyWith(showOrbitLine: newValue))),
+              const SizedBox(height: 10),
+              _UiButton(
+                  iconAssetOn: Assets.nameOn,
+                  iconAssetOff: Assets.nameOff,
+                  isActivate: config.showPlanetNames,
+                  onPressed: (bool newValue) => onButtonPressed(
+                      config.copyWith(showPlanetNames: newValue))),
+              const SizedBox(height: 10),
+              _UiButton(
+                  iconAssetOn: Assets.selectOn,
+                  iconAssetOff: Assets.selectOff,
+                  isActivate: config.showSelectionIndicator,
+                  onPressed: (bool newValue) => onButtonPressed(
+                      config.copyWith(showSelectionIndicator: newValue))),
+            ],
           ),
         ),
       ),

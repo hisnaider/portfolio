@@ -100,7 +100,7 @@ class _MobileUiLayerState extends State<MobileUiLayer>
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Material(
-                      color: MyColors.backgroud,
+                      color: Colors.transparent,
                       clipBehavior: Clip.antiAlias,
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadiusGeometry.vertical(

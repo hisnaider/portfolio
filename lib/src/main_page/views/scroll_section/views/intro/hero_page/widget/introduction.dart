@@ -17,61 +17,61 @@ class Introduction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        RichText(
+    return SelectionArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SelectableText.rich(TextSpan(
+              text: "I'm ",
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  color: Colors.white, fontSize: isMobile ? 24 : null),
+              children: const [
+                TextSpan(
+                    text: 'Hisnaider R. Campello',
+                    style: TextStyle(fontWeight: FontWeight.w800))
+              ])),
+          Text(
+            'MOBILE DEVELOPER',
             textAlign: textAlign,
-            text: TextSpan(
-                text: "I'm ",
-                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    color: Colors.white, fontSize: isMobile ? 24 : null),
-                children: const [
-                  TextSpan(
-                      text: 'Hisnaider R. Campello',
-                      style: TextStyle(fontWeight: FontWeight.w800))
-                ])),
-        Text(
-          'MOBILE DEVELOPER',
-          textAlign: textAlign,
-          style: Theme.of(context)
-              .textTheme
-              .headlineLarge!
-              .copyWith(fontSize: isMobile ? 48 : null),
-        ),
-        Opacity(
-          opacity: subtitleOpacity,
-          child: Transform.translate(
-            offset: subtitleOffset,
-            child: Text(
-              'Desenvolvedor mobile apaixonado por performance, UX e código limpo. Especialista em Flutter, com background em design e Figma.',
-              textAlign: textAlign,
-              style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge!
+                .copyWith(fontSize: isMobile ? 48 : null),
+          ),
+          Opacity(
+            opacity: subtitleOpacity,
+            child: Transform.translate(
+              offset: subtitleOffset,
+              child: Text(
+                'Desenvolvedor mobile apaixonado por performance, UX e código limpo. Especialista em Flutter, com background em design e Figma.',
+                textAlign: textAlign,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 24),
-        Opacity(
-          opacity: curriculumFade,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: const Row(
-                  children: [
-                    Icon(Icons.file_download_outlined),
-                    Text(
-                      'Ver currículo',
-                    )
-                  ],
+          const SizedBox(height: 24),
+          Opacity(
+            opacity: curriculumFade,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: const Row(
+                    children: [
+                      Icon(Icons.file_download_outlined),
+                      Text(
+                        'Ver currículo',
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        )
-      ],
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

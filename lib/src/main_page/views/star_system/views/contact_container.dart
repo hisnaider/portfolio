@@ -16,81 +16,101 @@ class ContactContainer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(24),
       color: const Color(0xff0C0C0E),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text('CONTATO', style: Theme.of(context).textTheme.titleLarge),
-          Text(
-            'Seu proximo grande projeto começa aqui. Entre em contato',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          const SizedBox(height: 48),
-          Flex(
-            direction: isVertical ? Axis.vertical : Axis.horizontal,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                flex: 1,
-                fit: isVertical ? FlexFit.loose : FlexFit.tight,
-                child: Text(
-                  '''Gostou do meu trabalho ou quer saber mais sobre mim?
-              Vamos bater um papo! Me chama por onde preferir''',
-                  textAlign: isVertical ? TextAlign.center : TextAlign.end,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 20),
-                ),
+      child: SelectionArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white24,
               ),
-              if (!isVertical)
-                const SizedBox(
-                  height: 200,
-                  child: VerticalDivider(
-                    width: 83,
-                    thickness: 1,
-                    color: Colors.white,
+              height: 10,
+              width: 50,
+            ),
+            SizedBox(height: 10),
+            Text('CONTATO', style: Theme.of(context).textTheme.titleLarge),
+            Flexible(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Text(
+                    'Seu proximo grande projeto começa aqui. Entre em contato',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                )
-              else
-                const SizedBox(height: 24),
-              Flexible(
-                flex: 1,
-                fit: isVertical ? FlexFit.loose : FlexFit.tight,
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _ContactLink(
-                      asset: Assets.email,
-                      text: 'hisnaider.dev@gmail.com',
-                    ),
-                    _ContactLink(
-                      asset: Assets.github,
-                      text: 'hisnaider ',
-                      url: 'github.com/hisnaider',
-                    ),
-                    _ContactLink(
-                      asset: Assets.linkedin,
-                      text: 'Hisnaider R. Campello',
-                      url: 'linkedin.com/in/hisnaider-r-campello-3a420698',
-                    ),
-                    _ContactLink(
-                      asset: Assets.phone,
-                      text: '+55 53 99128-0480',
-                      url: 'wa.me/5553991280480',
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          const SizedBox(height: 48),
-          SvgPicture.asset(Assets.myLogoSvg, height: 25)
-        ],
+                  const SizedBox(height: 48),
+                  Flex(
+                    direction: isVertical ? Axis.vertical : Axis.horizontal,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        fit: isVertical ? FlexFit.loose : FlexFit.tight,
+                        child: Text(
+                          '''Gostou do meu trabalho ou quer saber mais sobre mim?
+Vamos bater um papo! Me chama por onde preferir''',
+                          textAlign:
+                              isVertical ? TextAlign.center : TextAlign.end,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontSize: 20),
+                        ),
+                      ),
+                      if (!isVertical)
+                        const SizedBox(
+                          height: 200,
+                          child: VerticalDivider(
+                            width: 83,
+                            thickness: 1,
+                            color: Colors.white,
+                          ),
+                        )
+                      else
+                        const SizedBox(height: 24),
+                      Flexible(
+                        flex: 1,
+                        fit: isVertical ? FlexFit.loose : FlexFit.tight,
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _ContactLink(
+                              asset: Assets.email,
+                              text: 'hisnaider.dev@gmail.com',
+                            ),
+                            _ContactLink(
+                              asset: Assets.github,
+                              text: 'hisnaider ',
+                              url: 'github.com/hisnaider',
+                            ),
+                            _ContactLink(
+                              asset: Assets.linkedin,
+                              text: 'Hisnaider R. Campello',
+                              url:
+                                  'linkedin.com/in/hisnaider-r-campello-3a420698',
+                            ),
+                            _ContactLink(
+                              asset: Assets.phone,
+                              text: '+55 53 99128-0480',
+                              url: 'wa.me/5553991280480',
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 48),
+                  SvgPicture.asset(Assets.myLogoSvg, height: 25),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/dark_theme.dart';
+import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/main_page.dart';
 
 void main() {
@@ -13,6 +14,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Analytics.instance.init(Theme.of(context).platform);
     return MaterialApp(
         theme: darkTheme, // escuro como tema base
         darkTheme: darkTheme, // redundante, mas mantém compatibilidade

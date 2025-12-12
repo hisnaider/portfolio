@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
+import 'package:portfolio/core/values/constants.dart';
+import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/intro/hero_page/hero_page.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/intro/welcome/welcome.dart';
 
-class IntroSection extends StatelessWidget {
+class IntroSection extends StatefulWidget {
   const IntroSection({
     super.key,
     required this.scrollController,
   });
   final ScrollController scrollController;
 
+  @override
+  State<IntroSection> createState() => _IntroSectionState();
+}
+
+class _IntroSectionState extends State<IntroSection> {
+  bool _heroPageReached = false;
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -22,15 +30,26 @@ class IntroSection extends StatelessWidget {
         screenHeight: screenHeight,
         threshold: threshold,
         child: (context, shrinkOffset, overlapsContent) {
+          if (shrinkOffset >= 1600 && _heroPageReached) {
+            _heroPageReached = false;
+          } else if (shrinkOffset >= 500 &&
+              shrinkOffset < 1600 &&
+              !_heroPageReached) {
+            _heroPageReached = true;
+            Analytics.instance
+                .getSectionReachedEvent(section: kSectionIdHeropage);
+          } else if (shrinkOffset < 500 && _heroPageReached) {
+            _heroPageReached = false;
+          }
           return Container(
             clipBehavior: Clip.hardEdge,
             decoration: const BoxDecoration(),
             height: screenHeight,
             child: AnimatedBuilder(
-              animation: scrollController,
+              animation: widget.scrollController,
               builder: (context, child) {
                 final double progress =
-                    (scrollController.offset / threshold).clamp(0, 1);
+                    (widget.scrollController.offset / threshold).clamp(0, 1);
                 final double shrinkProgress = shrinkOffset
                     .normalize(screenHeight + threshold - 250, min: threshold);
                 return Stack(
@@ -42,7 +61,7 @@ class IntroSection extends StatelessWidget {
                         end: 0.5,
                       ),
                     if (progress >= 0.4 &&
-                        shrinkOffset < screenHeight + threshold)
+                        shrinkOffset < screenHeight + threshold - 200)
                       Opacity(
                         opacity: 1 - shrinkProgress,
                         child: HeroPage(

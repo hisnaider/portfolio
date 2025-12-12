@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/planets.dart';
+import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_entity.dart';
@@ -29,6 +30,7 @@ class _TransitionNavigationSectionState
   late final Animation<double> glowDown;
   late final Animation<double> glowOpacity;
   late final Animation<double> firstTextUp;
+  bool _isVisible = false;
 
   @override
   void initState() {
@@ -66,6 +68,7 @@ class _TransitionNavigationSectionState
     if (controller.status == AnimationStatus.completed) {
       MainPageController.of(context).state.transitionStatus.value =
           TransitionStatus.finished;
+      Analytics.instance.getTransitionFinishedEvent();
     }
   }
 
@@ -84,7 +87,14 @@ class _TransitionNavigationSectionState
         child: VisibilityDetector(
           key: const ValueKey('TransitionNavigationSection'),
           onVisibilityChanged: (info) {
-            if (info.visibleBounds.bottom == info.size.height) {
+            if (info.visibleFraction >= 0.3 && !_isVisible) {
+              _isVisible = true;
+              Analytics.instance.getSectionReachedEvent(
+                section: 'Transition',
+              );
+            } else if (info.visibleFraction < 0.3 && _isVisible) {
+              _isVisible = false;
+            } else if (info.visibleFraction == 1) {
               MainPageController.of(context).state.transitionStatus.value =
                   TransitionStatus.running;
               controller.forward();
@@ -110,7 +120,7 @@ class _TransitionNavigationSectionState
                           CelestialBodies.hisnaider,
                           CelestialBodies.raquel,
                           CelestialBodies.formy,
-                          CelestialBodies.perroni,
+                          CelestialBodies.pss,
                           CelestialBodies.pinguim,
                           CelestialBodies.ciex,
                         ]),

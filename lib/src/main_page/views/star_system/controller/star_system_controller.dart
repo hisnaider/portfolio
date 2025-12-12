@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +66,23 @@ class StarSystemController {
         config.value = config.value
             .copyWith(selectedBody: config.value.hoveredBody, showUi: false);
         camera.setAnimation(100, 1);
+        Dio().post('https://cloud.umami.is/api/send',
+            data: {
+              "type": "event",
+              "payload": {
+                "website": "0657c781-d8b1-48bd-b114-d64d37111291",
+                "name": "Selecionou planeta",
+                "url": "/system_star",
+                "hostname": "localhost",
+                'data': {
+                  "planet": "${config.value.selectedBody?.name}",
+                  "entry": "click"
+                }
+              }
+            },
+            options: Options(
+              headers: {'Content-Type': 'application/json'},
+            ));
       }
     }
   }
@@ -86,6 +104,20 @@ class StarSystemController {
       if (config.value.hoveredBody != null) {
         config.value = config.value
             .copyWith(selectedBody: config.value.hoveredBody, showUi: false);
+        Dio().post('https://cloud.umami.is/api/send',
+            data: {
+              "type": "event",
+              "payload": {
+                "website": "0657c781-d8b1-48bd-b114-d64d37111291",
+                "name": "algum-evento",
+                "url": "/system_star/${config.value.selectedBody?.name}",
+                "hostname": "localhosttt",
+                "browser": "Chrome",
+              }
+            },
+            options: Options(
+              headers: {'Content-Type': 'application/json'},
+            ));
         camera.setAnimation(100, 1);
       }
     }

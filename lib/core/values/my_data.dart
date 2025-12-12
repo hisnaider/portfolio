@@ -1,14 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:portfolio/core/commons/entities/works.dart';
+import 'package:portfolio/core/commons/entities/about_info.dart';
 import 'package:portfolio/core/commons/enum/skills_enum.dart';
 import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/core/values/my_colors.dart';
-import 'package:portfolio/src/main_page/views/star_system/works/ciex.dart';
-import 'package:portfolio/src/main_page/views/star_system/works/formy.dart';
-import 'package:portfolio/src/main_page/views/star_system/works/pinguim.dart';
-import 'package:portfolio/src/main_page/views/star_system/works/raquel.dart';
 
 class MyData {
   const MyData._();
@@ -32,36 +27,43 @@ class MyData {
     SkillsEnum.technicalEmpathy,
   ];
 
-  static AboutInfo mySelf = const AboutInfo(
-    companyName: 'Hisnaider Ribeiro Campello',
-    companyImage: Assets.photo,
-    projectName: 'HC.Dev',
+  static AboutMeInfo mySelf = const AboutMeInfo(
+    name: 'Hisnaider Ribeiro Campello',
+    photo: Assets.photo,
+    banner: Assets.myLogo,
     role: 'Desenvolvedor mobile',
-    color: MyColors.backgroudDarker,
-    competences: [
-      'Flutter',
-      'Dart',
-      'Clean Arch',
-      'Bloc',
-      'GetX',
-      'Consumo de API',
-      'Liderança',
-      'Proatividade',
-      'Aprendizado contínuo',
-      'Empatia técnica'
+    color: Color(0xff1E1E1E),
+    desc:
+        '''Sou um desenvolvedor mobile de 27 anos, nascido na cidade de Rio Grande, no Rio Grande do Sul (sim, mesma vibe no nome, mas é cidade e estado diferentes). Sempre gostei de tecnologia. Quando criança, meu sonho era criar jogos; desmontava coisas, imaginava mundos e vivia inventando histórias. Mas foi no curso de Sistemas de Informação — no qual me formei bacharel — que descobri minha verdadeira vocação: o desenvolvimento front-end.
+
+Comecei com React Native em 2022, mas no ano seguinte migrei para Flutter e nunca mais larguei. Programação deixou de ser apenas profissão: virou hobby, válvula de escape e parte da minha identidade. Trabalhar com algo que eu realmente gosto é um privilégio que valorizo muito.''',
+    hobbies: [
+      'Jogos eletrônicos (Steam e Nintendo Switch)',
+      'Programar — principalmente em Flutter',
+      'Música (bem eclético, mas costumo ouvir mais eletrônica e pop)',
+      'Futebol (Gremista desde piá)',
+      'Academia (vou pra ficar gostoso; a saúde é só um bônus kkkkk)',
     ],
-    desc: '',
-    mainResponsibilities: [],
-    offers: [],
-    myPerformance: '',
-    images: [],
-    links: [],
+    personalPurpose:
+        'Trabalho e estudo todos os dias para deixar meus pais orgulhosos e para ter a oportunidade de ajudar outras pessoas. Seja desenvolvendo aplicações bem feitas, compartilhando conhecimento sobre programação ou — no futuro, quando eu estiver rico — apoiando quem mais precisa através de doações e projetos sociais.',
+    myValues: [
+      'Valores Pessoais: Família, Amigos, Independência, Humildade.',
+      'Valores de Crescimento: Aprendizado Contínuo, Honestidade, Responsabilidade',
+    ],
+    whyASolarSystem:
+        '''Meu interesse por astronomia começou na adolescência. Eu passava horas lendo sobre planetas, assistindo vídeos sobre o Sistema Solar e imaginando como poderiam ser os mundos além dele. Com o tempo, deixei esse hobby de lado para focar em outras coisas, mas a curiosidade sempre ficou ali, quieta, esperando.
+
+Quando comecei o design do meu portfólio, eu sentia que faltava algo — algo que tivesse a minha identidade. Depois de muito quebrar a cabeça, me veio o estalo:
+“E se o meu portfólio fosse um sistema solar, onde eu sou a estrela e os planetas representam meus projetos e trabalhos?”
+
+A partir dessa ideia, tudo se encaixou. O design fluiu naturalmente. Eu não fazia ideia de como construir um sistema solar interativo nem como representar os planetas, mas mergulhei no estudo e fui aprendendo até conseguir transformar a ideia em realidade.''',
   );
 
-  static AboutInfo raquelMenopausa = const AboutInfo(
-    companyName: 'iTec/FURG-Embrapii',
-    companyImage: Assets.itec,
+  static AboutWorkInfo raquelMenopausa = const AboutWorkInfo(
+    name: 'iTec/FURG-Embrapii',
+    photo: Assets.itec,
     projectName: 'Raquel Menopausa',
+    banner: Assets.raquel,
     role: 'Pesquisador Júnior',
     competences: [
       'Flutter',
@@ -74,7 +76,7 @@ class MyData {
       'Aprendizado contínuo',
       'Empatia técnica'
     ],
-    color: Colors.red,
+    color: Color(0xffBD5A0A),
     desc:
         'Raquel Menopausa é um aplicativo gratuito que ajuda mulheres a navegar pelo climatério com mais informação, acolhimento e autonomia. Mais do que um app, é um projeto que coloca tecnologia a serviço da saúde e do bem-estar feminino, promovendo uma jornada de autoconhecimento e conexão.',
     offers: [
@@ -104,12 +106,13 @@ class MyData {
     ],
   );
 
-  static AboutInfo pinguim = const AboutInfo(
-    companyName: 'iTec/FURG-Embrapii',
-    companyImage: Assets.itec,
+  static AboutWorkInfo pinguim = const AboutWorkInfo(
+    name: 'iTec/FURG-Embrapii',
+    photo: Assets.itec,
     projectName: 'Pinguim',
+    banner: Assets.pinguim,
     role: 'Pesquisador Júnior',
-    color: Colors.red,
+    color: Color(0xffDD1681),
     competences: [
       'Flutter',
       'Dart',
@@ -136,12 +139,13 @@ Além do desenvolvimento técnico, contribuí ativamente para o crescimento e a 
     images: [],
     links: [],
   );
-  static AboutInfo formy = const AboutInfo(
-    companyName: 'Projeto pessoal',
-    companyImage: '',
+
+  static AboutWorkInfo formy = const AboutWorkInfo(
+    name: 'Projeto pessoal',
     projectName: 'Formy',
+    banner: Assets.formy,
     role: 'Desenvolvedor Flutter Open Source',
-    color: Colors.red,
+    color: Color(0xff56d1a0),
     competences: ['Flutter', 'Dart', 'Proatividade', 'Aprendizado contínuo'],
     desc: '''
 Formy é um pacote open source para Flutter que desenvolvi com o objetivo de simplificar radicalmente o gerenciamento de formulários, mantendo flexibilidade e controle total sobre o estado e validação dos campos.
@@ -170,12 +174,13 @@ O Formy representa meu compromisso em construir ferramentas que realmente facili
     ],
   );
 
-  static AboutInfo ciex = const AboutInfo(
-    companyName: 'CIEX',
-    companyImage: Assets.ciex,
+  static AboutWorkInfo ciex = const AboutWorkInfo(
+    name: 'CIEX',
+    photo: Assets.ciex,
     projectName: 'CIEX',
+    banner: Assets.bigCiex,
     role: 'Pesquisador Front-end',
-    color: Colors.red,
+    color: Color(0xffD5D9CA),
     competences: [
       'Flutter',
       'Dart',
@@ -216,5 +221,34 @@ O projeto integra instituições, sensores ambientais, redes de monitoramento, s
           link:
               'https://gauchazh.clicrbs.com.br/zona-sul/ciencia/noticia/2025/11/com-foco-no-acompanhamento-do-nivel-da-lagoa-dos-patos-centro-de-monitoramento-de-eventos-extremos-e-inaugurado-em-rio-grande-cmhl3smz000x80154tm6vs0pi.html')
     ],
+  );
+
+  static AboutWorkInfo pss = const AboutWorkInfo(
+    name: 'perroni sanvicente & schirmer advogados',
+    projectName: 'PSS',
+    role: 'Freelancer',
+    color: Color(0xff595C65),
+    competences: [
+      'Power Automate',
+      'SharePoint',
+      'Proatividade',
+      'Aprendizado contínuo'
+    ],
+    desc:
+        'A empresa possuía diversas listas no SharePoint relacionadas a demandas jurídicas e informações de clientes. Fui contratado para automatizar processos usando Power Automate, incluindo criação, edição, conclusão e cancelamento de demandas, além de comunicação por e-mail e geração de relatórios. Também desenvolvi fluxos auxiliares para manter listas atualizadas e padronizadas.',
+    mainResponsibilities: [
+      'Criar fluxos no Power Automate para todo o ciclo de vida das demandas.',
+      'Automatizar envio de e-mails e relatórios.',
+      'Construir fluxos auxiliares para atualizar e popular listas.',
+      'Padronizar campos, datas e categorias no SharePoint.',
+      'Integrar dados entre diferentes listas.',
+      'Testar e monitorar fluxos para garantir funcionamento estável.',
+      'Documentar processos e regras de negócio.',
+    ],
+    offers: [],
+    myPerformance:
+        'Os fluxos entregues funcionaram de forma consistente e sem erros. O envio de e-mails mostrou alta velocidade e precisão. As automações reduziram retrabalho, garantiram padronização dos dados e tornaram o processo mais ágil e confiável para o time jurídico.',
+    images: [],
+    links: [],
   );
 }

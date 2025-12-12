@@ -11,7 +11,7 @@ import 'package:portfolio/src/main_page/views/star_system/layers/orbit_texts_pai
 import 'package:portfolio/src/main_page/views/star_system/layers/selection_indicator_painter.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/star_system_painter.dart';
 import 'package:portfolio/src/main_page/views/star_system/views/welcome_modal.dart';
-import 'package:portfolio/src/main_page/views/star_system/widgets/work_desc.dart';
+import 'package:portfolio/src/main_page/views/star_system/views/work_desc.dart';
 
 class StarSystemPage extends StatefulWidget {
   const StarSystemPage({super.key});
@@ -36,7 +36,7 @@ class _StarSystemPageState extends State<StarSystemPage>
       planets: [
         CelestialBodies.raquel,
         CelestialBodies.formy,
-        CelestialBodies.perroni,
+        CelestialBodies.pss,
         CelestialBodies.pinguim,
         CelestialBodies.ciex,
       ],

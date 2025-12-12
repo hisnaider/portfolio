@@ -10,6 +10,7 @@ class AboutMePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionContainer(
+      key: const ValueKey('About me'),
       title: 'Estrela',
       subtitle: 'Sobre mim',
       padding: const EdgeInsets.fromLTRB(24, 90, 24, 0),
@@ -19,7 +20,7 @@ class AboutMePage extends StatelessWidget {
         children: [
           Text(
             '''Sou Hisnaider Campello, desenvolvedor mobile focado em Flutter, com background em design e Figma. Formado em Sistemas de Informação e pós-graduando em Desenvolvimento Mobile, busco unir lógica, estética e experiência do usuário em interfaces rápidas e funcionais.
-                    
+
         Valorizo código limpo, testável e componentes reutilizáveis, e gosto de trabalhar em equipe compartilhando aprendizados. Atualmente exploro Python e aprimoro minha capacidade de criar sistemas escaláveis e bem estruturados.''',
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
