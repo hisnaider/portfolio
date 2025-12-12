@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_system_config.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/UI/widgets/side_menu.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/UI/widgets/simulation_speed.dart';
@@ -28,8 +29,11 @@ class UiLayer extends StatelessWidget {
                   left: 0,
                   child: SimulationSpeed(
                     currentValue: value.simulationSpeed,
-                    onChanged: (value) => config.value =
-                        config.value.copyWith(simulationSpeed: value),
+                    onChanged: (value) {
+                      config.value =
+                          config.value.copyWith(simulationSpeed: value);
+                      Analytics.instance.getSimulationChangeEvent(speed: value);
+                    },
                   ),
                 ),
                 Align(
@@ -49,6 +53,7 @@ class UiLayer extends StatelessWidget {
                               const BoxConstraints(maxWidth: double.infinity),
                           isScrollControlled: true,
                           builder: (context) {
+                            Analytics.instance.getOpenContactEvent();
                             return const ContactContainer(
                               isVertical: false,
                             );

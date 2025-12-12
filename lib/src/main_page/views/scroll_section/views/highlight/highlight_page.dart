@@ -158,7 +158,6 @@ List<WorkCardEntity> _works = [
   WorkCardEntity(
     companyName: 'CIEX',
     planet: CelestialBodies.ciex,
-    image: Assets.ciex,
     role: 'Pesquisador Front-end',
     text:
         'O projeto CIEX tem como objetivo criar um gêmeo digital da Lagoa dos Patos para integrar dados em tempo real e permitir o monitoramento e a previsão de eventos climáticos extremos no sul do Rio Grande do Sul. No projeto, sou responsável pelo desenvolvimento da interface do video wall, que exibe gráficos, vídeos, logos e informações dinâmicas de forma visual e interativa, utilizando Flutter com foco em desempenho, fluidez e design moderno.',
@@ -173,7 +172,6 @@ List<WorkCardEntity> _works = [
   WorkCardEntity(
     companyName: 'iTec/FURG-Embrapii - Projeto Plena',
     planet: CelestialBodies.raquel,
-    image: Assets.itec,
     role: 'Pesquisador Júnior',
     text:
         'Aplicativo gratuito que apoia mulheres no climatério com informação, acolhimento e autonomia. Atuei como desenvolvedor líder no app Raquel Menopausa, responsável pela definição da Clean Architecture, gestão de estado com GetX, modularização e injeção de dependências. Desenvolvi componentes críticos e otimizei a performance do app, além de orientar a equipe em boas práticas e arquitetura limpa.',
@@ -181,7 +179,6 @@ List<WorkCardEntity> _works = [
   WorkCardEntity(
     companyName: 'iTec/FURG-Embrapii - Projeto Pinguim',
     planet: CelestialBodies.pinguim,
-    image: Assets.itec,
     role: 'Pesquisador Júnior',
     text:
         'Aplicativo que começou como uma rede social de viagens e evoluiu para uma plataforma B2B voltada à gestão e conexão de experiências de viagem. Atuei como desenvolvedor experiente, responsável pela definição e implementação da Clean Architecture, padronização da base de código e criação de componentes reativos com Bloc. Também liderei decisões técnicas e mentorias sobre boas práticas, contribuindo para a maturidade e produtividade da equipe.',

@@ -6,14 +6,14 @@ abstract class AboutInfo {
   final String? photo;
   final String? banner;
   final String role;
-  final Color color;
+  final Color? color;
   final String desc;
   const AboutInfo({
     required this.name,
     this.photo,
     this.banner,
     required this.role,
-    required this.color,
+    this.color,
     required this.desc,
   });
 }
@@ -32,7 +32,7 @@ class AboutWorkInfo extends AboutInfo {
     required this.projectName,
     super.banner,
     required super.role,
-    required super.color,
+    super.color,
     required this.competences,
     required super.desc,
     required this.mainResponsibilities,
@@ -53,7 +53,7 @@ class AboutMeInfo extends AboutInfo {
     super.photo,
     super.banner,
     required super.role,
-    required super.color,
+    super.color,
     required super.desc,
     required this.hobbies,
     required this.personalPurpose,

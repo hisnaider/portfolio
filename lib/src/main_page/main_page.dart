@@ -34,14 +34,7 @@ class _MainPageState extends State<MainPage> {
           state: state,
           child: Stack(
             children: [
-              ValueListenableBuilder(
-                  valueListenable: state.hideBackground,
-                  builder: (context, value, child) {
-                    return Visibility(
-                        visible: !value,
-                        child: Container(
-                            color: const Color.fromARGB(150, 3, 95, 95)));
-                  }),
+              Container(color: const Color.fromARGB(150, 3, 95, 95)),
               Container(
                 color: const Color(0xaa030F0F),
               ),
@@ -56,7 +49,7 @@ class _MainPageState extends State<MainPage> {
                             child: child,
                           );
                         },
-                        child: value != TransitionStatus.finished
+                        child: value == TransitionStatus.finished
                             ? const StarSystemPage()
                             : ScrollSection(
                                 enableScroll:

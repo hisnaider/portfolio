@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/my_colors.dart';
+import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_system_config.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/UI/widgets/simulation_speed.dart';
 import 'package:portfolio/src/main_page/views/star_system/views/contact_container.dart';
@@ -178,6 +179,29 @@ class _MenuContainer extends StatelessWidget {
     );
   }
 
+  void _toogleOrbit(bool value) {
+    changeConfig(showOrbitLine: value);
+    Analytics.instance
+        .getTogglesEvent(action: value ? 'orbit_shown' : 'orbit_hidden');
+  }
+
+  void _tooglePlanetName(bool value) {
+    changeConfig(showPlanetNames: value);
+    Analytics.instance.getTogglesEvent(
+        action: value ? 'planet_name_shown' : 'planet_name_hidden');
+  }
+
+  void _toogleSelectionIndicator(bool value) {
+    changeConfig(showOrbitLine: value);
+    Analytics.instance.getTogglesEvent(
+        action: value ? 'indicator_shown' : 'indicator_hidden');
+  }
+
+  void _changeSimulationSpeed(double value) {
+    changeConfig(simulationSpeed: value);
+    Analytics.instance.getSimulationChangeEvent(speed: value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Offstage(
@@ -199,8 +223,7 @@ class _MenuContainer extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _itemMenuButton(
-                        onPressed: (value) =>
-                            changeConfig(showOrbitLine: value),
+                        onPressed: _toogleOrbit,
                         hide: value.showOrbitLine,
                         text: 'orbitas',
                         iconAssetOff: Assets.orbitOff,
@@ -208,8 +231,7 @@ class _MenuContainer extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       _itemMenuButton(
-                        onPressed: (value) =>
-                            changeConfig(showPlanetNames: value),
+                        onPressed: _tooglePlanetName,
                         hide: value.showPlanetNames,
                         text: 'nome dos planetas',
                         iconAssetOff: Assets.nameOff,
@@ -217,8 +239,7 @@ class _MenuContainer extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       _itemMenuButton(
-                        onPressed: (value) =>
-                            changeConfig(showSelectionIndicator: value),
+                        onPressed: _toogleSelectionIndicator,
                         hide: value.showSelectionIndicator,
                         text: 'indicador',
                         iconAssetOff: Assets.selectOff,
@@ -227,8 +248,7 @@ class _MenuContainer extends StatelessWidget {
                       const SizedBox(height: 10),
                       SimulationSpeed(
                         currentValue: value.simulationSpeed,
-                        onChanged: (value) =>
-                            changeConfig(simulationSpeed: value),
+                        onChanged: _changeSimulationSpeed,
                       ),
                     ],
                   ),

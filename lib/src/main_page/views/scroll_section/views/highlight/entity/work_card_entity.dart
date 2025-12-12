@@ -5,13 +5,11 @@ class WorkCardEntity {
   final String companyName;
   final String text;
   final String role;
-  final String? image;
   final PlanetEntity planet;
   WorkCardEntity({
     required this.companyName,
     required this.text,
     required this.role,
-    this.image,
     required this.planet,
   });
 }

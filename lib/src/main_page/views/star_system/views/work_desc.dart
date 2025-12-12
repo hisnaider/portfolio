@@ -2,12 +2,14 @@ import 'dart:html' as html;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/commons/entities/about_info.dart';
 import 'package:portfolio/core/commons/widgets/competence.dart';
 import 'package:portfolio/core/commons/widgets/project_header.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/my_colors.dart';
+import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/continent_entity.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
 
@@ -47,7 +49,7 @@ class WorkDesc extends StatelessWidget {
                     width: double.infinity,
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
-                      color: celestialBody.color,
+                      color: aboutInfo.color ?? celestialBody.color,
                     ),
                     child: AspectRatio(
                       aspectRatio: aspectRatio,
@@ -60,20 +62,24 @@ class WorkDesc extends StatelessWidget {
                                   continents: (celestialBody as PlanetEntity)
                                       .continents),
                             ),
-                          // Center(
-                          //   child: (aboutInfo.banner ?? '').endsWith('.svg')
-                          //       ? SvgPicture.asset(
-                          //           aboutInfo.banner!,
-                          //           width: bannerWidth,
-                          //           height: 170,
-                          //           fit: BoxFit.scaleDown,
-                          //         )
-                          //       : Image.asset(
-                          //           aboutInfo.banner ?? Assets.myLogo,
-                          //           width: 400,
-                          //           height: 170,
-                          //         ),
-                          // ),
+                          if (aboutInfo.banner != null)
+                            Padding(
+                              padding: const EdgeInsets.all(40),
+                              child: Center(
+                                child: aboutInfo.banner!.endsWith('.svg')
+                                    ? SvgPicture.asset(
+                                        aboutInfo.banner!,
+                                        width: 400,
+                                        height: 170,
+                                        fit: BoxFit.scaleDown,
+                                      )
+                                    : Image.asset(
+                                        aboutInfo.banner!,
+                                        width: 400,
+                                        height: 170,
+                                      ),
+                              ),
+                            ),
                           Align(
                             alignment: AlignmentGeometry.bottomLeft,
                             child: Container(
@@ -113,7 +119,10 @@ class WorkDesc extends StatelessWidget {
                                 title:
                                     'Principais responsabilidades e entregas:'),
                             if (aboutInfo.links.isNotEmpty)
-                              _LinkList(linkList: aboutInfo.links),
+                              _LinkList(
+                                linkList: aboutInfo.links,
+                                celestialBodyName: celestialBody.name,
+                              ),
                             Text(
                               '\nCompetências:',
                               style: Theme.of(context).textTheme.titleSmall,
@@ -247,8 +256,9 @@ class _BulletList extends StatelessWidget {
 }
 
 class _LinkList extends StatelessWidget {
-  const _LinkList({required this.linkList});
+  const _LinkList({required this.linkList, required this.celestialBodyName});
   final List<LinkText> linkList;
+  final String celestialBodyName;
 
   @override
   Widget build(BuildContext context) {
@@ -286,6 +296,10 @@ class _LinkList extends StatelessWidget {
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     html.window.open(linkText.link, '_blank');
+                                    Analytics.instance.getPlanetEvent(
+                                        action: 'celestial_body_link_opened',
+                                        planet: celestialBodyName,
+                                        link: linkText.label);
                                   },
                                 style: const TextStyle(
                                   color: MyColors.primary,

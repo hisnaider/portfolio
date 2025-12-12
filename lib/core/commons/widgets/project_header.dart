@@ -20,23 +20,36 @@ class ProjectHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSvg = (companyImage ?? '').endsWith('svg');
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisSize: MainAxisSize.min,
+    return Row(
       children: [
-        Text(
-          companyName,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
-        Text(
-          role,
-          maxLines: 2,
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: Theme.of(context).textTheme.bodyLarge!.color,
-                fontFamily: Fonts.poppins,
+        if (companyImage != null)
+          CircleAvatar(
+            radius: 40,
+            backgroundColor: MyColors.backgroud,
+            foregroundImage: AssetImage(companyImage!),
+          ),
+        SizedBox(width: 24),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                companyName,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
+              Text(
+                role,
+                maxLines: 2,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).textTheme.bodyLarge!.color,
+                      fontFamily: Fonts.poppins,
+                    ),
+              ),
+            ],
+          ),
         ),
       ],
     );

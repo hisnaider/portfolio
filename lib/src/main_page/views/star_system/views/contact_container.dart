@@ -4,6 +4,8 @@ import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'dart:html' as html;
 
+import 'package:portfolio/src/main_page/controller/analytics.dart';
+
 class ContactContainer extends StatelessWidget {
   const ContactContainer({
     super.key,
@@ -142,6 +144,7 @@ class _ContactLink extends StatelessWidget {
                 } else {
                   html.window.open('http://$url', '_blank');
                 }
+                Analytics.instance.getContactLinkClickedEvent(link: text);
               },
               style: const ButtonStyle(
                   padding: WidgetStatePropertyAll(

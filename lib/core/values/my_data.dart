@@ -30,7 +30,7 @@ class MyData {
   static AboutMeInfo mySelf = const AboutMeInfo(
     name: 'Hisnaider Ribeiro Campello',
     photo: Assets.photo,
-    banner: Assets.myLogo,
+    banner: Assets.myLogoSvg,
     role: 'Desenvolvedor mobile',
     color: Color(0xff1E1E1E),
     desc:
@@ -61,9 +61,7 @@ A partir dessa ideia, tudo se encaixou. O design fluiu naturalmente. Eu não faz
 
   static AboutWorkInfo raquelMenopausa = const AboutWorkInfo(
     name: 'iTec/FURG-Embrapii',
-    photo: Assets.itec,
     projectName: 'Raquel Menopausa',
-    banner: Assets.raquel,
     role: 'Pesquisador Júnior',
     competences: [
       'Flutter',
@@ -76,7 +74,6 @@ A partir dessa ideia, tudo se encaixou. O design fluiu naturalmente. Eu não faz
       'Aprendizado contínuo',
       'Empatia técnica'
     ],
-    color: Color(0xffBD5A0A),
     desc:
         'Raquel Menopausa é um aplicativo gratuito que ajuda mulheres a navegar pelo climatério com mais informação, acolhimento e autonomia. Mais do que um app, é um projeto que coloca tecnologia a serviço da saúde e do bem-estar feminino, promovendo uma jornada de autoconhecimento e conexão.',
     offers: [
@@ -108,11 +105,8 @@ A partir dessa ideia, tudo se encaixou. O design fluiu naturalmente. Eu não faz
 
   static AboutWorkInfo pinguim = const AboutWorkInfo(
     name: 'iTec/FURG-Embrapii',
-    photo: Assets.itec,
     projectName: 'Pinguim',
-    banner: Assets.pinguim,
     role: 'Pesquisador Júnior',
-    color: Color(0xffDD1681),
     competences: [
       'Flutter',
       'Dart',
@@ -143,9 +137,9 @@ Além do desenvolvimento técnico, contribuí ativamente para o crescimento e a 
   static AboutWorkInfo formy = const AboutWorkInfo(
     name: 'Projeto pessoal',
     projectName: 'Formy',
+    photo: Assets.myLogo,
     banner: Assets.formy,
     role: 'Desenvolvedor Flutter Open Source',
-    color: Color(0xff56d1a0),
     competences: ['Flutter', 'Dart', 'Proatividade', 'Aprendizado contínuo'],
     desc: '''
 Formy é um pacote open source para Flutter que desenvolvi com o objetivo de simplificar radicalmente o gerenciamento de formulários, mantendo flexibilidade e controle total sobre o estado e validação dos campos.
@@ -175,12 +169,9 @@ O Formy representa meu compromisso em construir ferramentas que realmente facili
   );
 
   static AboutWorkInfo ciex = const AboutWorkInfo(
-    name: 'CIEX',
-    photo: Assets.ciex,
+    name: 'FURG',
     projectName: 'CIEX',
-    banner: Assets.bigCiex,
     role: 'Pesquisador Front-end',
-    color: Color(0xffD5D9CA),
     competences: [
       'Flutter',
       'Dart',
@@ -227,7 +218,6 @@ O projeto integra instituições, sensores ambientais, redes de monitoramento, s
     name: 'perroni sanvicente & schirmer advogados',
     projectName: 'PSS',
     role: 'Freelancer',
-    color: Color(0xff595C65),
     competences: [
       'Power Automate',
       'SharePoint',

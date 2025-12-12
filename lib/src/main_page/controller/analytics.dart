@@ -90,7 +90,7 @@ class Analytics {
     _request(
         eventName: 'simulation_speed_change',
         url: _systemStar,
-        property: {"value": speed.toString()});
+        property: {"value": '${speed}x'});
   }
 
   void getTogglesEvent({required String action}) {

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
@@ -7,12 +8,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/values/constants.dart';
+import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/camera.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_entity.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_system_config.dart';
 
 class StarSystemController {
+  Timer? _moveDebounce;
+  Timer? _zoomDebounce;
+  Timer? _tapDebounce;
+
   final ValueNotifier<StarSystemConfig> config =
       ValueNotifier(StarSystemConfig());
 
@@ -33,7 +39,10 @@ class StarSystemController {
             planet.init(star, index);
             return planet;
           }),
-        ];
+        ] {
+    _moveDebounce?.cancel();
+    _zoomDebounce?.cancel();
+  }
 
   void update(double deltaTime, Size screenSize) {
     camera.update(screenSize, deltaTime);
@@ -54,36 +63,17 @@ class StarSystemController {
     } else if (event is PointerScrollEvent) {
       if (config.value.selectedBody == null) {
         final double delta = 1 - (event.scrollDelta.dy * 0.0025);
+        print(delta);
         camera.zoomUpdate(delta);
       }
     } else if (event is PointerMoveEvent) {
       if (config.value.selectedBody == null) {
         camera.move(event.delta);
+        _getMoveEvent();
       }
     } else if (event is PointerDownEvent) {
-      if (config.value.selectedBody == null &&
-          config.value.hoveredBody != null) {
-        config.value = config.value
-            .copyWith(selectedBody: config.value.hoveredBody, showUi: false);
-        camera.setAnimation(100, 1);
-        Dio().post('https://cloud.umami.is/api/send',
-            data: {
-              "type": "event",
-              "payload": {
-                "website": "0657c781-d8b1-48bd-b114-d64d37111291",
-                "name": "Selecionou planeta",
-                "url": "/system_star",
-                "hostname": "localhost",
-                'data': {
-                  "planet": "${config.value.selectedBody?.name}",
-                  "entry": "click"
-                }
-              }
-            },
-            options: Options(
-              headers: {'Content-Type': 'application/json'},
-            ));
-      }
+      selectCelestialBody(config.value.hoveredBody);
+      _getTapEvent();
     }
   }
 
@@ -97,29 +87,25 @@ class StarSystemController {
       final double multiplier = 1.0 + deltaScale;
       camera.zoomUpdate(multiplier);
       _lastScale = scale;
+      _getZoomEvent(scale);
     } else if (event is ScaleEndDetails) {
       _lastScale = 1.0;
     } else if (event is TapDownDetails) {
       _isMouseHovered(event.globalPosition);
-      if (config.value.hoveredBody != null) {
-        config.value = config.value
-            .copyWith(selectedBody: config.value.hoveredBody, showUi: false);
-        Dio().post('https://cloud.umami.is/api/send',
-            data: {
-              "type": "event",
-              "payload": {
-                "website": "0657c781-d8b1-48bd-b114-d64d37111291",
-                "name": "algum-evento",
-                "url": "/system_star/${config.value.selectedBody?.name}",
-                "hostname": "localhosttt",
-                "browser": "Chrome",
-              }
-            },
-            options: Options(
-              headers: {'Content-Type': 'application/json'},
-            ));
-        camera.setAnimation(100, 1);
-      }
+      selectCelestialBody(config.value.hoveredBody);
+
+      _getTapEvent();
+    }
+  }
+
+  void selectCelestialBody(CelestialBody? hoveredBody) {
+    if (config.value.selectedBody == null && hoveredBody != null) {
+      config.value =
+          config.value.copyWith(selectedBody: hoveredBody, showUi: false);
+      camera.setAnimation(100, 1);
+      Analytics.instance.getPlanetEvent(
+          action: 'celestial_body_selected',
+          planet: config.value.selectedBody!.name);
     }
   }
 
@@ -127,6 +113,39 @@ class StarSystemController {
     config.value = config.value
         .copyWith(selectedBody: null, showUi: true, hoveredBody: null);
     camera.setAnimation(5, 0.1);
+  }
+
+  void _getZoomEvent(double delta) {
+    _zoomDebounce?.cancel();
+    _zoomDebounce = Timer(const Duration(milliseconds: 150), () {
+      if (delta > 1) {
+        Analytics.instance.getInteractionsEvent(
+            event: 'camera_zoom_in',
+            planetUnderCursos: config.value.hoveredBody?.name);
+      } else if (delta < 1) {
+        Analytics.instance.getInteractionsEvent(
+            event: 'camera_zoom_out',
+            planetUnderCursos: config.value.hoveredBody?.name);
+      }
+    });
+  }
+
+  void _getMoveEvent() {
+    _moveDebounce?.cancel();
+    _moveDebounce = Timer(const Duration(milliseconds: 150), () {
+      Analytics.instance.getInteractionsEvent(
+          event: 'camera_move',
+          planetUnderCursos: config.value.hoveredBody?.name);
+    });
+  }
+
+  void _getTapEvent() {
+    _tapDebounce?.cancel();
+    _tapDebounce = Timer(const Duration(milliseconds: 150), () {
+      Analytics.instance.getInteractionsEvent(
+          event: 'interaction_tap',
+          planetUnderCursos: config.value.hoveredBody?.name);
+    });
   }
 
   void _isMouseHovered(Offset position) {

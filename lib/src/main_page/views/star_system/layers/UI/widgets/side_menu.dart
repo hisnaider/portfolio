@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/my_colors.dart';
+import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_system_config.dart';
 
 class SideMenu extends StatelessWidget {
@@ -28,22 +29,35 @@ class SideMenu extends StatelessWidget {
                   iconAssetOn: Assets.orbitOn,
                   iconAssetOff: Assets.orbitOff,
                   isActivate: config.showOrbitLine,
-                  onPressed: (bool newValue) => onButtonPressed(
-                      config.copyWith(showOrbitLine: newValue))),
+                  onPressed: (bool newValue) {
+                    onButtonPressed(config.copyWith(showOrbitLine: newValue));
+                    Analytics.instance.getTogglesEvent(
+                        action: newValue ? 'orbit_shown' : 'orbit_hidden');
+                  }),
               const SizedBox(height: 10),
               _UiButton(
                   iconAssetOn: Assets.nameOn,
                   iconAssetOff: Assets.nameOff,
                   isActivate: config.showPlanetNames,
-                  onPressed: (bool newValue) => onButtonPressed(
-                      config.copyWith(showPlanetNames: newValue))),
+                  onPressed: (bool newValue) {
+                    onButtonPressed(config.copyWith(showPlanetNames: newValue));
+                    Analytics.instance.getTogglesEvent(
+                        action: newValue
+                            ? 'planet_name_shown'
+                            : 'planet_name_hidden');
+                  }),
               const SizedBox(height: 10),
               _UiButton(
                   iconAssetOn: Assets.selectOn,
                   iconAssetOff: Assets.selectOff,
                   isActivate: config.showSelectionIndicator,
-                  onPressed: (bool newValue) => onButtonPressed(
-                      config.copyWith(showSelectionIndicator: newValue))),
+                  onPressed: (bool newValue) {
+                    onButtonPressed(
+                        config.copyWith(showSelectionIndicator: newValue));
+                    Analytics.instance.getTogglesEvent(
+                        action:
+                            newValue ? 'indicator_shown' : 'indicator_hidden');
+                  }),
             ],
           ),
         ),

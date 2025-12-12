@@ -25,14 +25,12 @@ class MainPageController extends InheritedWidget {
 }
 
 class MainPageState {
-  final ValueNotifier<bool> hideBackground = ValueNotifier<bool>(false);
   final ValueNotifier<TransitionStatus> transitionStatus =
       ValueNotifier<TransitionStatus>(TransitionStatus.notStarted);
 
   MainPageState();
 
   void dispose() {
-    hideBackground.dispose();
     transitionStatus.dispose();
   }
 }
