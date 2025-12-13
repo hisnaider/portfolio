@@ -62,6 +62,8 @@ A partir dessa ideia, tudo se encaixou. O design fluiu naturalmente. Eu não faz
   static AboutWorkInfo raquelMenopausa = const AboutWorkInfo(
     name: 'iTec/FURG-Embrapii',
     projectName: 'Raquel Menopausa',
+    introduction:
+        'Aplicativo gratuito que apoia mulheres no climatério com informação, acolhimento e autonomia. Atuei como desenvolvedor líder no app Raquel Menopausa, responsável pela definição da Clean Architecture, gestão de estado com GetX, modularização e injeção de dependências. Desenvolvi componentes críticos e otimizei a performance do app, além de orientar a equipe em boas práticas e arquitetura limpa.',
     role: 'Pesquisador Júnior',
     competences: [
       'Flutter',
@@ -107,6 +109,8 @@ A partir dessa ideia, tudo se encaixou. O design fluiu naturalmente. Eu não faz
     name: 'iTec/FURG-Embrapii',
     projectName: 'Pinguim',
     role: 'Pesquisador Júnior',
+    introduction:
+        'Aplicativo que começou como uma rede social de viagens e evoluiu para uma plataforma B2B voltada à gestão e conexão de experiências de viagem. Atuei como desenvolvedor experiente, responsável pela definição e implementação da Clean Architecture, padronização da base de código e criação de componentes reativos com Bloc. Também liderei decisões técnicas e mentorias sobre boas práticas, contribuindo para a maturidade e produtividade da equipe.',
     competences: [
       'Flutter',
       'Dart',
@@ -140,6 +144,8 @@ Além do desenvolvimento técnico, contribuí ativamente para o crescimento e a 
     photo: Assets.myLogo,
     banner: Assets.formy,
     role: 'Desenvolvedor Flutter Open Source',
+    introduction:
+        'Biblioteca open source para Flutter desenvolvida para simplificar o gerenciamento de formulários complexos com controle total de estado e validação. Criei o pacote do zero com foco em escalabilidade, reatividade e API enxuta, aplicando princípios de arquitetura limpa e testabilidade. O Formy permite formulários dinâmicos, validação granular e integração fluida com UIs personalizadas.',
     competences: ['Flutter', 'Dart', 'Proatividade', 'Aprendizado contínuo'],
     desc: '''
 Formy é um pacote open source para Flutter que desenvolvi com o objetivo de simplificar radicalmente o gerenciamento de formulários, mantendo flexibilidade e controle total sobre o estado e validação dos campos.
@@ -172,6 +178,8 @@ O Formy representa meu compromisso em construir ferramentas que realmente facili
     name: 'FURG',
     projectName: 'CIEX',
     role: 'Pesquisador Front-end',
+    introduction:
+        'O projeto CIEX tem como objetivo criar um gêmeo digital da Lagoa dos Patos para integrar dados em tempo real e permitir o monitoramento e a previsão de eventos climáticos extremos no sul do Rio Grande do Sul. No projeto, sou responsável pelo desenvolvimento da interface do video wall, que exibe gráficos, vídeos, logos e informações dinâmicas de forma visual e interativa, utilizando Flutter com foco em desempenho, fluidez e design moderno.',
     competences: [
       'Flutter',
       'Dart',

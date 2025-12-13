@@ -24,6 +24,7 @@ class AboutWorkInfo extends AboutInfo {
   final List<String> mainResponsibilities;
   final List<String> offers;
   final String myPerformance;
+  final String? introduction;
   final List<String> images;
   final List<LinkText> links;
   const AboutWorkInfo({
@@ -38,6 +39,7 @@ class AboutWorkInfo extends AboutInfo {
     required this.mainResponsibilities,
     required this.offers,
     required this.myPerformance,
+    this.introduction,
     required this.images,
     required this.links,
   });

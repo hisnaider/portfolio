@@ -53,25 +53,23 @@ class _OrbitTextsPainter extends CustomPainter {
     canvas.translate(camera.offset.dx, camera.offset.dy);
     for (CelestialBody body in celestialBody) {
       final Offset localPosition = camera.worldToScreen(body.worldPosition);
-      if (body is PlanetEntity) {
-        final TextPainter textPainter = TextPainter(
-          textAlign: TextAlign.right,
-          textDirection: TextDirection.ltr,
-          maxLines: 1,
-        );
-        textPainter.text = TextSpan(
-            style: MyTextTheme.dark.titleSmall!.copyWith(fontSize: 18),
-            text: body.name);
-        textPainter.layout();
-        textPainter.paint(
-          canvas,
-          Offset(
-            (localPosition.dx * camera.zoom - (textPainter.width / 2)),
-            ((localPosition.dy - body.size - 0.5) * camera.zoom -
-                textPainter.height),
-          ),
-        );
-      }
+      final TextPainter textPainter = TextPainter(
+        textAlign: TextAlign.right,
+        textDirection: TextDirection.ltr,
+        maxLines: 1,
+      );
+      textPainter.text = TextSpan(
+          style: MyTextTheme.dark.titleSmall!.copyWith(fontSize: 18),
+          text: body.name);
+      textPainter.layout();
+      textPainter.paint(
+        canvas,
+        Offset(
+          (localPosition.dx * camera.zoom - (textPainter.width / 2)),
+          ((localPosition.dy - body.size - 0.5) * camera.zoom -
+              textPainter.height),
+        ),
+      );
     }
     canvas.restore();
   }

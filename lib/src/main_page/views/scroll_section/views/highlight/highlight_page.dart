@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/commons/entities/about_info.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
 import 'package:portfolio/core/commons/widgets/section_container.dart';
-import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/planets.dart';
+import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
 import 'package:portfolio/src/main_page/views/star_system/widgets/planet_paint.dart';
-import 'package:portfolio/src/main_page/views/scroll_section/views/highlight/entity/work_card_entity.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/highlight/widgets/highlight_project_card.dart';
 import 'package:portfolio/src/main_page/widgets/offset_fade_animation.dart';
 
@@ -24,6 +24,12 @@ class HighlightPage extends StatefulWidget {
 
 class _HighlightPageState extends State<HighlightPage>
     with SingleTickerProviderStateMixin {
+  final List<PlanetEntity> mainPlanets = [
+    CelestialBodies.ciex,
+    CelestialBodies.formy,
+    CelestialBodies.raquel,
+    CelestialBodies.pinguim
+  ];
   late final AnimationController controller;
   Size _lastSize = Size.zero;
   double _lastPageWidth = 0;
@@ -46,10 +52,11 @@ class _HighlightPageState extends State<HighlightPage>
     required double maxWidth,
   }) {
     double higherText = 0;
-    for (WorkCardEntity work in _works) {
+    for (PlanetEntity work in mainPlanets) {
       final TextPainter painter = TextPainter(
         text: TextSpan(
-            text: work.text, style: Theme.of(context).textTheme.bodyMedium),
+            text: (work.aboutInfo as AboutWorkInfo).introduction,
+            style: Theme.of(context).textTheme.bodyMedium),
         textDirection: TextDirection.ltr,
       );
 
@@ -102,7 +109,7 @@ class _HighlightPageState extends State<HighlightPage>
                 mainAxisSpacing: spacing,
                 mainAxisExtent: _lastSize.height,
               ),
-              itemCount: _works.length,
+              itemCount: mainPlanets.length,
               itemBuilder: (context, index) {
                 final int row = ((index) / columns).floor();
                 final Offset offset = columns == 1
@@ -119,17 +126,18 @@ class _HighlightPageState extends State<HighlightPage>
                     duration: const Duration(milliseconds: 500),
                     firstWidget: HighlightProjectCard(
                         key: ValueKey('Row $row'),
-                        work: _works[index],
+                        aboutInfo:
+                            mainPlanets[index].aboutInfo as AboutWorkInfo,
                         childPainter: AnimatedBuilder(
                           animation: controller,
                           builder: (context, child) {
-                            _works[index].planet.updateContinents(kTargetFps);
-                            _works[index].planet.updateClouds(kTargetFps);
+                            mainPlanets[index].updateContinents(kTargetFps);
+                            mainPlanets[index].updateClouds(kTargetFps);
                             return RepaintBoundary(
                               child: CustomPaint(
                                 painter: PlanetPaint(
                                   position: Offset.zero,
-                                  planet: _works[index].planet,
+                                  planet: mainPlanets[index],
                                   glowFactor: 0,
                                   zoomFactor: 1,
                                 ),
@@ -154,33 +162,19 @@ class _HighlightPageState extends State<HighlightPage>
   }
 }
 
-List<WorkCardEntity> _works = [
-  WorkCardEntity(
-    companyName: 'CIEX',
-    planet: CelestialBodies.ciex,
-    role: 'Pesquisador Front-end',
-    text:
-        'O projeto CIEX tem como objetivo criar um gêmeo digital da Lagoa dos Patos para integrar dados em tempo real e permitir o monitoramento e a previsão de eventos climáticos extremos no sul do Rio Grande do Sul. No projeto, sou responsável pelo desenvolvimento da interface do video wall, que exibe gráficos, vídeos, logos e informações dinâmicas de forma visual e interativa, utilizando Flutter com foco em desempenho, fluidez e design moderno.',
-  ),
-  WorkCardEntity(
-    companyName: 'Formy',
-    planet: CelestialBodies.formy,
-    role: 'Projeto pessoal',
-    text:
-        'Biblioteca open source para Flutter desenvolvida para simplificar o gerenciamento de formulários complexos com controle total de estado e validação. Criei o pacote do zero com foco em escalabilidade, reatividade e API enxuta, aplicando princípios de arquitetura limpa e testabilidade. O Formy permite formulários dinâmicos, validação granular e integração fluida com UIs personalizadas.',
-  ),
-  WorkCardEntity(
-    companyName: 'iTec/FURG-Embrapii - Projeto Plena',
-    planet: CelestialBodies.raquel,
-    role: 'Pesquisador Júnior',
-    text:
-        'Aplicativo gratuito que apoia mulheres no climatério com informação, acolhimento e autonomia. Atuei como desenvolvedor líder no app Raquel Menopausa, responsável pela definição da Clean Architecture, gestão de estado com GetX, modularização e injeção de dependências. Desenvolvi componentes críticos e otimizei a performance do app, além de orientar a equipe em boas práticas e arquitetura limpa.',
-  ),
-  WorkCardEntity(
-    companyName: 'iTec/FURG-Embrapii - Projeto Pinguim',
-    planet: CelestialBodies.pinguim,
-    role: 'Pesquisador Júnior',
-    text:
-        'Aplicativo que começou como uma rede social de viagens e evoluiu para uma plataforma B2B voltada à gestão e conexão de experiências de viagem. Atuei como desenvolvedor experiente, responsável pela definição e implementação da Clean Architecture, padronização da base de código e criação de componentes reativos com Bloc. Também liderei decisões técnicas e mentorias sobre boas práticas, contribuindo para a maturidade e produtividade da equipe.',
-  ),
-];
+// List<WorkCardEntity> _works = [
+//   WorkCardEntity(
+//     companyName: 'iTec/FURG-Embrapii - Projeto Plena',
+//     planet: CelestialBodies.raquel,
+//     role: 'Pesquisador Júnior',
+//     text:
+//         'Aplicativo gratuito que apoia mulheres no climatério com informação, acolhimento e autonomia. Atuei como desenvolvedor líder no app Raquel Menopausa, responsável pela definição da Clean Architecture, gestão de estado com GetX, modularização e injeção de dependências. Desenvolvi componentes críticos e otimizei a performance do app, além de orientar a equipe em boas práticas e arquitetura limpa.',
+//   ),
+//   WorkCardEntity(
+//     companyName: 'iTec/FURG-Embrapii - Projeto Pinguim',
+//     planet: CelestialBodies.pinguim,
+//     role: 'Pesquisador Júnior',
+//     text:
+//         'Aplicativo que começou como uma rede social de viagens e evoluiu para uma plataforma B2B voltada à gestão e conexão de experiências de viagem. Atuei como desenvolvedor experiente, responsável pela definição e implementação da Clean Architecture, padronização da base de código e criação de componentes reativos com Bloc. Também liderei decisões técnicas e mentorias sobre boas práticas, contribuindo para a maturidade e produtividade da equipe.',
+//   ),
+// ];

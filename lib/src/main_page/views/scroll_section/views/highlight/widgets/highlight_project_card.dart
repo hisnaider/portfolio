@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/commons/entities/about_info.dart';
 import 'package:portfolio/core/commons/widgets/project_header.dart';
-import 'package:portfolio/core/values/assets.dart';
-import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
-import 'package:portfolio/src/main_page/views/scroll_section/views/highlight/entity/work_card_entity.dart';
 
 class HighlightProjectCard extends StatelessWidget {
   const HighlightProjectCard({
     super.key,
-    required this.work,
+    required this.aboutInfo,
     required this.childPainter,
   });
-  final WorkCardEntity work;
+  final AboutWorkInfo aboutInfo;
   final Widget childPainter;
 
   @override
@@ -40,11 +38,13 @@ class HighlightProjectCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ProjectHeader(companyName: work.companyName, role: work.role),
+                ProjectHeader(
+                    companyName: '${aboutInfo.name} - ${aboutInfo.projectName}',
+                    role: aboutInfo.role),
                 const SizedBox(height: 24),
                 Expanded(
                   child: Text(
-                    work.text,
+                    aboutInfo.introduction!,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),

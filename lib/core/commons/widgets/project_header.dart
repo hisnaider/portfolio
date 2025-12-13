@@ -22,13 +22,14 @@ class ProjectHeader extends StatelessWidget {
     final isSvg = (companyImage ?? '').endsWith('svg');
     return Row(
       children: [
-        if (companyImage != null)
+        if (companyImage != null) ...[
           CircleAvatar(
             radius: 40,
             backgroundColor: MyColors.backgroud,
             foregroundImage: AssetImage(companyImage!),
           ),
-        SizedBox(width: 24),
+          SizedBox(width: 24),
+        ],
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
