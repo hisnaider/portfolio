@@ -139,7 +139,7 @@ class Analytics {
     Map<String, String>? property,
   }) {
     //TODO: remover esse return depois
-    return;
+    //return;
     _client.post('https://cloud.umami.is/api/send',
         options: Options(
           headers: {'Content-Type': 'application/json'},
