@@ -6,7 +6,6 @@ Este repositório contém o meu portfólio profissional, concebido como uma **me
 
 O objetivo do projeto não é apenas apresentar experiências e competências, mas também demonstrar **capacidade técnica, pensamento conceitual, design de interfaces e domínio do Flutter** em um projeto autoral e coeso.
 
----
 
 ## Conceito
 
@@ -16,7 +15,6 @@ O objetivo do projeto não é apenas apresentar experiências e competências, m
 
 Todo o design e a arquitetura do projeto foram pensados para sustentar essa narrativa visual e conceitual.
 
----
 
 ## Tecnologias Utilizadas
 
@@ -41,7 +39,6 @@ Todo o design e a arquitetura do projeto foram pensados para sustentar essa narr
 
 O projeto prioriza desempenho, legibilidade de código e escalabilidade, mesmo sendo um portfólio.
 
----
 
 ## Estrutura do Projeto
 
@@ -54,7 +51,6 @@ O código segue princípios de separação de responsabilidades e previsibilidad
 
 A estrutura foi projetada como se fosse um produto real, não apenas uma página demonstrativa.
 
----
 
 ## Objetivos do Projeto
 
@@ -64,7 +60,6 @@ A estrutura foi projetada como se fosse um produto real, não apenas uma página
 * Unir design e engenharia de software em um único produto
 * Servir como base evolutiva para futuras ideias
 
----
 
 ## Status do Projeto
 
@@ -72,7 +67,6 @@ A estrutura foi projetada como se fosse um produto real, não apenas uma página
 
 Este portfólio é um projeto vivo. Novas experiências, melhorias visuais, refatorações e otimizações serão adicionadas ao longo do tempo.
 
----
 
 ## Observações Importantes
 
@@ -80,15 +74,14 @@ Este portfólio é um projeto vivo. Novas experiências, melhorias visuais, refa
 * O foco do projeto é **qualidade**, não apenas aparência
 * Algumas decisões arquiteturais são intencionais para demonstrar domínio técnico
 
----
 
 ## Contato
 
 Caso queira conversar sobre o projeto, arquitetura, Flutter ou oportunidades profissionais, fique à vontade para entrar em contato.
 
-📧 Email: hisnaider.dev@gmail.com
-📱 Telefone / WhatsApp: +55 (53) 99128-0480
-💼 LinkedIn: https://www.linkedin.com/in/hisnaider-r-campello-3a420698/
+* 📧 Email: hisnaider.dev@gmail.com
+* 📱 Telefone / WhatsApp: +55 (53) 99128-0480
+* 💼 LinkedIn: https://www.linkedin.com/in/hisnaider-r-campello-3a420698/
 
 ---
 
