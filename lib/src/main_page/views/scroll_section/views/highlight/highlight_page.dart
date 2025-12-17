@@ -22,30 +22,24 @@ class HighlightPage extends StatefulWidget {
   State<HighlightPage> createState() => _HighlightPageState();
 }
 
-class _HighlightPageState extends State<HighlightPage>
-    with SingleTickerProviderStateMixin {
+class _HighlightPageState extends State<HighlightPage> {
   final List<PlanetEntity> mainPlanets = [
     CelestialBodies.ciex,
     CelestialBodies.formy,
     CelestialBodies.raquel,
     CelestialBodies.pinguim
   ];
-  late final AnimationController controller;
   Size _lastSize = Size.zero;
   double _lastPageWidth = 0;
 
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1))
-          ..repeat();
   }
 
   @override
   void dispose() {
     super.dispose();
-    controller.dispose();
   }
 
   void calculateCardDimension({
@@ -128,22 +122,13 @@ class _HighlightPageState extends State<HighlightPage>
                         key: ValueKey('Row $row'),
                         aboutInfo:
                             mainPlanets[index].aboutInfo as AboutWorkInfo,
-                        childPainter: AnimatedBuilder(
-                          animation: controller,
-                          builder: (context, child) {
-                            mainPlanets[index].updateContinents(kTargetFps);
-                            mainPlanets[index].updateClouds(kTargetFps);
-                            return RepaintBoundary(
-                              child: CustomPaint(
-                                painter: PlanetPaint(
-                                  position: Offset.zero,
-                                  planet: mainPlanets[index],
-                                  glowFactor: 0,
-                                  zoomFactor: 1,
-                                ),
-                              ),
-                            );
-                          },
+                        childPainter: CustomPaint(
+                          painter: PlanetPaint(
+                            position: Offset.zero,
+                            planet: mainPlanets[index],
+                            glowFactor: 0,
+                            zoomFactor: 1,
+                          ),
                         )),
                     secondWidget: const SizedBox());
               },

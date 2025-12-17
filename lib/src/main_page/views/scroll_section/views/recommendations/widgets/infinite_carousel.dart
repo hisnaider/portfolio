@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/entity/recommendation_entity.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/modal/recommendation_modal.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/widgets/recommendation_card.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-
-const double _maxCardWidth = 500;
 
 class InfiniteCarousel extends StatefulWidget {
   const InfiniteCarousel({
@@ -29,8 +29,6 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
   double position = 0;
   double targetPosition = 0;
 
-  bool hoveringCard = false;
-
   @override
   void initState() {
     super.initState();
@@ -38,26 +36,22 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
   }
 
   void _onTick(Duration tickerElapsed) {
-    if (!hoveringCard) {
-      targetPosition += 0.5;
-    }
+    targetPosition += 0.5;
     position = lerpDouble(position, targetPosition, 0.1)!;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         _controller.jumpTo(position);
       }
     });
-    if ((targetPosition - position).abs() < 0.001) {
+  }
+
+  void _onSelect() {
+    if (_ticker.isActive) {
       _ticker.stop();
     }
   }
 
-  void _onHover() {
-    hoveringCard = true;
-  }
-
-  void _onHoverExit() {
-    hoveringCard = false;
+  void _onUnSelect() {
     if (!_ticker.isActive) {
       _ticker.start();
     }
@@ -69,6 +63,13 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
     _ticker.dispose();
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<void> readMore(RecommendationEntity recommendation) async {
+    _onSelect();
+    await RecommendationModal.open(context, recommendation).then(
+      (value) => _onUnSelect(),
+    );
   }
 
   @override
@@ -83,7 +84,7 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
         }
       },
       child: SizedBox(
-        height: _maxCardWidth,
+        height: kRecommendationCard,
         child: ListView.builder(
           clipBehavior: Clip.none,
           controller: _controller,
@@ -94,25 +95,11 @@ class _InfiniteCarouselState extends State<InfiniteCarousel>
             final itemIndex = index % widget.recommendations.length;
             final RecommendationEntity recommendation =
                 widget.recommendations[itemIndex];
-            return widget.isDesktop
-                ? MouseRegion(
-                    onEnter: (event) {
-                      _onHover();
-                    },
-                    onExit: (event) {
-                      _onHoverExit();
-                    },
-                    child: RecommendationCard(
-                      width: _maxCardWidth,
-                      recommendation: recommendation,
-                    ))
-                : GestureDetector(
-                    onTapDown: (detail) =>
-                        hoveringCard ? _onHoverExit() : _onHover(),
-                    child: RecommendationCard(
-                      width: _maxCardWidth,
-                      recommendation: recommendation,
-                    ));
+            return RecommendationCard(
+              width: 500,
+              recommendation: recommendation,
+              readMore: () => readMore(recommendation),
+            );
           },
         ),
       ),

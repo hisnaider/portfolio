@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/extensions/normalize.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/entity/recommendation_entity.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/modal/recommendation_modal.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/widgets/recommendation_card.dart';
 
 class RecommendationCarousel extends StatefulWidget {
@@ -93,6 +94,8 @@ class _RecommendationCarouselState extends State<RecommendationCarousel> {
                   return RecommendationCard(
                     width: 500,
                     recommendation: recommendation,
+                    readMore: () =>
+                        RecommendationModal.open(context, recommendation),
                   );
                 },
               ),

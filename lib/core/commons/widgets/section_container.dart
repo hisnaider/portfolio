@@ -29,24 +29,24 @@ class _SectionContainerState extends State<SectionContainer> {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Material(
-        color: MyColors.backgroud,
-        child: Center(
-          child: Container(
-            constraints: BoxConstraints(maxWidth: widget.maxWidth),
-            padding: widget.padding,
-            child: VisibilityDetector(
-              key: ValueKey(widget.title),
-              onVisibilityChanged: (info) {
-                if (info.visibleFraction >= 0.1 && !_isVisible) {
-                  _isVisible = true;
-                  Analytics.instance.getSectionReachedEvent(
-                      section: (widget.key as ValueKey<String>).value);
-                } else if (info.visibleFraction < 0.1 && _isVisible) {
-                  _isVisible = false;
-                }
-              },
-              child: SelectionArea(
+      child: SelectionArea(
+        child: Material(
+          color: MyColors.backgroud,
+          child: Center(
+            child: Container(
+              constraints: BoxConstraints(maxWidth: widget.maxWidth),
+              padding: widget.padding,
+              child: VisibilityDetector(
+                key: ValueKey(widget.title),
+                onVisibilityChanged: (info) {
+                  if (info.visibleFraction >= 0.1 && !_isVisible) {
+                    _isVisible = true;
+                    Analytics.instance.getSectionReachedEvent(
+                        section: (widget.key as ValueKey<String>).value);
+                  } else if (info.visibleFraction < 0.1 && _isVisible) {
+                    _isVisible = false;
+                  }
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

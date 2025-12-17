@@ -94,7 +94,8 @@ class _TransitionNavigationSectionState
               );
             } else if (info.visibleFraction < 0.3 && _isVisible) {
               _isVisible = false;
-            } else if (info.visibleFraction == 1) {
+            } else if (info.visibleFraction > 0.75 &&
+                controller.status == AnimationStatus.dismissed) {
               MainPageController.of(context).state.transitionStatus.value =
                   TransitionStatus.running;
               controller.forward();

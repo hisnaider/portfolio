@@ -41,6 +41,11 @@ class _SmoothScrollState extends State<SmoothScroll> {
         onPointerSignal: (event) {
           if (event is PointerScrollEvent && widget.enableScroll) {
             _smoothTo(event);
+          } else if (!widget.enableScroll) {
+            widget.controller.animateTo(
+                widget.controller.position.maxScrollExtent,
+                duration: const Duration(milliseconds: 1000),
+                curve: Curves.linear);
           }
         },
         child: CustomScrollView(

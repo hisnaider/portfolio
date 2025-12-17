@@ -52,57 +52,93 @@ class _WelcomeModalState extends State<WelcomeModal> {
         decoration: BoxDecoration(
             color: backgroundColor.withOpacity(0.5),
             borderRadius: BorderRadius.circular(10)),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          controller: controller,
-          child: SelectionArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Bem vindo ao sistema estelar Hisnaider',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  '''Fico feliz que chegou até aqui. A partir desse ponto a jornada deixa de ser apenas rolar a pagina e se torna exploração.
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              padding: const EdgeInsets.all(24),
+              controller: controller,
+              child: SelectionArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Bem vindo ao sistema estelar Hisnaider',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      '''Fico feliz que chegou até aqui. A partir desse ponto a jornada deixa de ser apenas rolar a pagina e se torna exploração.
 
 Você está entrando no meu sistema solar. Ele é o mapa do que sou como profissional, a estrela ao centro sou eu e, orbitando ao redor, estão os planetas que carregam meus projetos e trabalhos.
 
 Que sua exploração seja leve, curiosa e inspiradora.
 E que você volte quando novos mundos surgirem ou quando chegar a hora de criarmos juntos o planeta da sua empresa.''',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Primeiro registro',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 10),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        Assets.firstRecord,
+                        height: 250,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Align(
+                      alignment: AlignmentGeometry.centerRight,
+                      child: PrimaryButton(
+                        onPressed: () {
+                          Analytics.instance.getCloseIntroductionModalEvent();
+                          Navigator.pop(context);
+                        },
+                        text: 'Visualizar sistema estelar',
+                      ),
+                    )
+                  ],
                 ),
-                const SizedBox(height: 24),
-                Text(
-                  'Primeiro registro',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 10),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    Assets.firstRecord,
-                    height: 250,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Align(
-                  alignment: AlignmentGeometry.centerRight,
-                  child: PrimaryButton(
-                    onPressed: () {
-                      Analytics.instance.getCloseIntroductionModalEvent();
-                      Navigator.pop(context);
-                    },
-                    text: 'Visualizar sistema estelar',
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
+            AnimatedBuilder(
+                animation: controller,
+                builder: (context, child) {
+                  _toggleIcon();
+                  return Align(
+                    alignment: Alignment.bottomCenter,
+                    child: AnimatedCrossFade(
+                      alignment: Alignment.topCenter,
+                      crossFadeState: _showIcon
+                          ? CrossFadeState.showFirst
+                          : CrossFadeState.showSecond,
+                      duration: const Duration(milliseconds: 250),
+                      firstChild: Container(
+                        height: 120,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: const Alignment(0, 0.25),
+                            colors: [
+                              backgroundColor.withOpacity(0),
+                              backgroundColor, // ou a cor do seu background
+                            ],
+                          ),
+                        ),
+                      ),
+                      secondChild: const SizedBox(
+                        width: double.infinity,
+                      ),
+                    ),
+                  );
+                })
+          ],
         ),
       ),
     );
