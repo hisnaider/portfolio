@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/commons/entities/about_info.dart';
-import 'package:portfolio/core/commons/widgets/competence.dart';
+import 'package:portfolio/src/main_page/views/star_system/widgets/competence.dart';
 import 'package:portfolio/core/commons/widgets/project_header.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/my_colors.dart';
@@ -84,7 +84,7 @@ class WorkDesc extends StatelessWidget {
                             alignment: AlignmentGeometry.bottomLeft,
                             child: Container(
                               color: Colors.black38,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 24),
                               child: ProjectHeader(
                                 companyName: aboutInfo.name,

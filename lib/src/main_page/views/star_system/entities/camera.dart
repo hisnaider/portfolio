@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/values/constants.dart';
-import 'package:portfolio/src/main_page/views/star_system/entities/transform_position.dart';
 
 class Camera {
   double _speed = 5;
@@ -134,5 +133,28 @@ class Camera {
       (position.dx - offset.dx) / zoom,
       (position.dy - offset.dy) / zoom,
     );
+  }
+}
+
+class TransformPosition {
+  double x = 0;
+  double y = 0;
+  double width = 0;
+  double height = 0;
+  double get left => x;
+  double get right => x + width;
+  double get top => y;
+  double get bottom => y + height;
+  Offset get center => Offset((x + right) / 2, (y + bottom) / 2);
+
+  void update(Size objectSize, double scale, Offset cameraOffset,
+      {Offset worldPos = Offset.zero}) {
+    // mundo → tela
+    x = ((worldPos.dx) - cameraOffset.dx) / scale;
+    y = ((worldPos.dy) - cameraOffset.dy) / scale;
+
+    // tamanho ajustado pelo zoom
+    width = objectSize.width / scale;
+    height = objectSize.height / scale;
   }
 }

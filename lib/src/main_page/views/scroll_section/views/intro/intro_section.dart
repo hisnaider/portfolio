@@ -60,8 +60,7 @@ class _IntroSectionState extends State<IntroSection> {
                         start: 0,
                         end: 0.5,
                       ),
-                    if (progress >= 0.4 &&
-                        shrinkOffset < screenHeight + threshold - 200)
+                    if (shrinkOffset < screenHeight + threshold - 200)
                       Opacity(
                         opacity: 1 - shrinkProgress,
                         child: HeroPage(

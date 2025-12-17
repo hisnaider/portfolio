@@ -23,10 +23,11 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/images/raquel/
     - assets/images/svg/
     - assets/images/svg/star_system_icons/
     - assets/images/svg/contact_icons/
+    - assets/images/svg/mouse_icons/
+    - assets/images/svg/touch_icons/
     - assets/fonts/
 
   fonts:

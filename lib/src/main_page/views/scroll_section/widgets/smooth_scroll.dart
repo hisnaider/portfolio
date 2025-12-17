@@ -33,6 +33,15 @@ class _SmoothScrollState extends State<SmoothScroll> {
   }
 
   @override
+  void didUpdateWidget(covariant SmoothScroll oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.enableScroll != oldWidget.enableScroll && !widget.enableScroll) {
+      widget.controller.animateTo(widget.controller.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 1000), curve: Curves.linear);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final bool isDesktop =
         MainPageController.isDesktop(Theme.of(context).platform);
@@ -41,11 +50,6 @@ class _SmoothScrollState extends State<SmoothScroll> {
         onPointerSignal: (event) {
           if (event is PointerScrollEvent && widget.enableScroll) {
             _smoothTo(event);
-          } else if (!widget.enableScroll) {
-            widget.controller.animateTo(
-                widget.controller.position.maxScrollExtent,
-                duration: const Duration(milliseconds: 1000),
-                curve: Curves.linear);
           }
         },
         child: CustomScrollView(

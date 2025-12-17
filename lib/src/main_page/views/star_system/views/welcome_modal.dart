@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/commons/widgets/primary_button.dart';
 import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/main_page/controller/analytics.dart';
+import 'package:portfolio/src/main_page/views/star_system/views/tutorial_modal.dart';
 
 const Color backgroundColor = MyColors.backgroud;
 
@@ -37,6 +36,12 @@ class _WelcomeModalState extends State<WelcomeModal> {
         });
       });
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
   }
 
   @override
@@ -93,15 +98,20 @@ E que você volte quando novos mundos surgirem ou quando chegar a hora de criarm
                     ),
                     const SizedBox(height: 24),
                     Align(
-                      alignment: AlignmentGeometry.centerRight,
-                      child: PrimaryButton(
-                        onPressed: () {
-                          Analytics.instance.getCloseIntroductionModalEvent();
-                          Navigator.pop(context);
-                        },
-                        text: 'Visualizar sistema estelar',
-                      ),
-                    )
+                        alignment: AlignmentGeometry.centerRight,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Analytics.instance.getCloseIntroductionModalEvent();
+                            Navigator.pop(context);
+                            TutorialModal.open(context);
+                          },
+                          child: const Text(
+                            'Visualizar sistema estelar',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ))
                   ],
                 ),
               ),

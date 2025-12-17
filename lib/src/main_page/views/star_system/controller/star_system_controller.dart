@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +62,6 @@ class StarSystemController {
     } else if (event is PointerScrollEvent) {
       if (config.value.selectedBody == null) {
         final double delta = 1 - (event.scrollDelta.dy * 0.0025);
-        print(delta);
         camera.zoomUpdate(delta);
       }
     } else if (event is PointerMoveEvent) {

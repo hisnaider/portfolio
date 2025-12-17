@@ -37,7 +37,8 @@ class SimulationSpeed extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             color: MyColors.backgroud.withOpacity(0.75),
-            borderRadius: BorderRadius.only(topRight: Radius.circular(20))),
+            borderRadius:
+                const BorderRadius.only(topRight: Radius.circular(20))),
         child: MediaQuery.of(context).size.width >= 1200
             ? _Slider(
                 currentValue: currentValue,

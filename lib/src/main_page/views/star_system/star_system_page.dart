@@ -185,29 +185,3 @@ class _StarSystemPageState extends State<StarSystemPage>
     );
   }
 }
-
-// class StarSystemPage extends StatefulWidget {
-//   const StarSystemPage({super.key});
-
-//   @override
-//   State<StarSystemPage> createState() => _StarSystemPageState();
-// }
-
-// class _StarSystemPageState extends State<StarSystemPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     print('asdasd');
-//     return Center(
-//       child: OrbitingSystemWidget(
-//         star: CelestialBodies.hisnaider,
-//         planets: [
-//           CelestialBodies.raquel,
-//           CelestialBodies.formy,
-//           CelestialBodies.perroni,
-//           CelestialBodies.pinguim,
-//           CelestialBodies.ciex,
-//         ],
-//       ),
-//     );
-//   }
-// }

@@ -1,6 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:portfolio/core/commons/widgets/measure_size.dart';
 import 'package:portfolio/core/values/constants.dart';
 import 'package:portfolio/core/values/fonts.dart';
@@ -102,7 +100,7 @@ class _RecommendationCardState extends State<RecommendationCard> {
                     ],
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Flexible(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

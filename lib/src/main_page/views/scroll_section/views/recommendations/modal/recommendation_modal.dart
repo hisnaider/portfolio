@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/entity/recommendation_entity.dart';
-import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/widgets/recommendation_card.dart';
 
 class RecommendationModal {
   const RecommendationModal._();
@@ -23,7 +22,7 @@ class RecommendationModal {
           children: [
             Flexible(
               child: Container(
-                constraints: BoxConstraints(maxWidth: 1200),
+                constraints: const BoxConstraints(maxWidth: 1200),
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                     color: MyColors.backgroud,
@@ -43,7 +42,7 @@ class RecommendationModal {
                             fontFamily: Fonts.poppins,
                           ),
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Flexible(
                       child: SingleChildScrollView(
                         child: Text(
@@ -59,7 +58,7 @@ class RecommendationModal {
                 ),
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             IgnorePointer(
               child: Text(
                 'Toque fora do card pra fechar',

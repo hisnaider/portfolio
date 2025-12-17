@@ -4,8 +4,10 @@ import 'package:portfolio/src/main_page/views/star_system/controller/time_contro
 import 'package:portfolio/src/main_page/views/scroll_section/views/intro/hero_page/entities/hero_page_objects.dart';
 
 class MiniStarSystem extends StatefulWidget {
-  const MiniStarSystem({super.key, required this.skillScale});
+  const MiniStarSystem(
+      {super.key, required this.skillScale, required this.animate});
   final double skillScale;
+  final bool animate;
 
   @override
   State<MiniStarSystem> createState() => _MiniStarSystemState();
@@ -25,13 +27,25 @@ class _MiniStarSystemState extends State<MiniStarSystem>
   @override
   void initState() {
     super.initState();
-    time = TimeController(this)..start();
+    time = TimeController(this)..stop();
   }
 
   @override
   void dispose() {
     time.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant MiniStarSystem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.animate != oldWidget.animate) {
+      if (widget.animate) {
+        time.start();
+      } else {
+        time.stop();
+      }
+    }
   }
 
   @override

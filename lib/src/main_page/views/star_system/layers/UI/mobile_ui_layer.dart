@@ -6,6 +6,7 @@ import 'package:portfolio/src/main_page/controller/analytics.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/star_system_config.dart';
 import 'package:portfolio/src/main_page/views/star_system/layers/UI/widgets/simulation_speed.dart';
 import 'package:portfolio/src/main_page/views/star_system/views/contact_container.dart';
+import 'package:portfolio/src/main_page/views/star_system/views/tutorial_modal.dart';
 
 class MobileUiLayer extends StatefulWidget {
   const MobileUiLayer({super.key, required this.config});
@@ -66,6 +67,18 @@ class _MobileUiLayerState extends State<MobileUiLayer>
               ignoring: !value.showUi,
               child: Stack(
                 children: [
+                  Align(
+                    alignment: AlignmentGeometry.topRight,
+                    child: IconButton(
+                        onPressed: () {
+                          Analytics.instance.getOpenTutorialEvent();
+                          TutorialModal.open(context);
+                        },
+                        icon: const Icon(
+                          Icons.question_mark_rounded,
+                          size: 30,
+                        )),
+                  ),
                   AnimatedBuilder(
                       animation: _animationController,
                       builder: (context, child) {
@@ -132,7 +145,7 @@ class _MobileUiLayerState extends State<MobileUiLayer>
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -192,7 +205,7 @@ class _MenuContainer extends StatelessWidget {
   }
 
   void _toogleSelectionIndicator(bool value) {
-    changeConfig(showOrbitLine: value);
+    changeConfig(showSelectionIndicator: value);
     Analytics.instance.getTogglesEvent(
         action: value ? 'indicator_shown' : 'indicator_hidden');
   }
@@ -246,9 +259,11 @@ class _MenuContainer extends StatelessWidget {
                         iconAssetOn: Assets.selectOn,
                       ),
                       const SizedBox(height: 10),
-                      SimulationSpeed(
-                        currentValue: value.simulationSpeed,
-                        onChanged: _changeSimulationSpeed,
+                      Center(
+                        child: SimulationSpeed(
+                          currentValue: value.simulationSpeed,
+                          onChanged: _changeSimulationSpeed,
+                        ),
                       ),
                     ],
                   ),

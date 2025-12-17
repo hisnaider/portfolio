@@ -3,14 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:portfolio/core/commons/entities/about_info.dart';
-import 'package:portfolio/src/main_page/views/star_system/entities/transform_position.dart';
 
 abstract class CelestialBody {
   String name;
   final String id;
   double depth = 0;
   Offset worldPosition = const Offset(0, 0);
-  final TransformPosition transformPosition = TransformPosition();
   final double size;
   final double rotationSpeed;
   final Color color;

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/fonts.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 
@@ -19,7 +17,6 @@ class ProjectHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isSvg = (companyImage ?? '').endsWith('svg');
     return Row(
       children: [
         if (companyImage != null) ...[
@@ -28,7 +25,7 @@ class ProjectHeader extends StatelessWidget {
             backgroundColor: MyColors.backgroud,
             foregroundImage: AssetImage(companyImage!),
           ),
-          SizedBox(width: 24),
+          const SizedBox(width: 24),
         ],
         Expanded(
           child: Column(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/commons/enum/skills_enum.dart';
-import 'package:portfolio/core/commons/widgets/section_container.dart';
-import 'package:portfolio/core/values/my_data.dart';
-import 'package:portfolio/src/main_page/views/scroll_section/views/about_me/widgets/skill.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/feature/reveal_widget_feat/widgets/animated_reveal_item.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/about_me/widgets/hard_skills.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/views/about_me/widgets/soft_skills.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/widgets/section_container.dart';
 
 class AboutMePage extends StatelessWidget {
   const AboutMePage({super.key});
@@ -26,75 +26,38 @@ class AboutMePage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 60),
-          Column(
-            children: [
-              Text(
-                'Habilidades Técnicas',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 24),
-              Wrap(
-                alignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.start,
-                runAlignment: WrapAlignment.start,
-                runSpacing: 34,
-                children: List.generate(
-                  MyData.mainSkills.length,
-                  (index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Skill(
-                          image: MyData.mainSkills[index].image,
-                          text: MyData.mainSkills[index].name.toUpperCase()),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: 24),
-              Wrap(
-                spacing: 34,
-                runSpacing: 34,
-                alignment: WrapAlignment.center,
-                runAlignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  for (SkillsEnum skill in MyData.otherSkills)
-                    Skill(
-                      text: skill.name.toUpperCase(),
-                    ),
-                ],
-              ),
-            ],
+          _animatedWidget(
+            const HardSkills(),
           ),
           const SizedBox(height: 60),
-          Column(
-            children: [
-              Text(
-                'Habilidades Comportamentais',
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.visible,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 24),
-              Wrap(
-                spacing: 34,
-                runSpacing: 34,
-                alignment: WrapAlignment.center,
-                runAlignment: WrapAlignment.center,
-                children: [
-                  for (SkillsEnum skill in MyData.softSkills)
-                    Skill(
-                      text: skill.name.toUpperCase(),
-                    ),
-                ],
-              ),
-            ],
+          _animatedWidget(
+            const SoftSkills(),
           ),
           const SizedBox(height: 90),
         ],
       ),
+    );
+  }
+
+  AnimatedRevealItem _animatedWidget(Widget child) {
+    return AnimatedRevealItem(
+      triggerOffsetPx: 150,
+      duration: const Duration(milliseconds: 1000),
+      curve: Curves.easeOutCubic,
+      animationBuilder:
+          (BuildContext context, Animation<double> animation, Widget child) {
+        final offset =
+            Tween<Offset>(begin: const Offset(0, 0.5), end: const Offset(0, 0))
+                .animate(animation);
+        return FadeTransition(
+          opacity: animation,
+          child: SlideTransition(
+            position: offset,
+            child: child,
+          ),
+        );
+      },
+      child: child,
     );
   }
 }

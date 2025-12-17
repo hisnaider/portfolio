@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/commons/widgets/section_container.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/widgets/section_container.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/src/main_page/controller/main_page_controller.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/recommendations/entity/recommendation_entity.dart';
@@ -13,29 +13,32 @@ class RecommendationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDesktop =
         MainPageController.isDesktop(Theme.of(context).platform);
+    final double screenWidth = MediaQuery.of(context).size.width;
     return SectionContainer(
-        key: ValueKey('Recommendations'),
+        key: const ValueKey('Recommendations'),
         titlePadding: const EdgeInsets.symmetric(horizontal: 24),
         title: 'Estrelas proximas',
         subtitle: 'Recomendações',
-        maxWidth: MediaQuery.of(context).size.width,
+        maxWidth: screenWidth,
         child: Column(
           verticalDirection: VerticalDirection.up,
           children: [
-            Text(
-              'Arraste o card para ver o resto do texto',
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontStyle: FontStyle.italic),
-            ),
-            const SizedBox(height: 24),
+            if (screenWidth < 1200) ...[
+              Text(
+                'Arraste pro lado para ver outras recomendações',
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontStyle: FontStyle.italic),
+              ),
+              const SizedBox(height: 24),
+            ],
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10),
               color: MyColors.altBackgroud,
               child: LayoutBuilder(builder: (context, constraints) {
-                if (constraints.maxWidth > 1200) {
+                if (screenWidth > 1200) {
                   return RepaintBoundary(
                       child: InfiniteCarousel(
                           recommendations: _recommendations,
@@ -43,7 +46,7 @@ class RecommendationsPage extends StatelessWidget {
                 }
                 return RecommendationCarousel(
                   recommendations: _recommendations,
-                  maxWidth: constraints.maxWidth,
+                  maxWidth: screenWidth,
                 );
               }),
             ),

@@ -30,7 +30,7 @@ class ContactContainer extends StatelessWidget {
               height: 10,
               width: 50,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text('CONTATO', style: Theme.of(context).textTheme.titleLarge),
             Flexible(
               child: ListView(

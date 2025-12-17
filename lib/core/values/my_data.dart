@@ -2,8 +2,48 @@
 import 'package:flutter/material.dart';
 
 import 'package:portfolio/core/commons/entities/about_info.dart';
-import 'package:portfolio/core/commons/enum/skills_enum.dart';
 import 'package:portfolio/core/values/assets.dart';
+
+enum SkillsEnum {
+  cleanArchitecture(
+    name: 'Clean Arch',
+    image: Assets.cleanArchitecture,
+  ),
+  flutter(
+    name: 'Flutter',
+    image: Assets.flutter,
+  ),
+  webDevelopment(
+    name: 'Web Development (Flutter)',
+  ),
+  dart(name: 'Dart', image: Assets.dart),
+  figma(name: 'Figma', image: Assets.figma),
+  apiRest(
+    name: 'API REST',
+  ),
+  powerAutomate(
+    name: 'Power Automate',
+  ),
+  sharePoint(
+    name: 'SharePoint',
+  ),
+  leadership(
+    name: 'Liderança',
+  ),
+  proactivity(
+    name: 'Proatividade',
+  ),
+  continuousLearning(
+    name: 'Aprendizado contínuo',
+  ),
+  technicalEmpathy(
+    name: 'Empatia técnica',
+  );
+
+  const SkillsEnum({required this.name, this.image});
+  final String name;
+  final String? image;
+}
 
 class MyData {
   const MyData._();
@@ -92,11 +132,7 @@ A partir dessa ideia, tudo se encaixou. O design fluiu naturalmente. Eu não faz
       'Desenvolvimento de funcionalidades críticas e componentes performáticos, assegurando uma UX fluida e uma lógica de negócios confiável',
       'Atuação ativa na evolução técnica da equipe, promovendo discussões sobre padrões, boas práticas e ajudando colegas na adoção da arquitetura limpa e no uso das ferramentas do projeto',
     ],
-    images: [
-      Assets.raquelPrint1,
-      Assets.raquelPrint2,
-      Assets.raquelPrint3,
-    ],
+    images: [],
     links: [
       LinkText(
           label: 'Google Play',

@@ -2,14 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/about_info.dart';
-import 'package:portfolio/core/commons/extensions/normalize.dart';
-import 'package:portfolio/core/commons/widgets/section_container.dart';
-import 'package:portfolio/core/values/constants.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/feature/reveal_widget_feat/widgets/animated_reveal_item.dart';
+import 'package:portfolio/src/main_page/views/scroll_section/widgets/section_container.dart';
 import 'package:portfolio/core/values/planets.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
 import 'package:portfolio/src/main_page/views/star_system/widgets/planet_paint.dart';
 import 'package:portfolio/src/main_page/views/scroll_section/views/highlight/widgets/highlight_project_card.dart';
-import 'package:portfolio/src/main_page/widgets/offset_fade_animation.dart';
 
 const double _pageMaxWidth = 1500;
 const double _pageHorizontalPadding = 40;
@@ -58,21 +56,17 @@ class _HighlightPageState extends State<HighlightPage> {
       higherText = max(higherText, painter.height);
     }
 
-    _lastSize = Size(maxWidth, higherText + 80 + 24 + 48);
+    _lastSize = Size(maxWidth, higherText + 60 + 24 + 48);
   }
 
   @override
   Widget build(BuildContext context) {
     return SliverLayoutBuilder(builder: (context, sliverConstraints) {
       final int columns;
-      final double offsetToAnimate;
       if (sliverConstraints.crossAxisExtent <= 1000) {
         columns = 1;
-        offsetToAnimate =
-            100 + (-300 * _lastPageWidth.normalize(400, min: 1000));
       } else {
         columns = 2;
-        offsetToAnimate = 100;
       }
 
       if (_lastPageWidth !=
@@ -106,31 +100,37 @@ class _HighlightPageState extends State<HighlightPage> {
               itemCount: mainPlanets.length,
               itemBuilder: (context, index) {
                 final int row = ((index) / columns).floor();
-                final Offset offset = columns == 1
-                    ? const Offset(0, 1)
-                    : Offset(index % columns == 0 ? -1 : 1, 0);
-                final double cardPos =
-                    _lastSize.height + ((_lastSize.height + spacing) * row);
-
-                return OffsetFadeAnimation(
-                    condition: offsetToAnimate + cardPos <
-                        sliverConstraints.remainingPaintExtent +
-                            sliverConstraints.scrollOffset,
-                    initialOffset: offset,
-                    duration: const Duration(milliseconds: 500),
-                    firstWidget: HighlightProjectCard(
-                        key: ValueKey('Row $row'),
-                        aboutInfo:
-                            mainPlanets[index].aboutInfo as AboutWorkInfo,
-                        childPainter: CustomPaint(
-                          painter: PlanetPaint(
-                            position: Offset.zero,
-                            planet: mainPlanets[index],
-                            glowFactor: 0,
-                            zoomFactor: 1,
-                          ),
-                        )),
-                    secondWidget: const SizedBox());
+                return AnimatedRevealItem(
+                  triggerOffsetPx: 200,
+                  curve: Curves.easeOut,
+                  duration: const Duration(milliseconds: 500),
+                  animationBuilder: (context, animation, child) {
+                    final Offset initialOffset = columns == 1
+                        ? const Offset(0, 0.25)
+                        : Offset(index % 2 == 0 ? -0.75 : 0.75, 0);
+                    final offset =
+                        Tween<Offset>(begin: initialOffset, end: Offset.zero)
+                            .animate(animation);
+                    return FadeTransition(
+                      opacity: animation,
+                      child: SlideTransition(
+                        position: offset,
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: HighlightProjectCard(
+                      key: ValueKey('Row $row'),
+                      aboutInfo: mainPlanets[index].aboutInfo as AboutWorkInfo,
+                      childPainter: CustomPaint(
+                        painter: PlanetPaint(
+                          position: Offset.zero,
+                          planet: mainPlanets[index],
+                          glowFactor: 0,
+                          zoomFactor: 1,
+                        ),
+                      )),
+                );
               },
             ),
             const SizedBox(height: 24),
@@ -146,20 +146,3 @@ class _HighlightPageState extends State<HighlightPage> {
     });
   }
 }
-
-// List<WorkCardEntity> _works = [
-//   WorkCardEntity(
-//     companyName: 'iTec/FURG-Embrapii - Projeto Plena',
-//     planet: CelestialBodies.raquel,
-//     role: 'Pesquisador Júnior',
-//     text:
-//         'Aplicativo gratuito que apoia mulheres no climatério com informação, acolhimento e autonomia. Atuei como desenvolvedor líder no app Raquel Menopausa, responsável pela definição da Clean Architecture, gestão de estado com GetX, modularização e injeção de dependências. Desenvolvi componentes críticos e otimizei a performance do app, além de orientar a equipe em boas práticas e arquitetura limpa.',
-//   ),
-//   WorkCardEntity(
-//     companyName: 'iTec/FURG-Embrapii - Projeto Pinguim',
-//     planet: CelestialBodies.pinguim,
-//     role: 'Pesquisador Júnior',
-//     text:
-//         'Aplicativo que começou como uma rede social de viagens e evoluiu para uma plataforma B2B voltada à gestão e conexão de experiências de viagem. Atuei como desenvolvedor experiente, responsável pela definição e implementação da Clean Architecture, padronização da base de código e criação de componentes reativos com Bloc. Também liderei decisões técnicas e mentorias sobre boas práticas, contribuindo para a maturidade e produtividade da equipe.',
-//   ),
-// ];

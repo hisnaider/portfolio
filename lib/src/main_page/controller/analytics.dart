@@ -133,13 +133,18 @@ class Analytics {
     );
   }
 
+  void getOpenTutorialEvent() {
+    _request(
+      eventName: 'tutorial_opened',
+      url: _systemStar,
+    );
+  }
+
   void _request({
     required String eventName,
     required String url,
     Map<String, String>? property,
   }) {
-    //TODO: remover esse return depois
-    return;
     _client.post('https://cloud.umami.is/api/send',
         options: Options(
           headers: {'Content-Type': 'application/json'},

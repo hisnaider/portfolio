@@ -2,7 +2,6 @@ class Assets {
   const Assets._();
 
   static const String universe = 'assets/images/universe.webp';
-  static const String universeTeste = 'assets/images/universe_teste.png';
   static const String firstRecord = 'assets/images/first_record.webp';
   static const String photo = 'assets/images/photo.jpg';
 
@@ -10,14 +9,8 @@ class Assets {
   static const String myLogo = 'assets/images/my_logo.jpg';
   static const String myLogoSvg = 'assets/images/svg/logo.svg';
 
-  //Raquel
-  static const String raquelPrint1 = 'assets/images/raquel/raquel_print_1.jpg';
-  static const String raquelPrint2 = 'assets/images/raquel/raquel_print_2.jpg';
-  static const String raquelPrint3 = 'assets/images/raquel/raquel_print_3.jpg';
-
   //SVG
   static const String formy = 'assets/images/svg/formy.svg';
-  static const String lensFlare = 'assets/images/svg/lens_flare.svg';
 
   //SVG Icons
   static const String figma = 'assets/images/svg/figma_icon.svg';
@@ -25,6 +18,21 @@ class Assets {
   static const String flutter = 'assets/images/svg/flutter_icon.svg';
   static const String cleanArchitecture =
       'assets/images/svg/clean_architecture_icon.svg';
+
+  //Mouse Icons
+  static const String moveCameraMouse =
+      'assets/images/svg/mouse_icons/move_camera_mouse.svg';
+  static const String zoomCameraMouse =
+      'assets/images/svg/mouse_icons/zoom_camera_mouse.svg';
+  static const String selectBodyMouse =
+      'assets/images/svg/mouse_icons/select_body_mouse.svg';
+  //Touch Icons
+  static const String moveCameraTouch =
+      'assets/images/svg/touch_icons/move_camera_touch.svg';
+  static const String zoomCameraTouch =
+      'assets/images/svg/touch_icons/zoom_camera_touch.svg';
+  static const String selectBodyTouch =
+      'assets/images/svg/touch_icons/select_body_touch.svg';
 
   //System star UI svg
   static const String nameOn =

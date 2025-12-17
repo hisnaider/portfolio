@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/celestial_body.dart';
 import 'package:portfolio/core/theme/my_text_theme.dart';
 import 'package:portfolio/src/main_page/views/star_system/entities/camera.dart';
-import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
 
 class OrbitTextsPainter extends StatelessWidget {
   final List<CelestialBody> celestialBody;

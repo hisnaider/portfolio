@@ -53,8 +53,6 @@ class HighlightProjectCard extends StatelessWidget {
           ],
         ),
       ),
-
-      ///constraints: BoxConstraints(minHeight: 300),
     );
   }
 }
