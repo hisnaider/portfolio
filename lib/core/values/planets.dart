@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/entities/celestial_body_glow_config.dart';
 import 'package:portfolio/core/values/my_data.dart';
-import 'package:portfolio/src/main_page/views/star_system/entities/continent_entity.dart';
-import 'package:portfolio/src/main_page/views/star_system/entities/planet_entity.dart';
-import 'package:portfolio/src/main_page/views/star_system/entities/star_entity.dart';
+import 'package:portfolio/src/star_system/entities/continent_entity.dart';
+import 'package:portfolio/src/star_system/entities/planet_entity.dart';
+import 'package:portfolio/src/star_system/entities/star_entity.dart';
 
 class CelestialBodies {
   const CelestialBodies._();

@@ -6,7 +6,7 @@ class Assets {
   static const String photo = 'assets/images/photo.jpg';
 
   //Logo
-  static const String myLogo = 'assets/images/my_logo.jpg';
+  static const String myLogo = 'assets/images/my_logo.png';
   static const String myLogoSvg = 'assets/images/svg/logo.svg';
 
   //SVG
