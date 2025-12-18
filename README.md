@@ -86,3 +86,7 @@ Caso queira conversar sobre o projeto, arquitetura, Flutter ou oportunidades pro
 ---
 
 Desenvolvido por **Hisnaider Ribeiro Campello** 🚀
+
+## License
+
+This project is licensed under the Creative Commons BY-NC-ND 4.0 License.

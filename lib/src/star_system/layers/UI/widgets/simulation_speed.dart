@@ -151,7 +151,7 @@ class __SliderState extends State<_Slider> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(12, 24, 12, 12),
+      padding: const EdgeInsets.fromLTRB(12, 24, 12, 24),
       width: min(750, MediaQuery.of(context).size.width / 2 - 110),
       child: LayoutBuilder(builder: (context, constraint) {
         return SizedBox(
