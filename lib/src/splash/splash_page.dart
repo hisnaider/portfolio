@@ -5,8 +5,6 @@ import 'package:portfolio/core/values/assets.dart';
 import 'package:portfolio/core/values/my_colors.dart';
 import 'package:portfolio/analytics.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/src/scroll_section/scroll_section.dart';
-import 'package:portfolio/src/star_system/star_system_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -30,7 +28,6 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> _bootstrap() async {
     final String route = _getInitialRoute();
-    print(route);
     await _preloadAssets(route);
     _initServices();
     if (!mounted) return;

@@ -43,12 +43,12 @@ class _StarSystemPageState extends State<StarSystemPage>
       ],
     );
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(Duration(milliseconds: 1000));
+      await Future.delayed(const Duration(milliseconds: 1000));
       await showGeneralDialog(
         context: context,
         useRootNavigator: false,
         barrierColor: Colors.transparent,
-        transitionDuration: Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 500),
         pageBuilder: (context, animation, secondaryAnimation) =>
             const WelcomeModal(),
       ).then((value) {

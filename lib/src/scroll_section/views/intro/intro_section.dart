@@ -22,7 +22,7 @@ class _IntroSectionState extends State<IntroSection> {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     const double threshold = 1000;
-    final bool _isDesktop = [
+    final bool isDesktop = [
       TargetPlatform.windows,
       TargetPlatform.linux,
       TargetPlatform.macOS
@@ -60,7 +60,7 @@ class _IntroSectionState extends State<IntroSection> {
                   children: [
                     if (progress <= 0.5)
                       Welcome(
-                        isDesktop: _isDesktop,
+                        isDesktop: isDesktop,
                         scrollValue: progress,
                         start: 0,
                         end: 0.5,

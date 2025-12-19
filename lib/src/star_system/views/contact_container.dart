@@ -109,7 +109,7 @@ Vamos bater um papo! Me chama por onde preferir''',
                   const SizedBox(height: 48),
                   SvgPicture.asset(Assets.myLogoSvg, height: 25),
                   const SizedBox(height: 24),
-                  Text(
+                  const Text(
                     '''© 2025 Hisnaider Ribeiro Campello — CC BY-NC-ND 4.0. Some rights reserved''',
                     style: TextStyle(fontSize: 12),
                     textAlign: TextAlign.center,

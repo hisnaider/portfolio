@@ -30,9 +30,7 @@ class _MiniStarSystemState extends State<MiniStarSystem>
 
   @override
   void didUpdateWidget(covariant MiniStarSystem oldWidget) {
-    // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    print(widget.skillScale != oldWidget.skillScale);
     if (widget.skillScale > 0 && !time.isActive) {
       time.start();
     } else if (widget.skillScale == 1 && !time.isActive) {

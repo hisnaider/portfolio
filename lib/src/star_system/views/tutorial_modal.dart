@@ -12,7 +12,7 @@ class TutorialModal {
       barrierDismissible: true,
       fullscreenDialog: true,
       barrierColor: MyColors.backgroud.withAlpha(225),
-      transitionDuration: Duration(milliseconds: 500),
+      transitionDuration: const Duration(milliseconds: 500),
       barrierLabel: 'Tutorial',
       pageBuilder: (context, animation, secondaryAnimation) {
         final bool isVertical = MediaQuery.of(context).size.width <= 800;

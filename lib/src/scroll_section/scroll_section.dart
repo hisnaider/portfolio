@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/commons/widgets/app_scafoold.dart';
-import 'package:portfolio/analytics.dart';
 import 'package:portfolio/src/scroll_section/feature/reveal_widget_feat/reveal_scope.dart';
 import 'package:portfolio/src/scroll_section/widgets/smooth_scroll.dart';
 

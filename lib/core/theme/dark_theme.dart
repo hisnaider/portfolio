@@ -14,7 +14,7 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
     surface: MyColors.altBackgroud,
     onSurface: Colors.white,
   ),
-  dialogTheme: DialogThemeData(
+  dialogTheme: const DialogThemeData(
       backgroundColor: Colors.transparent, barrierColor: Colors.transparent),
   elevatedButtonTheme: ElevatedButtonThemeData(style: MyButtonTheme.dark),
   textButtonTheme: TextButtonThemeData(style: MyTextButtonTheme.dark),

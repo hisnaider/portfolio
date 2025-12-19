@@ -31,7 +31,6 @@ class _SmoothScrollState extends State<SmoothScroll> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     widget.controller.addListener(_listener);
   }
