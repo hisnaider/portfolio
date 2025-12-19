@@ -65,14 +65,14 @@ class Introduction extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     html.window.open(
-                        'https://drive.google.com/file/d/1cNYEHKk0w8XNSlnNlf5_YcY2WKzH26Kg/view?usp=drive_link',
+                        'https://drive.google.com/drive/folders/1fgcqTv74UMwNcEI24Gq7cLJNnEhBTFVY?usp=sharing',
                         '_blank');
                   },
                   child: const Row(
                     children: [
-                      Icon(Icons.file_download_outlined),
+                      Icon(Icons.open_in_new),
                       Text(
-                        'Ver currículo',
+                        ' Ver currículo e certificados',
                       )
                     ],
                   ),
