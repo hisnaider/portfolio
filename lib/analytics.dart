@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/route/route_paths.dart';
 
 const String _webSiteId = '0657c781-d8b1-48bd-b114-d64d37111291';
-const String _hostName = 'localhost';
+const String _hostName = 'hisnaider.github.io';
 
 //urls
 
