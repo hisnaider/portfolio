@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
 class Introduction extends StatelessWidget {
   const Introduction({
@@ -23,7 +24,7 @@ class Introduction extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SelectableText.rich(TextSpan(
-              text: "I'm ",
+              text: "Olá, sou ",
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   color: Colors.white, fontSize: isMobile ? 24 : null),
               children: const [
@@ -57,7 +58,11 @@ class Introduction extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    html.window.open(
+                        'https://drive.google.com/file/d/1cNYEHKk0w8XNSlnNlf5_YcY2WKzH26Kg/view?usp=drive_link',
+                        '_blank');
+                  },
                   child: const Row(
                     children: [
                       Icon(Icons.file_download_outlined),
