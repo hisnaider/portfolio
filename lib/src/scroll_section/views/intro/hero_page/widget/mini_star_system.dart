@@ -25,7 +25,21 @@ class _MiniStarSystemState extends State<MiniStarSystem>
   @override
   void initState() {
     super.initState();
-    time = TimeController(this)..start();
+    time = TimeController(this)..stop();
+  }
+
+  @override
+  void didUpdateWidget(covariant MiniStarSystem oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    print(widget.skillScale != oldWidget.skillScale);
+    if (widget.skillScale > 0 && !time.isActive) {
+      time.start();
+    } else if (widget.skillScale == 1 && !time.isActive) {
+      time.start();
+    } else if (widget.skillScale == 0 && time.isActive) {
+      time.stop();
+    }
   }
 
   @override
@@ -36,7 +50,6 @@ class _MiniStarSystemState extends State<MiniStarSystem>
 
   @override
   Widget build(BuildContext context) {
-    print('asdasdasd');
     return ValueListenableBuilder(
       valueListenable: time.elapsed,
       builder: (context, value, child) {

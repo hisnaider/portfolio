@@ -23,6 +23,7 @@ class HeroPage extends StatelessWidget {
         Curves.easeOut.transform(value.normalize(0.6, min: 0.2));
     final skillScale =
         Curves.easeInOut.transform(value.normalize(0.6, min: 0.3));
+    print(value);
     final curriculumFade = value.normalize(0.6, min: 0.3);
     return LayoutBuilder(builder: (context, constraints) {
       final double aspectRadio =

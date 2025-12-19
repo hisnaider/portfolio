@@ -32,6 +32,8 @@ class TimeController {
     );
   }
 
+  bool get isActive => _ticker.isActive;
+
   void start() {
     _lastTime = 0;
     _ticker.start();
