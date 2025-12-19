@@ -4,7 +4,7 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
 const RESOURCES = {"my_logo.png": "fd8918153bf5f6d17256b29783755493",
-"flutter_bootstrap.js": "6ed7080a9403a9841e7d45f1c4e9488a",
+"flutter_bootstrap.js": "8706d24de12e8d63affa58a194f386f0",
 "manifest.json": "d40c47d1c161f94dbcb13094d37f1f55",
 "canvaskit/skwasm_heavy.wasm": "b0be7910760d205ea4e011458df6ee01",
 "canvaskit/skwasm.wasm": "7e5f3afdd3b0747a1fd4517cea239898",
@@ -25,7 +25,7 @@ const RESOURCES = {"my_logo.png": "fd8918153bf5f6d17256b29783755493",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "assets/shaders/stretch_effect.frag": "40d68efbbf360632f614c731219e95f0",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
-"assets/fonts/MaterialIcons-Regular.otf": "4aec20d3c39e23c5febde3ab25c3b51f",
+"assets/fonts/MaterialIcons-Regular.otf": "fe2891d16629ba5319ab7f4c54ead457",
 "assets/AssetManifest.bin": "ae9190d668e5d68df9b64a93f0556896",
 "assets/assets/fonts/montserrat/Montserrat-Bold.ttf": "354dc625a35bef1b6ec00a79c6cfc0c8",
 "assets/assets/fonts/montserrat/Montserrat-ExtraBold.ttf": "1497e6fee4dd060b35f6b49e4241cb3f",
@@ -76,7 +76,7 @@ const RESOURCES = {"my_logo.png": "fd8918153bf5f6d17256b29783755493",
 "assets/NOTICES": "17120aa443eb47c1132bdfe530be0b02",
 "index.html": "4cb3a0fdac9dce9cbdc69714c14385a6",
 "/": "4cb3a0fdac9dce9cbdc69714c14385a6",
-"main.dart.js": "8be9c95d726371356f491b466aab13c7",
+"main.dart.js": "564f3a7bdf97bc2737f9c9e4d4d55f18",
 "version.json": "0325640b78b9f97959290dc5ebb8b3ed",
 "favicon.png": "9caa357a972bfd9ed7d83aa8ef126bfa"};
 // The application shell files that are downloaded before a service worker can

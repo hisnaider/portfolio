@@ -939,7 +939,7 @@ a.l()
 return l},
 m6(a){return new A.NO(a)},
 b0J(a){var s,r,q,p,o,n,m
-$label0$0:for(s=a.length,r=0;r<6;++r){q=B.L5[r]
+$label0$0:for(s=a.length,r=0;r<6;++r){q=B.L6[r]
 p=q.c
 o=p.length
 if(s<o)continue $label0$0
@@ -22419,7 +22419,7 @@ t.Dn.a(a)
 s=J.aM(a)
 r=s.j(a,0)
 r.toString
-switch(B.Le[A.f1(r)].a){case 0:s=s.ii(a,1)
+switch(B.Lf[A.f1(r)].a){case 0:s=s.ii(a,1)
 r=s[0]
 r.toString
 A.f1(r)
@@ -29686,7 +29686,7 @@ return b instanceof A.zt&&b.a.i(0,this.a)&&b.b===this.b},
 k(a){return"ColorFilter.mode("+this.a.k(0)+", "+this.b.k(0)+")"}}
 A.ur.prototype={
 gaeJ(){var s,r,q=new Float32Array(20)
-for(s=this.a,r=0;r<20;++r)if(B.b.B(B.L3,r))q[r]=s[r]/255
+for(s=this.a,r=0;r<20;++r)if(B.b.B(B.L4,r))q[r]=s[r]/255
 else q[r]=s[r]
 return q},
 q_(){return $.b2.aY().ColorFilter.MakeMatrix(this.gaeJ())},
@@ -32869,7 +32869,7 @@ if(e.b){q=t.f
 d=q.a(J.bL(q.a(B.bX.h_(a2)),"data"))
 c=A.cV(J.bL(d,"message"))
 if(c!=null&&c.length!==0){b=A.aCu(d,"assertiveness")
-e.a.Up(c,B.Lu[b==null?0:b])}}a.eX(a3,B.bX.bW(!0))
+e.a.Up(c,B.Lv[b==null?0:b])}}a.eX(a3,B.bX.bW(!0))
 return
 case"flutter/navigation":q=a.gcQ().b
 p=t.e8
@@ -37107,7 +37107,7 @@ m=A.hU(r.j(s,"fontWeightIndex"))
 l=m!=null?A.b0Y(m):"normal"
 q=A.aDS(r.j(s,"fontSize"))
 if(q==null)q=null
-p=new A.anv(new A.a8A(q,l,A.cV(r.j(s,"fontFamily")),B.Lr[o],B.kn[n]))
+p=new A.anv(new A.a8A(q,l,A.cV(r.j(s,"fontFamily")),B.Ls[o],B.kn[n]))
 break
 case"TextInput.clearClient":p=B.DE
 break
@@ -71500,7 +71500,7 @@ q.bE()
 q.cL$.D(0,s.gaeP())
 s.e=q}return q},
 gQ3(){var s=this.f
-return s===$?this.f=new A.as3(1,B.Lq,B.cg):s},
+return s===$?this.f=new A.as3(1,B.Lr,B.cg):s},
 ghp(){var s=this.z
 s=s==null?null:$.cd().d===s
 return s===!0},
@@ -88524,7 +88524,7 @@ for(s=0;s<4;++s){r=B.LR[s]
 l[s]=new A.cm(B.IN,new A.wu(r.d,r.c.toUpperCase(),n),n)}r=A.aoX(B.e1,l,B.iw,B.e0,34,0)
 q=t.p
 p=A.b([],q)
-for(o=0;o<4;++o)p.push(new A.wu(n,B.KH[o].c.toUpperCase(),n))
+for(o=0;o<4;++o)p.push(new A.wu(n,B.KI[o].c.toUpperCase(),n))
 return A.cI(A.b([m,B.aG,r,B.aG,A.aoX(B.e1,p,B.AS,B.e1,34,34)],q),B.O,B.A,B.a4,0,B.C)}}
 A.wu.prototype={
 J(a){var s,r=null,q="Montserrat",p=this.c
@@ -88654,7 +88654,7 @@ return A.Rv(A.cI(A.b([new A.DS(l,r,m),q,p,B.aG,A.hF(A.l4(A.b([A.wO(B.SZ,new A.ac
 A.ac_.prototype={
 $0(){var s=window
 s.toString
-B.iv.B8(s,"https://drive.google.com/file/d/1cNYEHKk0w8XNSlnNlf5_YcY2WKzH26Kg/view?usp=drive_link","_blank")},
+B.iv.B8(s,"https://drive.google.com/drive/folders/1fgcqTv74UMwNcEI24Gq7cLJNnEhBTFVY?usp=sharing","_blank")},
 $S:0}
 A.vx.prototype={
 ae(){var s=new A.BP(150,B.GV,B.h)
@@ -88926,7 +88926,7 @@ p.toString
 o=t.p
 p=A.cI(A.b([r,A.bF(q.b,m,m,p.H6(A.Z(a).ok.y.b,"Poppins"),m)],o),B.ax,B.A,B.a4,0,B.C)
 q=A.b([new A.i6(1,B.c5,A.bF(n.a.d.c,m,m,A.Z(a).ok.z.H1(1.75),m),m)],o)
-if(406-n.e<=n.f)q.push(A.wO(B.a_c,n.a.e,m))
+if(406-n.e<=n.f)q.push(A.wO(B.a_b,n.a.e,m))
 return new A.to(new A.avl(n),new A.dw(B.fz,m,m,A.cj(m,A.cj(m,A.cI(A.b([new A.BQ(p,new A.avm(n),l,m),B.aG,new A.i6(1,B.c5,A.cI(q,B.dl,B.A,B.a3,0,B.C),m)],o),B.ax,B.A,B.a3,0,B.C),B.x,m,m,new A.cy(B.U,m,m,s,m,m,B.ah),m,m,m,B.c4,m,m,m),B.o,m,m,m,m,m,B.IC,m,m,m,l),m),new A.co(k,t.kK))}}
 A.avo.prototype={
 $1(a){var s,r=null,q=this.a,p=q.a.d,o=q.c
@@ -89778,9 +89778,9 @@ s=r.d
 s===$&&A.a()
 s.ale(q,B.Hs,B.cs)
 r.a.Jf(B.eK[r.e])},
-J(a){var s=this,r=null,q=A.NN(r,B.JD,r,r,new A.ayO(s),r,r,r),p=A.dr(10),o=s.d
+J(a){var s=this,r=null,q=A.NN(r,B.JE,r,r,new A.ayO(s),r,r,r),p=A.dr(10),o=s.d
 o===$&&A.a()
-return new A.cm(B.IR,A.l4(A.b([q,B.ih,A.cj(r,A.aI1(o,new A.ayP(s),14,B.eZ),B.o,r,r,new A.cy(B.U,r,r,p,r,r,B.ah),r,50,r,r,r,r,100),B.ih,A.NN(r,B.JF,r,r,new A.ayQ(s),r,r,r)],t.p),B.O,B.uH,B.a3),r)}}
+return new A.cm(B.IR,A.l4(A.b([q,B.ih,A.cj(r,A.aI1(o,new A.ayP(s),14,B.eZ),B.o,r,r,new A.cy(B.U,r,r,p,r,r,B.ah),r,50,r,r,r,r,100),B.ih,A.NN(r,B.JG,r,r,new A.ayQ(s),r,r,r)],t.p),B.O,B.uH,B.a3),r)}}
 A.ayO.prototype={
 $0(){return this.a.N7(-1)},
 $S:0}
@@ -90149,7 +90149,7 @@ l=A.b([new A.i6(1,m,A.bF("Gostou do meu trabalho ou quer saber mais sobre mim?\n
 if(!o)l.push(B.US)
 else l.push(B.aG)
 l.push(new A.i6(1,o?B.c5:B.dy,B.Hk,s))
-p=A.b([p,B.zY,A.aC8(l,B.O,n,s,B.bu,B.a3,0,s,s,B.C),B.zY,A.t8("assets/images/svg/logo.svg",s,B.cp,25,s),B.aG,B.a_d],k)
+p=A.b([p,B.zY,A.aC8(l,B.O,n,s,B.bu,B.a3,0,s,s,B.C),B.zY,A.t8("assets/images/svg/logo.svg",s,B.cp,25,s),B.aG,B.a_c],k)
 n=A.aF([null,0],t.LO,t.S)
 return A.cj(s,A.Rv(A.cI(A.b([r,B.bS,q,new A.i6(1,B.c5,new A.Bz(new A.alU(!0,!0,!0,p,n),s,B.au,!1,s,s,B.Bz,s,!0,s,0,s,7,B.fk,B.af,s,s,B.x,B.an,s),s)],k),B.O,B.A,B.a3,0,B.C)),B.o,B.GC,s,s,s,s,s,B.c4,s,s,s)}}
 A.tw.prototype={
@@ -90195,7 +90195,7 @@ s=A.aV(B.d.ar(127.5),B.U.F()>>>16&255,B.U.F()>>>8&255,B.U.F()&255)
 r=A.dr(10)
 q=this.d
 p=t.p
-return A.ec(A.cj(o,A.eV(B.aU,A.b([A.aD_(A.Rv(A.cI(A.b([A.bF("Bem vindo ao sistema estelar Hisnaider",o,o,A.Z(a).ok.r,o),B.aG,A.bF("Fico feliz que chegou at\xe9 aqui. A partir desse ponto a jornada deixa de ser apenas rolar a pagina e se torna explora\xe7\xe3o.\n\nVoc\xea est\xe1 entrando no meu sistema solar. Ele \xe9 o mapa do que sou como profissional, a estrela ao centro sou eu e, orbitando ao redor, est\xe3o os planetas que carregam meus projetos e trabalhos.\n\nQue sua explora\xe7\xe3o seja leve, curiosa e inspiradora.\nE que voc\xea volte quando novos mundos surgirem ou quando chegar a hora de criarmos juntos o planeta da sua empresa.",o,o,A.Z(a).ok.z,o),B.aG,A.bF("Primeiro registro",o,o,A.Z(a).ok.w,o),B.bS,A.aFU(A.dr(10),A.aCm("assets/images/first_record.webp",B.j_,250,1/0)),B.aG,new A.dw(B.iR,o,o,new A.MR(new A.ayv(a),o,o,o,o,o,o,!1,o,!0,o,B.a_b,o),o)],p),B.bA,B.A,B.a3,0,B.C)),q,B.c4),A.kq(q,new A.ayw(this),o)],p),B.x,B.aP,o),B.x,o,B.CJ,new A.cy(s,o,o,r,o,o,B.ah),o,o,B.c4,o,o,o,o),o,o)}}
+return A.ec(A.cj(o,A.eV(B.aU,A.b([A.aD_(A.Rv(A.cI(A.b([A.bF("Bem vindo ao sistema estelar Hisnaider",o,o,A.Z(a).ok.r,o),B.aG,A.bF("Fico feliz que chegou at\xe9 aqui. A partir desse ponto a jornada deixa de ser apenas rolar a pagina e se torna explora\xe7\xe3o.\n\nVoc\xea est\xe1 entrando no meu sistema solar. Ele \xe9 o mapa do que sou como profissional, a estrela ao centro sou eu e, orbitando ao redor, est\xe3o os planetas que carregam meus projetos e trabalhos.\n\nQue sua explora\xe7\xe3o seja leve, curiosa e inspiradora.\nE que voc\xea volte quando novos mundos surgirem ou quando chegar a hora de criarmos juntos o planeta da sua empresa.",o,o,A.Z(a).ok.z,o),B.aG,A.bF("Primeiro registro",o,o,A.Z(a).ok.w,o),B.bS,A.aFU(A.dr(10),A.aCm("assets/images/first_record.webp",B.j_,250,1/0)),B.aG,new A.dw(B.iR,o,o,new A.MR(new A.ayv(a),o,o,o,o,o,o,!1,o,!0,o,B.a_a,o),o)],p),B.bA,B.A,B.a3,0,B.C)),q,B.c4),A.kq(q,new A.ayw(this),o)],p),B.x,B.aP,o),B.x,o,B.CJ,new A.cy(s,o,o,r,o,o,B.ah),o,o,B.c4,o,o,o,o),o,o)}}
 A.ayy.prototype={
 $1(a){var s=this.a
 s.au(new A.ayx(s))},
@@ -90256,7 +90256,7 @@ n=A.a4(o).h("a5<1,qg>")
 o=A.a2(new A.a5(o,new A.aoW(),n),n.h("at.E"))
 p.push(A.aoX(B.e0,o,B.iw,B.e0,10,10))
 B.b.G(q,p)}else if(i instanceof A.Kx)B.b.G(q,A.b([new A.pu("Origem e Identidade",i.f,m),new A.tu(B.MW,"Paix\xf5es e Hobbies",m),new A.pu("Prop\xf3sito Pessoal","Trabalho e estudo todos os dias para deixar meus pais orgulhosos e para ter a oportunidade de ajudar outras pessoas. Seja desenvolvendo aplica\xe7\xf5es bem feitas, compartilhando conhecimento sobre programa\xe7\xe3o ou \u2014 no futuro, quando eu estiver rico \u2014 apoiando quem mais precisa atrav\xe9s de doa\xe7\xf5es e projetos sociais.",m),new A.tu(B.MS,"Meus Valores",m),new A.pu("Por que um sistema solar?","Meu interesse por astronomia come\xe7ou na adolesc\xeancia. Eu passava horas lendo sobre planetas, assistindo v\xeddeos sobre o Sistema Solar e imaginando como poderiam ser os mundos al\xe9m dele. Com o tempo, deixei esse hobby de lado para focar em outras coisas, mas a curiosidade sempre ficou ali, quieta, esperando.\n\nQuando comecei o design do meu portf\xf3lio, eu sentia que faltava algo \u2014 algo que tivesse a minha identidade. Depois de muito quebrar a cabe\xe7a, me veio o estalo:\n\u201cE se o meu portf\xf3lio fosse um sistema solar, onde eu sou a estrela e os planetas representam meus projetos e trabalhos?\u201d\n\nA partir dessa ideia, tudo se encaixou. O design fluiu naturalmente. Eu n\xe3o fazia ideia de como construir um sistema solar interativo nem como representar os planetas, mas mergulhei no estudo e fui aprendendo at\xe9 conseguir transformar a ideia em realidade.",m)],r))
-return A.eV(B.aU,A.b([new A.dw(h,m,m,A.cj(m,A.aD_(A.cI(A.b([s,new A.cm(B.IL,A.Rv(A.cI(q,B.bA,B.A,B.a4,0,B.C)),m)],r),B.O,B.A,B.a4,0,B.C),m,m),B.o,B.U,m,m,m,l,m,m,m,m,g),m),A.vT(m,A.NV(!1,A.dr(90),!0,new A.cm(B.IB,A.l4(A.b([B.JC,B.UP,A.bF("Voltar",m,m,A.Z(a).ok.x,m)],r),B.O,B.A,B.a4),m),m,!0,m,m,m,m,m,m,this.d,m,m,m),m,m,24,m,24,m)],r),B.x,B.aP,new A.co(j.b,t.kK))}}
+return A.eV(B.aU,A.b([new A.dw(h,m,m,A.cj(m,A.aD_(A.cI(A.b([s,new A.cm(B.IL,A.Rv(A.cI(q,B.bA,B.A,B.a4,0,B.C)),m)],r),B.O,B.A,B.a4,0,B.C),m,m),B.o,B.U,m,m,m,l,m,m,m,m,g),m),A.vT(m,A.NV(!1,A.dr(90),!0,new A.cm(B.IB,A.l4(A.b([B.JD,B.UP,A.bF("Voltar",m,m,A.Z(a).ok.x,m)],r),B.O,B.A,B.a4),m),m,!0,m,m,m,m,m,m,this.d,m,m,m),m,m,24,m,24,m)],r),B.x,B.aP,new A.co(j.b,t.kK))}}
 A.aoW.prototype={
 $1(a){return new A.qg(a,null)},
 $S:581}
@@ -90986,7 +90986,7 @@ Yz(a,b,c,d,e,f,g,h,i){var s
 $.a0()
 s=A.b7()
 s.r=A.bj(b).gn(0)
-if(a!==0)s.a=B.Ls[a]
+if(a!==0)s.a=B.Lt[a]
 if(e!=null)s.spv(this.z[e])
 if(d===1){s.b=B.aD
 if(f!=null&&f!==0)s.d=B.MP[f]
@@ -96950,21 +96950,21 @@ B.Bk=new A.Kx("Hisnaider Ribeiro Campello","assets/images/photo.jpg","assets/ima
 B.Bl=new A.Ky(null)
 B.LL=s(["Flutter","Dart","Clean Arch\u201d","GetX","Consumo de API","Proatividade","Aprendizado cont\xednuo"],t.s)
 B.MT=s(["Transformar os requisitos operacionais e visuais do Video Wall em uma solu\xe7\xe3o funcional e robusta","Definir e implementar o layout completo da aplica\xe7\xe3o em Flutter","Integrar conte\xfados institucionais como logos, v\xeddeos e imagens","Desenvolver e manter o fluxo de exibi\xe7\xe3o cont\xednuo para opera\xe7\xe3o 24/7","Realizar testes, otimiza\xe7\xf5es de performance e ajustes visuais","Assegurar a confiabilidade da interface e a precis\xe3o das informa\xe7\xf5es exibidas","Estruturar a aplica\xe7\xe3o para permitir expans\xe3o e inclus\xe3o de novos conte\xfados no futuro"],t.s)
-B.Lo=s(["Rede integrada de monitoramento com esta\xe7\xf5es meteocenogr\xe1ficas, hidrol\xf3gicas e geod\xe9sicas distribu\xeddas estrategicamente na Lagoa dos Patos","Sistema computacional de alto desempenho para processar modelos hidrodin\xe2micos, meteorol\xf3gicos, de inunda\xe7\xe3o e s\xe9ries hist\xf3ricas em tempo real","Ambiente virtual integrador que centraliza dados observacionais, modelos num\xe9ricos, pain\xe9is interativos e comunica\xe7\xe3o com \xf3rg\xe3os p\xfablicos","Video Wall institucional para exibi\xe7\xe3o cont\xednua de informa\xe7\xf5es operacionais, gr\xe1ficos, v\xeddeos, alertas, previs\xf5es e indicadores","Integra\xe7\xe3o interinstitucional por meio de capacita\xe7\xf5es, alinhamentos operacionais e forma\xe7\xe3o t\xe9cnica para equipes de seguran\xe7a, gestores e universidades."],t.s)
+B.Lp=s(["Rede integrada de monitoramento com esta\xe7\xf5es meteocenogr\xe1ficas, hidrol\xf3gicas e geod\xe9sicas distribu\xeddas estrategicamente na Lagoa dos Patos","Sistema computacional de alto desempenho para processar modelos hidrodin\xe2micos, meteorol\xf3gicos, de inunda\xe7\xe3o e s\xe9ries hist\xf3ricas em tempo real","Ambiente virtual integrador que centraliza dados observacionais, modelos num\xe9ricos, pain\xe9is interativos e comunica\xe7\xe3o com \xf3rg\xe3os p\xfablicos","Video Wall institucional para exibi\xe7\xe3o cont\xednua de informa\xe7\xf5es operacionais, gr\xe1ficos, v\xeddeos, alertas, previs\xf5es e indicadores","Integra\xe7\xe3o interinstitucional por meio de capacita\xe7\xf5es, alinhamentos operacionais e forma\xe7\xe3o t\xe9cnica para equipes de seguran\xe7a, gestores e universidades."],t.s)
 B.cP=s([],t.s)
 B.Ku=new A.r2("GZH","https://gauchazh.clicrbs.com.br/zona-sul/ciencia/noticia/2025/11/com-foco-no-acompanhamento-do-nivel-da-lagoa-dos-patos-centro-de-monitoramento-de-eventos-extremos-e-inaugurado-em-rio-grande-cmhl3smz000x80154tm6vs0pi.html","Com foco no acompanhamento do n\xedvel da Lagoa dos Patos, centro de monitoramento de eventos extremos \xe9 inaugurado em Rio Grande")
-B.Lz=s([B.Ku],t.zo)
-B.Bm=new A.lF("CIEX",B.LL,B.MT,B.Lo,"'Desenvolvi toda a interface do Video Wall do CIEX - DT LAGOA em Flutter, incluindo gr\xe1ficos, indicadores e v\xeddeos institucionais, integrada \xe0s APIs oficiais para atualiza\xe7\xe3o em tempo real. Implementei tamb\xe9m o salvamento e exibi\xe7\xe3o de p\xe1ginas web, al\xe9m de um gerenciador de m\xeddias que permite adicionar e reproduzir v\xeddeos e imagens no aplicativo. Todos os dados s\xe3o persistidos localmente com Isar, garantindo opera\xe7\xe3o est\xe1vel mesmo sem internet. A interface foi projetada para ser modular, escal\xe1vel e otimizada para telas de grande formato.","O projeto CIEX tem como objetivo criar um g\xeameo digital da Lagoa dos Patos para integrar dados em tempo real e permitir o monitoramento e a previs\xe3o de eventos clim\xe1ticos extremos no sul do Rio Grande do Sul. No projeto, sou respons\xe1vel pelo desenvolvimento da interface do video wall, que exibe gr\xe1ficos, v\xeddeos, logos e informa\xe7\xf5es din\xe2micas de forma visual e interativa, utilizando Flutter com foco em desempenho, fluidez e design moderno.",B.Lz,"FURG",null,null,"Pesquisador Front-end",null,"O Centro Interinstitucional de Observa\xe7\xe3o e Previs\xe3o de Eventos Extremos (CIEX \u2013 FURG) lidera a cria\xe7\xe3o do Digital Twin Lagoa dos Patos (DT-LAGOA), uma plataforma digital de alta fidelidade para simular, monitorar e prever, em tempo real, fen\xf4menos meteocenogr\xe1ficos, hidrol\xf3gicos, hidrodin\xe2micos e eventos de inunda\xe7\xe3o no sul do Rio Grande do Sul.\n\nO projeto integra institui\xe7\xf5es, sensores ambientais, redes de monitoramento, supercomputa\xe7\xe3o e sistemas de visualiza\xe7\xe3o, oferecendo dados qualificados para \xf3rg\xe3os de seguran\xe7a, prefeituras, defesas civis, pesquisadores e tomadores de decis\xe3o.")
+B.LA=s([B.Ku],t.zo)
+B.Bm=new A.lF("CIEX",B.LL,B.MT,B.Lp,"'Desenvolvi toda a interface do Video Wall do CIEX - DT LAGOA em Flutter, incluindo gr\xe1ficos, indicadores e v\xeddeos institucionais, integrada \xe0s APIs oficiais para atualiza\xe7\xe3o em tempo real. Implementei tamb\xe9m o salvamento e exibi\xe7\xe3o de p\xe1ginas web, al\xe9m de um gerenciador de m\xeddias que permite adicionar e reproduzir v\xeddeos e imagens no aplicativo. Todos os dados s\xe3o persistidos localmente com Isar, garantindo opera\xe7\xe3o est\xe1vel mesmo sem internet. A interface foi projetada para ser modular, escal\xe1vel e otimizada para telas de grande formato.","O projeto CIEX tem como objetivo criar um g\xeameo digital da Lagoa dos Patos para integrar dados em tempo real e permitir o monitoramento e a previs\xe3o de eventos clim\xe1ticos extremos no sul do Rio Grande do Sul. No projeto, sou respons\xe1vel pelo desenvolvimento da interface do video wall, que exibe gr\xe1ficos, v\xeddeos, logos e informa\xe7\xf5es din\xe2micas de forma visual e interativa, utilizando Flutter com foco em desempenho, fluidez e design moderno.",B.LA,"FURG",null,null,"Pesquisador Front-end",null,"O Centro Interinstitucional de Observa\xe7\xe3o e Previs\xe3o de Eventos Extremos (CIEX \u2013 FURG) lidera a cria\xe7\xe3o do Digital Twin Lagoa dos Patos (DT-LAGOA), uma plataforma digital de alta fidelidade para simular, monitorar e prever, em tempo real, fen\xf4menos meteocenogr\xe1ficos, hidrol\xf3gicos, hidrodin\xe2micos e eventos de inunda\xe7\xe3o no sul do Rio Grande do Sul.\n\nO projeto integra institui\xe7\xf5es, sensores ambientais, redes de monitoramento, supercomputa\xe7\xe3o e sistemas de visualiza\xe7\xe3o, oferecendo dados qualificados para \xf3rg\xe3os de seguran\xe7a, prefeituras, defesas civis, pesquisadores e tomadores de decis\xe3o.")
 B.MJ=s(["Flutter","Dart","Clean Arch","GetX","Consumo de API","Lideran\xe7a","Proatividade","Aprendizado cont\xednuo","Empatia t\xe9cnica"],t.s)
 B.LQ=s(["Defini\xe7\xe3o e implementa\xe7\xe3o da Clean Architecture, garantindo um c\xf3digo desacoplado, test\xe1vel e sustent\xe1vel, adaptado \xe0s demandas esperados de um app da \xe1rea da sa\xfade","Gest\xe3o avan\xe7ada de estado com GetX, trabalhando com modulariza\xe7\xe3o, inje\xe7\xe3o de depend\xeancias e navega\xe7\xe3o robusta para fluxos complexos","Desenvolvimento de funcionalidades cr\xedticas e componentes perform\xe1ticos, assegurando uma UX fluida e uma l\xf3gica de neg\xf3cios confi\xe1vel","Atua\xe7\xe3o ativa na evolu\xe7\xe3o t\xe9cnica da equipe, promovendo discuss\xf5es sobre padr\xf5es, boas pr\xe1ticas e ajudando colegas na ado\xe7\xe3o da arquitetura limpa e no uso das ferramentas do projeto"],t.s)
 B.M4=s(["Identifica\xe7\xe3o do est\xe1gio do climat\xe9rio, com base em respostas e sintomas, oferecendo um retrato claro do seu estado hormonal e f\xedsico","Comunidade exclusiva, para trocar experi\xeancias, receber apoio e sentir-se compreendida por quem est\xe1 passando pelo mesmo momento","Conte\xfados cient\xedficos e informativos sobre sa\xfade, bem-estar e estilo de vida durante o climat\xe9rio","Di\xe1rio de sintomas e h\xe1bitos, que ajuda a monitorar padr\xf5es individuais e facilita o acompanhamento m\xe9dico"],t.s)
 B.Kw=new A.r2("Google Play",u.I,u.I)
 B.M7=s([B.Kw],t.zo)
 B.Bn=new A.lF("Raquel Menopausa",B.MJ,B.LQ,B.M4,"Atuei como pesquisador j\xfanior, liderando tecnicamente o desenvolvimento mobile do projeto. Fui o mais experiente do grupo, o que me permitiu n\xe3o s\xf3 tomar decis\xf5es cr\xedticas de arquitetura e tecnologia, mas tamb\xe9m orientar e ajudar os colegas sempre que necess\xe1rio, garantindo que todo o time evolu\xedsse junto.","Aplicativo gratuito que apoia mulheres no climat\xe9rio com informa\xe7\xe3o, acolhimento e autonomia. Atuei como desenvolvedor l\xedder no app Raquel Menopausa, respons\xe1vel pela defini\xe7\xe3o da Clean Architecture, gest\xe3o de estado com GetX, modulariza\xe7\xe3o e inje\xe7\xe3o de depend\xeancias. Desenvolvi componentes cr\xedticos e otimizei a performance do app, al\xe9m de orientar a equipe em boas pr\xe1ticas e arquitetura limpa.",B.M7,"iTec/FURG-Embrapii",null,null,"Pesquisador J\xfanior",null,"Raquel Menopausa \xe9 um aplicativo gratuito que ajuda mulheres a navegar pelo climat\xe9rio com mais informa\xe7\xe3o, acolhimento e autonomia. Mais do que um app, \xe9 um projeto que coloca tecnologia a servi\xe7o da sa\xfade e do bem-estar feminino, promovendo uma jornada de autoconhecimento e conex\xe3o.")
-B.KI=s(["Flutter","Dart","Clean Arch\u201d","Bloc","Consumo de API","Lideran\xe7a","Proatividade","Aprendizado cont\xednuo","Empatia t\xe9cnica"],t.s)
-B.Lj=s(["Desenvolvimento de componentes altamente reativos e otimizados, garantindo que cada widget respondesse de forma precisa e perform\xe1tica a mudan\xe7as de estado ou valores espec\xedficos","Padroniza\xe7\xe3o do c\xf3digo e estrutura de projeto, melhorando a legibilidade e a manuten\xe7\xe3o a longo prazo","Aumento da produtividade da equipe, gra\xe7as \xe0 ado\xe7\xe3o de conven\xe7\xf5es t\xe9cnicas e integra\xe7\xe3o de boas pr\xe1ticas no fluxo de desenvolvimento"],t.s)
+B.KJ=s(["Flutter","Dart","Clean Arch\u201d","Bloc","Consumo de API","Lideran\xe7a","Proatividade","Aprendizado cont\xednuo","Empatia t\xe9cnica"],t.s)
+B.Lk=s(["Desenvolvimento de componentes altamente reativos e otimizados, garantindo que cada widget respondesse de forma precisa e perform\xe1tica a mudan\xe7as de estado ou valores espec\xedficos","Padroniza\xe7\xe3o do c\xf3digo e estrutura de projeto, melhorando a legibilidade e a manuten\xe7\xe3o a longo prazo","Aumento da produtividade da equipe, gra\xe7as \xe0 ado\xe7\xe3o de conven\xe7\xf5es t\xe9cnicas e integra\xe7\xe3o de boas pr\xe1ticas no fluxo de desenvolvimento"],t.s)
 B.oK=s([],t.zo)
-B.Bo=new A.lF("Pinguim",B.KI,B.Lj,B.cP,"Fui respons\xe1vel pela implementa\xe7\xe3o da Clean Architecture, o que trouxe ao projeto maior escalabilidade, organiza\xe7\xe3o e facilidade de manuten\xe7\xe3o. Essa abordagem permitiu uma separa\xe7\xe3o clara de responsabilidades entre camadas, reduzindo a depend\xeancia entre m\xf3dulos e facilitando a evolu\xe7\xe3o do c\xf3digo ao longo do tempo.\n\nAl\xe9m do desenvolvimento t\xe9cnico, contribu\xed ativamente para o crescimento e a maturidade da equipe, promovendo mentorias sobre padr\xf5es arquiteturais, boas pr\xe1ticas de programa\xe7\xe3o e o uso eficiente de ferramentas como o Bloc, voltado ao gerenciamento reativo de estados.","Aplicativo que come\xe7ou como uma rede social de viagens e evoluiu para uma plataforma B2B voltada \xe0 gest\xe3o e conex\xe3o de experi\xeancias de viagem. Atuei como desenvolvedor experiente, respons\xe1vel pela defini\xe7\xe3o e implementa\xe7\xe3o da Clean Architecture, padroniza\xe7\xe3o da base de c\xf3digo e cria\xe7\xe3o de componentes reativos com Bloc. Tamb\xe9m liderei decis\xf5es t\xe9cnicas e mentorias sobre boas pr\xe1ticas, contribuindo para a maturidade e produtividade da equipe.",B.oK,"iTec/FURG-Embrapii",null,null,"Pesquisador J\xfanior",null,"Durante minha atua\xe7\xe3o no projeto \u2014 que inicialmente come\xe7ou como uma rede social de viagens e posteriormente passou a ter foco B2B, com \xeanfase na p\xe1gina de administra\xe7\xe3o \u2014 desempenhei um papel fundamental como membro experiente da equipe de desenvolvimento, colaborando em decis\xf5es t\xe9cnicas, defini\xe7\xe3o de arquitetura e na resolu\xe7\xe3o de problemas complexos")
+B.Bo=new A.lF("Pinguim",B.KJ,B.Lk,B.cP,"Fui respons\xe1vel pela implementa\xe7\xe3o da Clean Architecture, o que trouxe ao projeto maior escalabilidade, organiza\xe7\xe3o e facilidade de manuten\xe7\xe3o. Essa abordagem permitiu uma separa\xe7\xe3o clara de responsabilidades entre camadas, reduzindo a depend\xeancia entre m\xf3dulos e facilitando a evolu\xe7\xe3o do c\xf3digo ao longo do tempo.\n\nAl\xe9m do desenvolvimento t\xe9cnico, contribu\xed ativamente para o crescimento e a maturidade da equipe, promovendo mentorias sobre padr\xf5es arquiteturais, boas pr\xe1ticas de programa\xe7\xe3o e o uso eficiente de ferramentas como o Bloc, voltado ao gerenciamento reativo de estados.","Aplicativo que come\xe7ou como uma rede social de viagens e evoluiu para uma plataforma B2B voltada \xe0 gest\xe3o e conex\xe3o de experi\xeancias de viagem. Atuei como desenvolvedor experiente, respons\xe1vel pela defini\xe7\xe3o e implementa\xe7\xe3o da Clean Architecture, padroniza\xe7\xe3o da base de c\xf3digo e cria\xe7\xe3o de componentes reativos com Bloc. Tamb\xe9m liderei decis\xf5es t\xe9cnicas e mentorias sobre boas pr\xe1ticas, contribuindo para a maturidade e produtividade da equipe.",B.oK,"iTec/FURG-Embrapii",null,null,"Pesquisador J\xfanior",null,"Durante minha atua\xe7\xe3o no projeto \u2014 que inicialmente come\xe7ou como uma rede social de viagens e posteriormente passou a ter foco B2B, com \xeanfase na p\xe1gina de administra\xe7\xe3o \u2014 desempenhei um papel fundamental como membro experiente da equipe de desenvolvimento, colaborando em decis\xf5es t\xe9cnicas, defini\xe7\xe3o de arquitetura e na resolu\xe7\xe3o de problemas complexos")
 B.MU=s(["Flutter","Dart","Proatividade","Aprendizado cont\xednuo"],t.s)
 B.LK=s(["Controle centralizado do estado do formul\xe1rio e de campos individuais","Valida\xe7\xe3o s\xedncrona e ass\xedncrona com suporte a m\xfaltiplos validadores","Exibi\xe7\xe3o autom\xe1tica de erros com granularidade por campo ou grupo","Escopo isolado por formul\xe1rio, permitindo m\xfaltiplos coexistirem sem conflitos","Integra\xe7\xe3o suave com UI customizada, mantendo reatividade e performance"],t.s)
 B.Kt=new A.r2("Github",u.N,u.N)
@@ -97878,11 +97878,11 @@ B.on=new A.eg(24,0,400,0,48,B.l,1,null,!1)
 B.JA=new A.eg(null,null,null,null,null,B.k,null,null,null)
 B.JB=new A.eg(null,null,null,null,null,B.l,null,null,null)
 B.Jv=new A.ia(62832,"MaterialIcons",!0)
-B.JC=new A.jC(B.Jv,null,null,null)
+B.JD=new A.jC(B.Jv,null,null,null)
 B.Jx=new A.ia(63285,"MaterialIcons",!1)
-B.JD=new A.jC(B.Jx,null,null,null)
+B.JE=new A.jC(B.Jx,null,null,null)
 B.Jw=new A.ia(63284,"MaterialIcons",!1)
-B.JF=new A.jC(B.Jw,null,null,null)
+B.JG=new A.jC(B.Jw,null,null,null)
 B.om=new A.ia(983915,"MaterialIcons",!1)
 B.JI=new A.jC(B.om,30,null,null)
 B.JX=new A.v5(0,"repeat")
@@ -97969,8 +97969,8 @@ B.UW=new A.h1("Web Development (Flutter)",null,2,"webDevelopment")
 B.V3=new A.h1("API REST",null,5,"apiRest")
 B.UU=new A.h1("Power Automate",null,6,"powerAutomate")
 B.UZ=new A.h1("SharePoint",null,7,"sharePoint")
-B.KH=s([B.UW,B.V3,B.UU,B.UZ],t.Ms)
-B.L3=s([4,9,14,19],t.t)
+B.KI=s([B.UW,B.V3,B.UU,B.UZ],t.Ms)
+B.L4=s([4,9,14,19],t.t)
 B.MK=s([137,80,78,71,13,10,26,10],t.Z)
 B.JP=new A.nZ(0,"png")
 B.K0=new A.kL(B.JP,!1,0,"png")
@@ -97983,16 +97983,16 @@ B.KF=s([255,216,255],t.Z)
 B.JQ=new A.nZ(2,"jpeg")
 B.K4=new A.kL(B.JQ,!1,3,"jpeg")
 B.JO=new A.m7(B.KF,B.K4,3,"jpeg")
-B.Lp=s([82,73,70,70,null,null,null,null,87,69,66,80],t.Z)
-B.JK=new A.m7(B.Lp,B.or,4,"webp")
-B.Lh=s([66,77],t.Z)
+B.Lq=s([82,73,70,70,null,null,null,null,87,69,66,80],t.Z)
+B.JK=new A.m7(B.Lq,B.or,4,"webp")
+B.Li=s([66,77],t.Z)
 B.JR=new A.nZ(4,"bmp")
 B.K2=new A.kL(B.JR,!1,6,"bmp")
-B.JJ=new A.m7(B.Lh,B.K2,5,"bmp")
-B.L5=s([B.JN,B.JM,B.JL,B.JO,B.JK,B.JJ],A.ai("t<m7>"))
+B.JJ=new A.m7(B.Li,B.K2,5,"bmp")
+B.L6=s([B.JN,B.JM,B.JL,B.JO,B.JK,B.JJ],A.ai("t<m7>"))
 B.m4=new A.I9(0,"named")
 B.Bf=new A.I9(1,"anonymous")
-B.Le=s([B.m4,B.Bf],A.ai("t<I9>"))
+B.Lf=s([B.m4,B.Bf],A.ai("t<I9>"))
 B.oD=s([0,4,12,1,5,13,3,7,15],t.t)
 B.a1r=new A.hR(0,1)
 B.a1w=new A.hR(0.5,1)
@@ -98005,26 +98005,26 @@ B.a1A=new A.hR(0.8875,0.25)
 B.a1y=new A.hR(0.925,0.5)
 B.a1s=new A.hR(0.9625,0.75)
 B.a1t=new A.hR(1,1)
-B.Lq=s([B.a1r,B.a1w,B.a1z,B.a1B,B.a1x,B.a1v,B.a1u,B.a1A,B.a1y,B.a1s,B.a1t],A.ai("t<hR>"))
+B.Lr=s([B.a1r,B.a1w,B.a1z,B.a1B,B.a1x,B.a1v,B.a1u,B.a1A,B.a1y,B.a1s,B.a1t],A.ai("t<hR>"))
 B.cA=new A.mS(0,"left")
 B.d3=new A.mS(1,"right")
 B.aa=new A.mS(2,"center")
 B.fl=new A.mS(3,"justify")
 B.aJ=new A.mS(4,"start")
 B.fm=new A.mS(5,"end")
-B.Lr=s([B.cA,B.d3,B.aa,B.fl,B.aJ,B.fm],A.ai("t<mS>"))
-B.LA=s([2,1.13276676],t.n)
-B.KJ=s([2.18349805,1.20311921],t.n)
+B.Ls=s([B.cA,B.d3,B.aa,B.fl,B.aJ,B.fm],A.ai("t<mS>"))
+B.LB=s([2,1.13276676],t.n)
+B.KK=s([2.18349805,1.20311921],t.n)
 B.MB=s([2.33888662,1.28698796],t.n)
 B.MD=s([2.48660575,1.36351941],t.n)
-B.Lv=s([2.62226596,1.44717976],t.n)
-B.Lx=s([2.7514899,1.53385819],t.n)
+B.Lw=s([2.62226596,1.44717976],t.n)
+B.Ly=s([2.7514899,1.53385819],t.n)
 B.M2=s([3.36298265,1.98288283],t.n)
-B.LC=s([4.08649929,2.23811846],t.n)
+B.LD=s([4.08649929,2.23811846],t.n)
 B.LT=s([4.85481134,2.47563463],t.n)
-B.Lw=s([5.62945551,2.72948597],t.n)
-B.LB=s([6.43023796,2.98020421],t.n)
-B.oE=s([B.LA,B.KJ,B.MB,B.MD,B.Lv,B.Lx,B.M2,B.LC,B.LT,B.Lw,B.LB],t.zg)
+B.Lx=s([5.62945551,2.72948597],t.n)
+B.LC=s([6.43023796,2.98020421],t.n)
+B.oE=s([B.LB,B.KK,B.MB,B.MD,B.Lw,B.Ly,B.M2,B.LD,B.LT,B.Lx,B.LC],t.zg)
 B.BN=new A.cx(0,"clear")
 B.BO=new A.cx(1,"src")
 B.C2=new A.cx(2,"dst")
@@ -98049,8 +98049,8 @@ B.Cd=new A.cx(25,"hue")
 B.Cf=new A.cx(26,"saturation")
 B.Ch=new A.cx(27,"color")
 B.Cj=new A.cx(28,"luminosity")
-B.Ls=s([B.BN,B.BO,B.C2,B.al,B.Cl,B.mj,B.mk,B.Cm,B.Cn,B.Co,B.BP,B.BQ,B.mh,B.mi,B.BR,B.BT,B.BV,B.BX,B.BZ,B.C0,B.C3,B.C5,B.C7,B.C9,B.Cb,B.Cd,B.Cf,B.Ch,B.Cj],A.ai("t<cx>"))
-B.Lu=s([B.iW,B.iX],A.ai("t<z3>"))
+B.Lt=s([B.BN,B.BO,B.C2,B.al,B.Cl,B.mj,B.mk,B.Cm,B.Cn,B.Co,B.BP,B.BQ,B.mh,B.mi,B.BR,B.BT,B.BV,B.BX,B.BZ,B.C0,B.C3,B.C5,B.C7,B.C9,B.Cb,B.Cd,B.Cf,B.Ch,B.Cj],A.ai("t<cx>"))
+B.Lv=s([B.iW,B.iX],A.ai("t<z3>"))
 B.d4=new A.th(0,"clamp")
 B.lI=new A.th(1,"repeated")
 B.lJ=new A.th(2,"mirror")
@@ -98885,72 +98885,72 @@ B.kG=new A.bC(B.bg,[],A.ai("bC<i,@>"))
 B.uN=new A.bC(B.bg,[],A.ai("bC<EI,@>"))
 B.OH=new A.bC(B.bg,[],A.ai("bC<ha,d0>"))
 B.uM=new A.bC(B.bg,[],A.ai("bC<ha,qM<d0>>"))
-B.KX=s([42,null,null,8589935146],t.Z)
-B.KY=s([43,null,null,8589935147],t.Z)
-B.KZ=s([45,null,null,8589935149],t.Z)
-B.L_=s([46,null,null,8589935150],t.Z)
-B.L0=s([47,null,null,8589935151],t.Z)
-B.L1=s([48,null,null,8589935152],t.Z)
-B.L2=s([49,null,null,8589935153],t.Z)
-B.L4=s([50,null,null,8589935154],t.Z)
-B.L6=s([51,null,null,8589935155],t.Z)
-B.L7=s([52,null,null,8589935156],t.Z)
-B.L8=s([53,null,null,8589935157],t.Z)
-B.L9=s([54,null,null,8589935158],t.Z)
-B.La=s([55,null,null,8589935159],t.Z)
-B.Lb=s([56,null,null,8589935160],t.Z)
-B.Ld=s([57,null,null,8589935161],t.Z)
+B.KY=s([42,null,null,8589935146],t.Z)
+B.KZ=s([43,null,null,8589935147],t.Z)
+B.L_=s([45,null,null,8589935149],t.Z)
+B.L0=s([46,null,null,8589935150],t.Z)
+B.L1=s([47,null,null,8589935151],t.Z)
+B.L2=s([48,null,null,8589935152],t.Z)
+B.L3=s([49,null,null,8589935153],t.Z)
+B.L5=s([50,null,null,8589935154],t.Z)
+B.L7=s([51,null,null,8589935155],t.Z)
+B.L8=s([52,null,null,8589935156],t.Z)
+B.L9=s([53,null,null,8589935157],t.Z)
+B.La=s([54,null,null,8589935158],t.Z)
+B.Lb=s([55,null,null,8589935159],t.Z)
+B.Lc=s([56,null,null,8589935160],t.Z)
+B.Le=s([57,null,null,8589935161],t.Z)
 B.LX=s([8589934852,8589934852,8589934853,null],t.Z)
-B.KM=s([4294967555,null,4294967555,null],t.Z)
-B.KN=s([4294968065,null,null,8589935154],t.Z)
-B.KO=s([4294968066,null,null,8589935156],t.Z)
-B.KP=s([4294968067,null,null,8589935158],t.Z)
-B.KQ=s([4294968068,null,null,8589935160],t.Z)
-B.KV=s([4294968321,null,null,8589935157],t.Z)
+B.KN=s([4294967555,null,4294967555,null],t.Z)
+B.KO=s([4294968065,null,null,8589935154],t.Z)
+B.KP=s([4294968066,null,null,8589935156],t.Z)
+B.KQ=s([4294968067,null,null,8589935158],t.Z)
+B.KR=s([4294968068,null,null,8589935160],t.Z)
+B.KW=s([4294968321,null,null,8589935157],t.Z)
 B.LY=s([8589934848,8589934848,8589934849,null],t.Z)
-B.KL=s([4294967423,null,null,8589935150],t.Z)
-B.KR=s([4294968069,null,null,8589935153],t.Z)
-B.KK=s([4294967309,null,null,8589935117],t.Z)
-B.KS=s([4294968070,null,null,8589935159],t.Z)
-B.KW=s([4294968327,null,null,8589935152],t.Z)
+B.KM=s([4294967423,null,null,8589935150],t.Z)
+B.KS=s([4294968069,null,null,8589935153],t.Z)
+B.KL=s([4294967309,null,null,8589935117],t.Z)
+B.KT=s([4294968070,null,null,8589935159],t.Z)
+B.KX=s([4294968327,null,null,8589935152],t.Z)
 B.LZ=s([8589934854,8589934854,8589934855,null],t.Z)
-B.KT=s([4294968071,null,null,8589935155],t.Z)
-B.KU=s([4294968072,null,null,8589935161],t.Z)
+B.KU=s([4294968071,null,null,8589935155],t.Z)
+B.KV=s([4294968072,null,null,8589935161],t.Z)
 B.M_=s([8589934850,8589934850,8589934851,null],t.Z)
-B.uP=new A.ds(["*",B.KX,"+",B.KY,"-",B.KZ,".",B.L_,"/",B.L0,"0",B.L1,"1",B.L2,"2",B.L4,"3",B.L6,"4",B.L7,"5",B.L8,"6",B.L9,"7",B.La,"8",B.Lb,"9",B.Ld,"Alt",B.LX,"AltGraph",B.KM,"ArrowDown",B.KN,"ArrowLeft",B.KO,"ArrowRight",B.KP,"ArrowUp",B.KQ,"Clear",B.KV,"Control",B.LY,"Delete",B.KL,"End",B.KR,"Enter",B.KK,"Home",B.KS,"Insert",B.KW,"Meta",B.LZ,"PageDown",B.KT,"PageUp",B.KU,"Shift",B.M_],A.ai("ds<i,E<o?>>"))
-B.Lc=s([B.oV,null,null,B.uB],t.L)
+B.uP=new A.ds(["*",B.KY,"+",B.KZ,"-",B.L_,".",B.L0,"/",B.L1,"0",B.L2,"1",B.L3,"2",B.L5,"3",B.L7,"4",B.L8,"5",B.L9,"6",B.La,"7",B.Lb,"8",B.Lc,"9",B.Le,"Alt",B.LX,"AltGraph",B.KN,"ArrowDown",B.KO,"ArrowLeft",B.KP,"ArrowRight",B.KQ,"ArrowUp",B.KR,"Clear",B.KW,"Control",B.LY,"Delete",B.KM,"End",B.KS,"Enter",B.KL,"Home",B.KT,"Insert",B.KX,"Meta",B.LZ,"PageDown",B.KU,"PageUp",B.KV,"Shift",B.M_],A.ai("ds<i,E<o?>>"))
+B.Ld=s([B.oV,null,null,B.uB],t.L)
 B.Mz=s([B.un,null,null,B.uC],t.L)
-B.Ly=s([B.uo,null,null,B.uD],t.L)
+B.Lz=s([B.uo,null,null,B.uD],t.L)
 B.M0=s([B.up,null,null,B.cS],t.L)
 B.Kz=s([B.uq,null,null,B.uE],t.L)
 B.MM=s([B.ur,null,null,B.kC],t.L)
 B.MI=s([B.us,null,null,B.eT],t.L)
-B.Li=s([B.ut,null,null,B.cT],t.L)
+B.Lj=s([B.ut,null,null,B.cT],t.L)
 B.MR=s([B.uu,null,null,B.eU],t.L)
 B.MH=s([B.uv,null,null,B.cU],t.L)
-B.Lg=s([B.uw,null,null,B.kD],t.L)
+B.Lh=s([B.uw,null,null,B.kD],t.L)
 B.KG=s([B.ux,null,null,B.cV],t.L)
-B.Lt=s([B.uy,null,null,B.eV],t.L)
+B.Lu=s([B.uy,null,null,B.eV],t.L)
 B.MA=s([B.uz,null,null,B.cW],t.L)
 B.MC=s([B.uA,null,null,B.eW],t.L)
-B.Lk=s([B.eR,B.eR,B.hE,null],t.L)
+B.Ll=s([B.eR,B.eR,B.hE,null],t.L)
 B.MN=s([B.hA,null,B.hA,null],t.L)
-B.LD=s([B.bP,null,null,B.cT],t.L)
-B.LE=s([B.bD,null,null,B.cU],t.L)
-B.LF=s([B.bE,null,null,B.cV],t.L)
+B.LE=s([B.bP,null,null,B.cT],t.L)
+B.LF=s([B.bD,null,null,B.cU],t.L)
+B.LG=s([B.bE,null,null,B.cV],t.L)
 B.MQ=s([B.bQ,null,null,B.cW],t.L)
 B.MF=s([B.kv,null,null,B.kD],t.L)
-B.Ll=s([B.eQ,B.eQ,B.hD,null],t.L)
+B.Lm=s([B.eQ,B.eQ,B.hD,null],t.L)
 B.Ma=s([B.aC,null,null,B.cS],t.L)
-B.LG=s([B.cQ,null,null,B.eT],t.L)
-B.Lf=s([B.hz,null,null,B.kB],t.L)
-B.LH=s([B.cR,null,null,B.eV],t.L)
+B.LH=s([B.cQ,null,null,B.eT],t.L)
+B.Lg=s([B.hz,null,null,B.kB],t.L)
+B.LI=s([B.cR,null,null,B.eV],t.L)
 B.MG=s([B.kw,null,null,B.kC],t.L)
-B.Lm=s([B.eS,B.eS,B.hF,null],t.L)
-B.LI=s([B.eO,null,null,B.eU],t.L)
+B.Ln=s([B.eS,B.eS,B.hF,null],t.L)
+B.LJ=s([B.eO,null,null,B.eU],t.L)
 B.Me=s([B.eP,null,null,B.eW],t.L)
-B.Ln=s([B.c9,B.c9,B.cw,null],t.L)
-B.OK=new A.ds(["*",B.Lc,"+",B.Mz,"-",B.Ly,".",B.M0,"/",B.Kz,"0",B.MM,"1",B.MI,"2",B.Li,"3",B.MR,"4",B.MH,"5",B.Lg,"6",B.KG,"7",B.Lt,"8",B.MA,"9",B.MC,"Alt",B.Lk,"AltGraph",B.MN,"ArrowDown",B.LD,"ArrowLeft",B.LE,"ArrowRight",B.LF,"ArrowUp",B.MQ,"Clear",B.MF,"Control",B.Ll,"Delete",B.Ma,"End",B.LG,"Enter",B.Lf,"Home",B.LH,"Insert",B.MG,"Meta",B.Lm,"PageDown",B.LI,"PageUp",B.Me,"Shift",B.Ln],A.ai("ds<i,E<j?>>"))
+B.Lo=s([B.c9,B.c9,B.cw,null],t.L)
+B.OK=new A.ds(["*",B.Ld,"+",B.Mz,"-",B.Lz,".",B.M0,"/",B.Kz,"0",B.MM,"1",B.MI,"2",B.Lj,"3",B.MR,"4",B.MH,"5",B.Lh,"6",B.KG,"7",B.Lu,"8",B.MA,"9",B.MC,"Alt",B.Ll,"AltGraph",B.MN,"ArrowDown",B.LE,"ArrowLeft",B.LF,"ArrowRight",B.LG,"ArrowUp",B.MQ,"Clear",B.MF,"Control",B.Lm,"Delete",B.Ma,"End",B.LH,"Enter",B.Lg,"Home",B.LI,"Insert",B.MG,"Meta",B.Ln,"PageDown",B.LJ,"PageUp",B.Me,"Shift",B.Lo],A.ai("ds<i,E<j?>>"))
 B.Pe={multiply:0,screen:1,overlay:2,darken:3,lighten:4,"color-dodge":5,"color-burn":6,"hard-light":7,"soft-light":8,difference:9,exclusion:10,hue:11,saturation:12,color:13,luminosity:14}
 B.Cc=new A.et(24,"multiply")
 B.BS=new A.et(14,"screen")
@@ -99437,8 +99437,8 @@ B.va=new A.Pb(0,"max")
 B.Rh=new A.Pb(1,"deferToChild")
 B.Ri=new A.Pc(0,"nearestOverlay")
 B.Rj=new A.Pc(1,"rootOverlay")
-B.JE=new A.jC(B.om,40,null,null)
-B.Rk=new A.cm(B.eB,B.JE,null)
+B.JF=new A.jC(B.om,40,null,null)
+B.Rk=new A.cm(B.eB,B.JF,null)
 B.Rl=new A.Cs(null)
 B.as=new A.Pj(0,"fill")
 B.Rm=new A.Pk(0,"fill")
@@ -99542,11 +99542,11 @@ B.hX=new A.wc(0,"pop")
 B.dO=new A.wc(1,"doNotPop")
 B.yY=new A.wc(2,"bubble")
 B.kX=new A.jS(null,null)
-B.Ju=new A.ia(61531,"MaterialIcons",!1)
-B.JH=new A.jC(B.Ju,null,null,null)
-B.a_a=new A.mR("Ver curr\xedculo",null,null,null,null,null,null)
-B.LJ=s([B.JH,B.a_a],t.p)
-B.SZ=new A.Dz(B.b3,B.A,B.a4,B.O,null,B.C,null,0,B.LJ,null)
+B.Ju=new A.ia(58460,"MaterialIcons",!0)
+B.JC=new A.jC(B.Ju,null,null,null)
+B.a_d=new A.mR(" Ver curr\xedculo e certificados",null,null,null,null,null,null)
+B.KH=s([B.JC,B.a_d],t.p)
+B.SZ=new A.Dz(B.b3,B.A,B.a4,B.O,null,B.C,null,0,B.KH,null)
 B.T_=new A.R3(null,null)
 B.d_=new A.rO(0,"idle")
 B.yZ=new A.rO(1,"transientCallbacks")
@@ -99766,8 +99766,8 @@ B.ih=new A.e2(5,null,null,null)
 B.UQ=new A.e2(1/0,1/0,null,null)
 B.UR=new A.e2(1/0,null,null,null)
 B.Js=new A.ia(57699,"MaterialIcons",!1)
-B.JG=new A.jC(B.Js,6,null,null)
-B.zX=new A.e2(20,30,B.JG,null)
+B.JH=new A.jC(B.Js,6,null,null)
+B.zX=new A.e2(20,30,B.JH,null)
 B.a0D=new A.Tw(null)
 B.US=new A.e2(null,200,B.a0D,null)
 B.bS=new A.e2(null,10,null,null)
@@ -100125,10 +100125,10 @@ B.Zn=new A.y(!0,B.l,null,".AppleSystemUIFont",null,null,null,null,null,null,null
 B.WO=new A.y(!0,B.l,null,".AppleSystemUIFont",null,null,null,null,null,null,null,null,null,null,null,null,null,B.i,null,null,null,"blackRedwoodCity labelSmall",null,null,null,null)
 B.a_9=new A.eK(B.Yg,B.Xs,B.Yh,B.YL,B.X5,B.Xc,B.XK,B.YD,B.XV,B.Zc,B.WD,B.WV,B.Z8,B.Zn,B.WO)
 B.Xe=new A.y(!0,B.k,null,null,null,null,null,B.hl,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.a_b=new A.mR("Visualizar sistema estelar",null,B.Xe,null,null,null,null)
-B.a_c=new A.mR("Ler todo",null,null,null,null,null,null)
+B.a_a=new A.mR("Visualizar sistema estelar",null,B.Xe,null,null,null,null)
+B.a_b=new A.mR("Ler todo",null,null,null,null,null,null)
 B.ZN=new A.y(!0,null,null,null,null,null,12,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.a_d=new A.mR("\xa9 2025 Hisnaider Ribeiro Campello \u2014 CC BY-NC-ND 4.0. Some rights reserved",null,B.ZN,B.aa,null,null,null)
+B.a_c=new A.mR("\xa9 2025 Hisnaider Ribeiro Campello \u2014 CC BY-NC-ND 4.0. Some rights reserved",null,B.ZN,B.aa,null,null,null)
 B.a_e=new A.T2(0,"system")
 B.Ap=new A.T2(2,"dark")
 B.Q_=new A.f(0.056,0.024)
