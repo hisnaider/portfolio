@@ -22,7 +22,11 @@ class _IntroSectionState extends State<IntroSection> {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     const double threshold = 1000;
-
+    final bool _isDesktop = [
+      TargetPlatform.windows,
+      TargetPlatform.linux,
+      TargetPlatform.macOS
+    ].contains(Analytics.instance.getPlatform);
     return SliverPersistentHeader(
       floating: false,
       pinned: false,
@@ -56,11 +60,13 @@ class _IntroSectionState extends State<IntroSection> {
                   children: [
                     if (progress <= 0.5)
                       Welcome(
+                        isDesktop: _isDesktop,
                         scrollValue: progress,
                         start: 0,
                         end: 0.5,
                       ),
-                    if (shrinkOffset < screenHeight + threshold - 200)
+                    if (progress > 0.4 &&
+                        shrinkOffset < screenHeight + threshold - 200)
                       Opacity(
                         opacity: 1 - shrinkProgress,
                         child: HeroPage(

@@ -4,9 +4,11 @@ import 'package:portfolio/core/commons/extensions/normalize.dart';
 class Welcome extends StatelessWidget {
   const Welcome(
       {super.key,
+      required this.isDesktop,
       required this.scrollValue,
       required this.start,
       required this.end});
+  final bool isDesktop;
   final double scrollValue;
   final double start;
   final double end;
@@ -35,7 +37,7 @@ class Welcome extends StatelessWidget {
                     .copyWith(color: Colors.white),
               ),
               Text(
-                'Role para entrar na órbita inicial. Depois, explore meu sistema estelar.',
+                '${isDesktop ? 'Role' : 'Arraste'} a página para explorar meu sistema estelar.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),

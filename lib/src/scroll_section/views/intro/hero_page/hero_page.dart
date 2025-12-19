@@ -70,7 +70,6 @@ class HeroPage extends StatelessWidget {
                         child: Center(
                           child: RepaintBoundary(
                             child: MiniStarSystem(
-                              animate: skillScale > 0,
                               skillScale: skillScale,
                             ),
                           ),
@@ -107,7 +106,6 @@ class HeroPage extends StatelessWidget {
                           BoxConstraints(maxWidth: size, maxHeight: size),
                       child: RepaintBoundary(
                         child: MiniStarSystem(
-                          animate: skillScale > 0,
                           skillScale: skillScale,
                         ),
                       ),

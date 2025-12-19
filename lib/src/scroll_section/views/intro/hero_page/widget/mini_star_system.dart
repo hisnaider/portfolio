@@ -4,10 +4,8 @@ import 'package:portfolio/src/star_system/controller/time_controller.dart';
 import 'package:portfolio/src/scroll_section/views/intro/hero_page/entities/hero_page_objects.dart';
 
 class MiniStarSystem extends StatefulWidget {
-  const MiniStarSystem(
-      {super.key, required this.skillScale, required this.animate});
+  const MiniStarSystem({super.key, required this.skillScale});
   final double skillScale;
-  final bool animate;
 
   @override
   State<MiniStarSystem> createState() => _MiniStarSystemState();
@@ -27,7 +25,7 @@ class _MiniStarSystemState extends State<MiniStarSystem>
   @override
   void initState() {
     super.initState();
-    time = TimeController(this)..stop();
+    time = TimeController(this)..start();
   }
 
   @override
@@ -37,19 +35,8 @@ class _MiniStarSystemState extends State<MiniStarSystem>
   }
 
   @override
-  void didUpdateWidget(covariant MiniStarSystem oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.animate != oldWidget.animate) {
-      if (widget.animate) {
-        time.start();
-      } else {
-        time.stop();
-      }
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    print('asdasdasd');
     return ValueListenableBuilder(
       valueListenable: time.elapsed,
       builder: (context, value, child) {

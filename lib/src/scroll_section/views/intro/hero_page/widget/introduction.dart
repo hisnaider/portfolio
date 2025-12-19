@@ -23,15 +23,18 @@ class Introduction extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SelectableText.rich(TextSpan(
-              text: "Olá, sou ",
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  color: Colors.white, fontSize: isMobile ? 24 : null),
-              children: const [
-                TextSpan(
-                    text: 'Hisnaider R. Campello',
-                    style: TextStyle(fontWeight: FontWeight.w800))
-              ])),
+          SelectableText.rich(
+            TextSpan(
+                text: "Olá, sou ",
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: Colors.white, fontSize: isMobile ? 24 : null),
+                children: const [
+                  TextSpan(
+                      text: 'Hisnaider R. Campello',
+                      style: TextStyle(fontWeight: FontWeight.w800))
+                ]),
+            textAlign: textAlign,
+          ),
           Text(
             'MOBILE DEVELOPER',
             textAlign: textAlign,
@@ -55,7 +58,9 @@ class Introduction extends StatelessWidget {
           Opacity(
             opacity: curriculumFade,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: textAlign == TextAlign.center
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.end,
               children: [
                 TextButton(
                   onPressed: () {
