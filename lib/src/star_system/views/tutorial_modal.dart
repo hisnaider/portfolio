@@ -16,6 +16,11 @@ class TutorialModal {
       barrierLabel: 'Tutorial',
       pageBuilder: (context, animation, secondaryAnimation) {
         final bool isVertical = MediaQuery.of(context).size.width <= 800;
+        final bool isDesktop = [
+          TargetPlatform.windows,
+          TargetPlatform.linux,
+          TargetPlatform.macOS
+        ].contains(Theme.of(context).platform);
         return IgnorePointer(
           child: Material(
             color: Colors.transparent,
@@ -33,17 +38,23 @@ class TutorialModal {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _DisplayIcon(
-                        icon: Assets.moveCameraMouse,
+                        icon: isDesktop
+                            ? Assets.moveCameraMouse
+                            : Assets.moveCameraTouch,
                         isVertical: isVertical,
                         text: 'Mover camera',
                       ),
                       _DisplayIcon(
-                        icon: Assets.zoomCameraMouse,
+                        icon: isDesktop
+                            ? Assets.zoomCameraMouse
+                            : Assets.zoomCameraTouch,
                         isVertical: isVertical,
                         text: 'Zoom in/out',
                       ),
                       _DisplayIcon(
-                        icon: Assets.selectBodyMouse,
+                        icon: isDesktop
+                            ? Assets.selectBodyMouse
+                            : Assets.selectBodyTouch,
                         isVertical: isVertical,
                         text: 'Selecionar corpo celeste',
                       ),
